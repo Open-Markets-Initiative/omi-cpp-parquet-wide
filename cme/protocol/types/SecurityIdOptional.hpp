@@ -1,0 +1,31 @@
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+
+namespace cme::mdp3::v8 {
+
+// If this tag is present, 35=f message is sent for the instrument
+struct SecurityIdOptional {
+
+    static constexpr const char* name = "Security Id Optional";
+    static constexpr std::size_t size =  4;
+static const std::int32_t no_value = 2147483647;
+
+    // default constructor
+    constexpr SecurityIdOptional()
+     : value{ 0 } {}
+
+    // standard constructor
+    constexpr explicit SecurityIdOptional(const std::int32_t value)
+     : value{ value } {}
+
+    // get value of SecurityIdOptional field
+    [[nodiscard]] std::int32_t get() const {
+        return value;
+    }
+
+  protected:
+    std::int32_t value;
+};
+}

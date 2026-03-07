@@ -1,0 +1,31 @@
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+
+namespace cme::mdp3::v8 {
+
+// Indicates aggressor side in the trade, if value is 0 then there is no aggressor
+struct AggressorSide {
+
+    static constexpr const char* name = "Aggressor Side";
+    static constexpr std::size_t size = 1;
+    static const std::uint8_t no_value = 255;
+
+    // default constructor
+    constexpr AggressorSide()
+     : value{ 0 } {}
+
+    // standard constructor
+    constexpr explicit AggressorSide(const std::uint8_t value)
+     : value{ value } {}
+
+    // get value of AggressorSide field
+    [[nodiscard]] std::uint8_t get() const {
+        return value;
+    }
+
+  protected:
+    std::uint8_t value;
+};
+}

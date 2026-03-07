@@ -1,0 +1,23 @@
+#pragma once
+
+#include <cstddef>
+
+namespace cme::mdp3::v8 {
+
+// 6 bytes padding
+struct Padding6 {
+
+    static constexpr const char* name = "Padding 6";
+    static constexpr std::size_t size = 6;
+
+    // underlying type
+    using type = std::array<std::uint8_t, size>;
+
+    // default constructor
+    constexpr Padding6()
+     : value{} {}
+
+  protected:
+    type value;
+};
+}

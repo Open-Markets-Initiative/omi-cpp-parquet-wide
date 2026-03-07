@@ -1,0 +1,72 @@
+#pragma once
+
+#include <optional>
+#include <string>
+#include <algorithm>
+
+#include "arrow/api.h"
+
+namespace iex {
+
+// field: Extension Number
+struct ExtensionNumber {
+
+    static constexpr auto name = "extension_number";
+    static constexpr auto nullable = true;
+
+    ExtensionNumber() = default;
+
+    // set extension_number
+    void set(const char* value) {
+        data = value;
+    }
+
+    // set extension_number
+    void set(const std::string& value) {
+        data = value;
+    }
+
+    // set extension_number
+    void set(const char value) {
+        data = {value};
+    }
+
+    // reset extension_number field
+    void reset() {
+        data.reset();
+    }
+
+    // sanitize to valid utf-8 ascii
+    static std::string sanitize(const std::string& value) {
+        std::string result;
+        result.reserve(value.size());
+        for (unsigned char c : value) {
+            if (c >= 0x20 && c < 0x7F) {
+                result.push_back(static_cast<char>(c));
+            }
+        }
+        // trim trailing spaces
+        while (!result.empty() && result.back() == ' ') {
+            result.pop_back();
+        }
+        return result;
+    }
+
+    // append extension_number
+    auto append(arrow::StringBuilder& builder) const {
+        if (data) {
+            return builder.Append(sanitize(*data));
+        }
+
+        return builder.AppendNull();
+    }
+
+    // extension_number schema field
+    static auto column() {
+        return arrow::field(name, arrow::utf8(), nullable);
+    }
+
+    std::optional<std::string> data;
+};
+
+}

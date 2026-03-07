@@ -1,0 +1,29 @@
+#pragma once
+
+#include <cstddef>
+
+namespace iex::equities::tops::iextp::v1_6_6 {
+
+// Auction type identifier
+struct AuctionType {
+
+    static constexpr const char* name = "Auction Type";
+    static constexpr std::size_t size = 1;
+
+    // default constructor
+    constexpr AuctionType()
+     : value{ 0 } {}
+
+    // standard constructor
+    constexpr explicit AuctionType(const char value)
+     : value{ value } {}
+
+    // get value of AuctionType field
+    [[nodiscard]] char get() const {
+        return value;
+    }
+
+  protected:
+    char value;
+};
+}
