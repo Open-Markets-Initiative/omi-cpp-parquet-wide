@@ -2,6 +2,7 @@
 
 #include <optional>
 #include <string>
+#include <string_view>
 #include <algorithm>
 
 #include "arrow/api.h"
@@ -24,6 +25,11 @@ struct Mpid {
     // set mpid
     void set(const std::string& value) {
         data = value;
+    }
+
+    // set mpid
+    void set(std::string_view value) {
+        data = std::string{value};
     }
 
     // set mpid

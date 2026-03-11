@@ -114,6 +114,35 @@
 #include "fields/NoChunks.hpp"
 #include "fields/CurrentChunk.hpp"
 #include "fields/MdDisplayQty.hpp"
+#include "fields/ChannelResetGroup.hpp"
+#include "fields/MDInstrumentDefinitionFuture27NoEventsGroup.hpp"
+#include "fields/MDInstrumentDefinitionFuture27NoMDFeedTypesGroup.hpp"
+#include "fields/MDInstrumentDefinitionFuture27NoInstAttribGroup.hpp"
+#include "fields/MDInstrumentDefinitionFuture27NoLotTypeRulesGroup.hpp"
+#include "fields/MDInstrumentDefinitionSpread29NoEventsGroup.hpp"
+#include "fields/MDInstrumentDefinitionSpread29NoMDFeedTypesGroup.hpp"
+#include "fields/MDInstrumentDefinitionSpread29NoInstAttribGroup.hpp"
+#include "fields/MDInstrumentDefinitionSpread29NoLotTypeRulesGroup.hpp"
+#include "fields/MDInstrumentDefinitionSpread29NoLegsGroup.hpp"
+#include "fields/MDIncrementalRefreshBook32NoMDEntriesGroup.hpp"
+#include "fields/MDIncrementalRefreshBook32NoOrderIDEntriesGroup.hpp"
+#include "fields/MDIncrementalRefreshDailyStatistics33NoMDEntriesGroup.hpp"
+#include "fields/MDIncrementalRefreshLimitsBanding34NoMDEntriesGroup.hpp"
+#include "fields/MDIncrementalRefreshSessionStatistics35NoMDEntriesGroup.hpp"
+#include "fields/MDIncrementalRefreshTrade36NoMDEntriesGroup.hpp"
+#include "fields/IncrementalRefreshVolumeGroup.hpp"
+#include "fields/SnapshotFullRefresh38NoMDEntriesGroup.hpp"
+#include "fields/RelatedSymGroup.hpp"
+#include "fields/MDInstrumentDefinitionOption41NoEventsGroup.hpp"
+#include "fields/MDInstrumentDefinitionOption41NoMDFeedTypesGroup.hpp"
+#include "fields/MDInstrumentDefinitionOption41NoInstAttribGroup.hpp"
+#include "fields/MDInstrumentDefinitionOption41NoLotTypeRulesGroup.hpp"
+#include "fields/MDInstrumentDefinitionOption41NoUnderlyingsGroup.hpp"
+#include "fields/MDInstrumentDefinitionOption41NoRelatedInstrumentsGroup.hpp"
+#include "fields/MDIncrementalRefreshTradeSummary42NoMDEntriesGroup.hpp"
+#include "fields/MDIncrementalRefreshTradeSummary42NoOrderIDEntriesGroup.hpp"
+#include "fields/MDIncrementalRefreshOrderBook43NoMDEntriesGroup.hpp"
+#include "fields/SnapshotFullRefreshOrderBook44NoMDEntriesGroup.hpp"
 
 namespace cme {
 struct ArrowRecord {
@@ -230,6 +259,35 @@ struct ArrowRecord {
     NoChunks no_chunks;
     CurrentChunk current_chunk;
     MdDisplayQty md_display_qty;
+    ChannelResetGroup channel_reset_group;
+    MDInstrumentDefinitionFuture27NoEventsGroup m_d_instrument_definition_future_27_no_events_group;
+    MDInstrumentDefinitionFuture27NoMDFeedTypesGroup m_d_instrument_definition_future_27_no_m_d_feed_types_group;
+    MDInstrumentDefinitionFuture27NoInstAttribGroup m_d_instrument_definition_future_27_no_inst_attrib_group;
+    MDInstrumentDefinitionFuture27NoLotTypeRulesGroup m_d_instrument_definition_future_27_no_lot_type_rules_group;
+    MDInstrumentDefinitionSpread29NoEventsGroup m_d_instrument_definition_spread_29_no_events_group;
+    MDInstrumentDefinitionSpread29NoMDFeedTypesGroup m_d_instrument_definition_spread_29_no_m_d_feed_types_group;
+    MDInstrumentDefinitionSpread29NoInstAttribGroup m_d_instrument_definition_spread_29_no_inst_attrib_group;
+    MDInstrumentDefinitionSpread29NoLotTypeRulesGroup m_d_instrument_definition_spread_29_no_lot_type_rules_group;
+    MDInstrumentDefinitionSpread29NoLegsGroup m_d_instrument_definition_spread_29_no_legs_group;
+    MDIncrementalRefreshBook32NoMDEntriesGroup m_d_incremental_refresh_book_32_no_m_d_entries_group;
+    MDIncrementalRefreshBook32NoOrderIDEntriesGroup m_d_incremental_refresh_book_32_no_order_i_d_entries_group;
+    MDIncrementalRefreshDailyStatistics33NoMDEntriesGroup m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group;
+    MDIncrementalRefreshLimitsBanding34NoMDEntriesGroup m_d_incremental_refresh_limits_banding_34_no_m_d_entries_group;
+    MDIncrementalRefreshSessionStatistics35NoMDEntriesGroup m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group;
+    MDIncrementalRefreshTrade36NoMDEntriesGroup m_d_incremental_refresh_trade_36_no_m_d_entries_group;
+    IncrementalRefreshVolumeGroup incremental_refresh_volume_group;
+    SnapshotFullRefresh38NoMDEntriesGroup snapshot_full_refresh_38_no_m_d_entries_group;
+    RelatedSymGroup related_sym_group;
+    MDInstrumentDefinitionOption41NoEventsGroup m_d_instrument_definition_option_41_no_events_group;
+    MDInstrumentDefinitionOption41NoMDFeedTypesGroup m_d_instrument_definition_option_41_no_m_d_feed_types_group;
+    MDInstrumentDefinitionOption41NoInstAttribGroup m_d_instrument_definition_option_41_no_inst_attrib_group;
+    MDInstrumentDefinitionOption41NoLotTypeRulesGroup m_d_instrument_definition_option_41_no_lot_type_rules_group;
+    MDInstrumentDefinitionOption41NoUnderlyingsGroup m_d_instrument_definition_option_41_no_underlyings_group;
+    MDInstrumentDefinitionOption41NoRelatedInstrumentsGroup m_d_instrument_definition_option_41_no_related_instruments_group;
+    MDIncrementalRefreshTradeSummary42NoMDEntriesGroup m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group;
+    MDIncrementalRefreshTradeSummary42NoOrderIDEntriesGroup m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group;
+    MDIncrementalRefreshOrderBook43NoMDEntriesGroup m_d_incremental_refresh_order_book_43_no_m_d_entries_group;
+    SnapshotFullRefreshOrderBook44NoMDEntriesGroup snapshot_full_refresh_order_book_44_no_m_d_entries_group;
 
     ArrowRecord() = default;
 
@@ -347,6 +405,35 @@ struct ArrowRecord {
         no_chunks.reset();
         current_chunk.reset();
         md_display_qty.reset();
+        channel_reset_group.reset();
+        m_d_instrument_definition_future_27_no_events_group.reset();
+        m_d_instrument_definition_future_27_no_m_d_feed_types_group.reset();
+        m_d_instrument_definition_future_27_no_inst_attrib_group.reset();
+        m_d_instrument_definition_future_27_no_lot_type_rules_group.reset();
+        m_d_instrument_definition_spread_29_no_events_group.reset();
+        m_d_instrument_definition_spread_29_no_m_d_feed_types_group.reset();
+        m_d_instrument_definition_spread_29_no_inst_attrib_group.reset();
+        m_d_instrument_definition_spread_29_no_lot_type_rules_group.reset();
+        m_d_instrument_definition_spread_29_no_legs_group.reset();
+        m_d_incremental_refresh_book_32_no_m_d_entries_group.reset();
+        m_d_incremental_refresh_book_32_no_order_i_d_entries_group.reset();
+        m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group.reset();
+        m_d_incremental_refresh_limits_banding_34_no_m_d_entries_group.reset();
+        m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group.reset();
+        m_d_incremental_refresh_trade_36_no_m_d_entries_group.reset();
+        incremental_refresh_volume_group.reset();
+        snapshot_full_refresh_38_no_m_d_entries_group.reset();
+        related_sym_group.reset();
+        m_d_instrument_definition_option_41_no_events_group.reset();
+        m_d_instrument_definition_option_41_no_m_d_feed_types_group.reset();
+        m_d_instrument_definition_option_41_no_inst_attrib_group.reset();
+        m_d_instrument_definition_option_41_no_lot_type_rules_group.reset();
+        m_d_instrument_definition_option_41_no_underlyings_group.reset();
+        m_d_instrument_definition_option_41_no_related_instruments_group.reset();
+        m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group.reset();
+        m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group.reset();
+        m_d_incremental_refresh_order_book_43_no_m_d_entries_group.reset();
+        snapshot_full_refresh_order_book_44_no_m_d_entries_group.reset();
     }
 
     // arrow schema
@@ -463,7 +550,36 @@ struct ArrowRecord {
             OrderIdOptional::column(),
             NoChunks::column(),
             CurrentChunk::column(),
-            MdDisplayQty::column()
+            MdDisplayQty::column(),
+            ChannelResetGroup::column(),
+            MDInstrumentDefinitionFuture27NoEventsGroup::column(),
+            MDInstrumentDefinitionFuture27NoMDFeedTypesGroup::column(),
+            MDInstrumentDefinitionFuture27NoInstAttribGroup::column(),
+            MDInstrumentDefinitionFuture27NoLotTypeRulesGroup::column(),
+            MDInstrumentDefinitionSpread29NoEventsGroup::column(),
+            MDInstrumentDefinitionSpread29NoMDFeedTypesGroup::column(),
+            MDInstrumentDefinitionSpread29NoInstAttribGroup::column(),
+            MDInstrumentDefinitionSpread29NoLotTypeRulesGroup::column(),
+            MDInstrumentDefinitionSpread29NoLegsGroup::column(),
+            MDIncrementalRefreshBook32NoMDEntriesGroup::column(),
+            MDIncrementalRefreshBook32NoOrderIDEntriesGroup::column(),
+            MDIncrementalRefreshDailyStatistics33NoMDEntriesGroup::column(),
+            MDIncrementalRefreshLimitsBanding34NoMDEntriesGroup::column(),
+            MDIncrementalRefreshSessionStatistics35NoMDEntriesGroup::column(),
+            MDIncrementalRefreshTrade36NoMDEntriesGroup::column(),
+            IncrementalRefreshVolumeGroup::column(),
+            SnapshotFullRefresh38NoMDEntriesGroup::column(),
+            RelatedSymGroup::column(),
+            MDInstrumentDefinitionOption41NoEventsGroup::column(),
+            MDInstrumentDefinitionOption41NoMDFeedTypesGroup::column(),
+            MDInstrumentDefinitionOption41NoInstAttribGroup::column(),
+            MDInstrumentDefinitionOption41NoLotTypeRulesGroup::column(),
+            MDInstrumentDefinitionOption41NoUnderlyingsGroup::column(),
+            MDInstrumentDefinitionOption41NoRelatedInstrumentsGroup::column(),
+            MDIncrementalRefreshTradeSummary42NoMDEntriesGroup::column(),
+            MDIncrementalRefreshTradeSummary42NoOrderIDEntriesGroup::column(),
+            MDIncrementalRefreshOrderBook43NoMDEntriesGroup::column(),
+            SnapshotFullRefreshOrderBook44NoMDEntriesGroup::column()
         } );
     }
 };

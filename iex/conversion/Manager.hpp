@@ -3,8 +3,8 @@
 #include "Settings.hpp"
 #include "../packet/Parser.hpp"
 #include "../protocol/iterators/MessageIterator.hpp"
-#include "../protocol/iterators/MessageBlockIterator.hpp"
 #include "../parquet/Writer.hpp"
+#include "../json/Writer.hpp"
 
 namespace iex::equities::tops::iextp::v1_6_6 {
 
@@ -19,6 +19,7 @@ struct Manager {
     packet::Parser& parser;
     iex::Writer& record;
     const conversion::Options& options;
+    json::Writer json_writer_;
 
     explicit Manager(const conversion::Options& options, packet::Parser& parser, iex::Writer& record)
      : parser{ parser }, record{ record }, options{ options } {}
@@ -37,10 +38,6 @@ struct Manager {
 
     void process(const std::byte* pointer, const char message_type) {
         switch (message_type) {
-            case 0:
-                process_heartbeat(pointer);
-                break;
-
             case 'S':
                 process_system_event_message(pointer);
                 break;
@@ -88,13 +85,6 @@ struct Manager {
             default:
                 break;
         }
-    }
-
-    void process_heartbeat(const std::byte* pointer) {
-        record.event_type.set("Heartbeat");
-
-        record.write();
-        record.reset();
     }
 
     void process_system_event_message(const std::byte* pointer) {

@@ -136,6 +136,35 @@ struct ArrowBatch {
         ARROW_RETURN_NOT_OK(record.no_chunks.append(*no_chunks_builder));
         ARROW_RETURN_NOT_OK(record.current_chunk.append(*current_chunk_builder));
         ARROW_RETURN_NOT_OK(record.md_display_qty.append(*md_display_qty_builder));
+        ARROW_RETURN_NOT_OK(record.channel_reset_group.append(*channel_reset_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_future_27_no_events_group.append(*m_d_instrument_definition_future_27_no_events_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_future_27_no_m_d_feed_types_group.append(*m_d_instrument_definition_future_27_no_m_d_feed_types_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_future_27_no_inst_attrib_group.append(*m_d_instrument_definition_future_27_no_inst_attrib_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_future_27_no_lot_type_rules_group.append(*m_d_instrument_definition_future_27_no_lot_type_rules_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_spread_29_no_events_group.append(*m_d_instrument_definition_spread_29_no_events_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_spread_29_no_m_d_feed_types_group.append(*m_d_instrument_definition_spread_29_no_m_d_feed_types_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_spread_29_no_inst_attrib_group.append(*m_d_instrument_definition_spread_29_no_inst_attrib_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_spread_29_no_lot_type_rules_group.append(*m_d_instrument_definition_spread_29_no_lot_type_rules_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_spread_29_no_legs_group.append(*m_d_instrument_definition_spread_29_no_legs_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_book_32_no_m_d_entries_group.append(*m_d_incremental_refresh_book_32_no_m_d_entries_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_book_32_no_order_i_d_entries_group.append(*m_d_incremental_refresh_book_32_no_order_i_d_entries_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group.append(*m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_limits_banding_34_no_m_d_entries_group.append(*m_d_incremental_refresh_limits_banding_34_no_m_d_entries_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group.append(*m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_trade_36_no_m_d_entries_group.append(*m_d_incremental_refresh_trade_36_no_m_d_entries_group_builder));
+        ARROW_RETURN_NOT_OK(record.incremental_refresh_volume_group.append(*incremental_refresh_volume_group_builder));
+        ARROW_RETURN_NOT_OK(record.snapshot_full_refresh_38_no_m_d_entries_group.append(*snapshot_full_refresh_38_no_m_d_entries_group_builder));
+        ARROW_RETURN_NOT_OK(record.related_sym_group.append(*related_sym_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_option_41_no_events_group.append(*m_d_instrument_definition_option_41_no_events_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_option_41_no_m_d_feed_types_group.append(*m_d_instrument_definition_option_41_no_m_d_feed_types_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_option_41_no_inst_attrib_group.append(*m_d_instrument_definition_option_41_no_inst_attrib_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_option_41_no_lot_type_rules_group.append(*m_d_instrument_definition_option_41_no_lot_type_rules_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_option_41_no_underlyings_group.append(*m_d_instrument_definition_option_41_no_underlyings_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_option_41_no_related_instruments_group.append(*m_d_instrument_definition_option_41_no_related_instruments_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group.append(*m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group.append(*m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_builder));
+        ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_order_book_43_no_m_d_entries_group.append(*m_d_incremental_refresh_order_book_43_no_m_d_entries_group_builder));
+        ARROW_RETURN_NOT_OK(record.snapshot_full_refresh_order_book_44_no_m_d_entries_group.append(*snapshot_full_refresh_order_book_44_no_m_d_entries_group_builder));
 
         row_count_++;
 
@@ -264,6 +293,35 @@ struct ArrowBatch {
         std::shared_ptr<arrow::Array> no_chunks_column;
         std::shared_ptr<arrow::Array> current_chunk_column;
         std::shared_ptr<arrow::Array> md_display_qty_column;
+        std::shared_ptr<arrow::Array> channel_reset_group_column;
+        std::shared_ptr<arrow::Array> m_d_instrument_definition_future_27_no_events_group_column;
+        std::shared_ptr<arrow::Array> m_d_instrument_definition_future_27_no_m_d_feed_types_group_column;
+        std::shared_ptr<arrow::Array> m_d_instrument_definition_future_27_no_inst_attrib_group_column;
+        std::shared_ptr<arrow::Array> m_d_instrument_definition_future_27_no_lot_type_rules_group_column;
+        std::shared_ptr<arrow::Array> m_d_instrument_definition_spread_29_no_events_group_column;
+        std::shared_ptr<arrow::Array> m_d_instrument_definition_spread_29_no_m_d_feed_types_group_column;
+        std::shared_ptr<arrow::Array> m_d_instrument_definition_spread_29_no_inst_attrib_group_column;
+        std::shared_ptr<arrow::Array> m_d_instrument_definition_spread_29_no_lot_type_rules_group_column;
+        std::shared_ptr<arrow::Array> m_d_instrument_definition_spread_29_no_legs_group_column;
+        std::shared_ptr<arrow::Array> m_d_incremental_refresh_book_32_no_m_d_entries_group_column;
+        std::shared_ptr<arrow::Array> m_d_incremental_refresh_book_32_no_order_i_d_entries_group_column;
+        std::shared_ptr<arrow::Array> m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_column;
+        std::shared_ptr<arrow::Array> m_d_incremental_refresh_limits_banding_34_no_m_d_entries_group_column;
+        std::shared_ptr<arrow::Array> m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_column;
+        std::shared_ptr<arrow::Array> m_d_incremental_refresh_trade_36_no_m_d_entries_group_column;
+        std::shared_ptr<arrow::Array> incremental_refresh_volume_group_column;
+        std::shared_ptr<arrow::Array> snapshot_full_refresh_38_no_m_d_entries_group_column;
+        std::shared_ptr<arrow::Array> related_sym_group_column;
+        std::shared_ptr<arrow::Array> m_d_instrument_definition_option_41_no_events_group_column;
+        std::shared_ptr<arrow::Array> m_d_instrument_definition_option_41_no_m_d_feed_types_group_column;
+        std::shared_ptr<arrow::Array> m_d_instrument_definition_option_41_no_inst_attrib_group_column;
+        std::shared_ptr<arrow::Array> m_d_instrument_definition_option_41_no_lot_type_rules_group_column;
+        std::shared_ptr<arrow::Array> m_d_instrument_definition_option_41_no_underlyings_group_column;
+        std::shared_ptr<arrow::Array> m_d_instrument_definition_option_41_no_related_instruments_group_column;
+        std::shared_ptr<arrow::Array> m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_column;
+        std::shared_ptr<arrow::Array> m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_column;
+        std::shared_ptr<arrow::Array> m_d_incremental_refresh_order_book_43_no_m_d_entries_group_column;
+        std::shared_ptr<arrow::Array> snapshot_full_refresh_order_book_44_no_m_d_entries_group_column;
 
         ARROW_RETURN_NOT_OK(event_type_builder->Finish(&event_type_column));
         ARROW_RETURN_NOT_OK(transact_time_builder->Finish(&transact_time_column));
@@ -377,6 +435,35 @@ struct ArrowBatch {
         ARROW_RETURN_NOT_OK(no_chunks_builder->Finish(&no_chunks_column));
         ARROW_RETURN_NOT_OK(current_chunk_builder->Finish(&current_chunk_column));
         ARROW_RETURN_NOT_OK(md_display_qty_builder->Finish(&md_display_qty_column));
+        ARROW_RETURN_NOT_OK(channel_reset_group_builder->Finish(&channel_reset_group_column));
+        ARROW_RETURN_NOT_OK(m_d_instrument_definition_future_27_no_events_group_builder->Finish(&m_d_instrument_definition_future_27_no_events_group_column));
+        ARROW_RETURN_NOT_OK(m_d_instrument_definition_future_27_no_m_d_feed_types_group_builder->Finish(&m_d_instrument_definition_future_27_no_m_d_feed_types_group_column));
+        ARROW_RETURN_NOT_OK(m_d_instrument_definition_future_27_no_inst_attrib_group_builder->Finish(&m_d_instrument_definition_future_27_no_inst_attrib_group_column));
+        ARROW_RETURN_NOT_OK(m_d_instrument_definition_future_27_no_lot_type_rules_group_builder->Finish(&m_d_instrument_definition_future_27_no_lot_type_rules_group_column));
+        ARROW_RETURN_NOT_OK(m_d_instrument_definition_spread_29_no_events_group_builder->Finish(&m_d_instrument_definition_spread_29_no_events_group_column));
+        ARROW_RETURN_NOT_OK(m_d_instrument_definition_spread_29_no_m_d_feed_types_group_builder->Finish(&m_d_instrument_definition_spread_29_no_m_d_feed_types_group_column));
+        ARROW_RETURN_NOT_OK(m_d_instrument_definition_spread_29_no_inst_attrib_group_builder->Finish(&m_d_instrument_definition_spread_29_no_inst_attrib_group_column));
+        ARROW_RETURN_NOT_OK(m_d_instrument_definition_spread_29_no_lot_type_rules_group_builder->Finish(&m_d_instrument_definition_spread_29_no_lot_type_rules_group_column));
+        ARROW_RETURN_NOT_OK(m_d_instrument_definition_spread_29_no_legs_group_builder->Finish(&m_d_instrument_definition_spread_29_no_legs_group_column));
+        ARROW_RETURN_NOT_OK(m_d_incremental_refresh_book_32_no_m_d_entries_group_builder->Finish(&m_d_incremental_refresh_book_32_no_m_d_entries_group_column));
+        ARROW_RETURN_NOT_OK(m_d_incremental_refresh_book_32_no_order_i_d_entries_group_builder->Finish(&m_d_incremental_refresh_book_32_no_order_i_d_entries_group_column));
+        ARROW_RETURN_NOT_OK(m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_builder->Finish(&m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_column));
+        ARROW_RETURN_NOT_OK(m_d_incremental_refresh_limits_banding_34_no_m_d_entries_group_builder->Finish(&m_d_incremental_refresh_limits_banding_34_no_m_d_entries_group_column));
+        ARROW_RETURN_NOT_OK(m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_builder->Finish(&m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_column));
+        ARROW_RETURN_NOT_OK(m_d_incremental_refresh_trade_36_no_m_d_entries_group_builder->Finish(&m_d_incremental_refresh_trade_36_no_m_d_entries_group_column));
+        ARROW_RETURN_NOT_OK(incremental_refresh_volume_group_builder->Finish(&incremental_refresh_volume_group_column));
+        ARROW_RETURN_NOT_OK(snapshot_full_refresh_38_no_m_d_entries_group_builder->Finish(&snapshot_full_refresh_38_no_m_d_entries_group_column));
+        ARROW_RETURN_NOT_OK(related_sym_group_builder->Finish(&related_sym_group_column));
+        ARROW_RETURN_NOT_OK(m_d_instrument_definition_option_41_no_events_group_builder->Finish(&m_d_instrument_definition_option_41_no_events_group_column));
+        ARROW_RETURN_NOT_OK(m_d_instrument_definition_option_41_no_m_d_feed_types_group_builder->Finish(&m_d_instrument_definition_option_41_no_m_d_feed_types_group_column));
+        ARROW_RETURN_NOT_OK(m_d_instrument_definition_option_41_no_inst_attrib_group_builder->Finish(&m_d_instrument_definition_option_41_no_inst_attrib_group_column));
+        ARROW_RETURN_NOT_OK(m_d_instrument_definition_option_41_no_lot_type_rules_group_builder->Finish(&m_d_instrument_definition_option_41_no_lot_type_rules_group_column));
+        ARROW_RETURN_NOT_OK(m_d_instrument_definition_option_41_no_underlyings_group_builder->Finish(&m_d_instrument_definition_option_41_no_underlyings_group_column));
+        ARROW_RETURN_NOT_OK(m_d_instrument_definition_option_41_no_related_instruments_group_builder->Finish(&m_d_instrument_definition_option_41_no_related_instruments_group_column));
+        ARROW_RETURN_NOT_OK(m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_builder->Finish(&m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_column));
+        ARROW_RETURN_NOT_OK(m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_builder->Finish(&m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_column));
+        ARROW_RETURN_NOT_OK(m_d_incremental_refresh_order_book_43_no_m_d_entries_group_builder->Finish(&m_d_incremental_refresh_order_book_43_no_m_d_entries_group_column));
+        ARROW_RETURN_NOT_OK(snapshot_full_refresh_order_book_44_no_m_d_entries_group_builder->Finish(&snapshot_full_refresh_order_book_44_no_m_d_entries_group_column));
 
         auto batch = arrow::RecordBatch::Make(schema_, row_count_, {
             event_type_column,
@@ -491,6 +578,35 @@ struct ArrowBatch {
             no_chunks_column,
             current_chunk_column,
             md_display_qty_column,
+            channel_reset_group_column,
+            m_d_instrument_definition_future_27_no_events_group_column,
+            m_d_instrument_definition_future_27_no_m_d_feed_types_group_column,
+            m_d_instrument_definition_future_27_no_inst_attrib_group_column,
+            m_d_instrument_definition_future_27_no_lot_type_rules_group_column,
+            m_d_instrument_definition_spread_29_no_events_group_column,
+            m_d_instrument_definition_spread_29_no_m_d_feed_types_group_column,
+            m_d_instrument_definition_spread_29_no_inst_attrib_group_column,
+            m_d_instrument_definition_spread_29_no_lot_type_rules_group_column,
+            m_d_instrument_definition_spread_29_no_legs_group_column,
+            m_d_incremental_refresh_book_32_no_m_d_entries_group_column,
+            m_d_incremental_refresh_book_32_no_order_i_d_entries_group_column,
+            m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_column,
+            m_d_incremental_refresh_limits_banding_34_no_m_d_entries_group_column,
+            m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_column,
+            m_d_incremental_refresh_trade_36_no_m_d_entries_group_column,
+            incremental_refresh_volume_group_column,
+            snapshot_full_refresh_38_no_m_d_entries_group_column,
+            related_sym_group_column,
+            m_d_instrument_definition_option_41_no_events_group_column,
+            m_d_instrument_definition_option_41_no_m_d_feed_types_group_column,
+            m_d_instrument_definition_option_41_no_inst_attrib_group_column,
+            m_d_instrument_definition_option_41_no_lot_type_rules_group_column,
+            m_d_instrument_definition_option_41_no_underlyings_group_column,
+            m_d_instrument_definition_option_41_no_related_instruments_group_column,
+            m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_column,
+            m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_column,
+            m_d_incremental_refresh_order_book_43_no_m_d_entries_group_column,
+            snapshot_full_refresh_order_book_44_no_m_d_entries_group_column,
         } );
 
         ARROW_RETURN_NOT_OK(writer_->WriteRecordBatch(*batch));
@@ -634,6 +750,35 @@ struct ArrowBatch {
         no_chunks_builder = std::make_unique<arrow::UInt32Builder>();
         current_chunk_builder = std::make_unique<arrow::UInt32Builder>();
         md_display_qty_builder = std::make_unique<arrow::Int32Builder>();
+        channel_reset_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_instrument_definition_future_27_no_events_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_instrument_definition_future_27_no_m_d_feed_types_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_instrument_definition_future_27_no_inst_attrib_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_instrument_definition_future_27_no_lot_type_rules_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_instrument_definition_spread_29_no_events_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_instrument_definition_spread_29_no_m_d_feed_types_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_instrument_definition_spread_29_no_inst_attrib_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_instrument_definition_spread_29_no_lot_type_rules_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_instrument_definition_spread_29_no_legs_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_incremental_refresh_book_32_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_incremental_refresh_book_32_no_order_i_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_incremental_refresh_limits_banding_34_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_incremental_refresh_trade_36_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
+        incremental_refresh_volume_group_builder = std::make_unique<arrow::StringBuilder>();
+        snapshot_full_refresh_38_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
+        related_sym_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_instrument_definition_option_41_no_events_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_instrument_definition_option_41_no_m_d_feed_types_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_instrument_definition_option_41_no_inst_attrib_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_instrument_definition_option_41_no_lot_type_rules_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_instrument_definition_option_41_no_underlyings_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_instrument_definition_option_41_no_related_instruments_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
+        m_d_incremental_refresh_order_book_43_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
+        snapshot_full_refresh_order_book_44_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
 
         row_count_ = 0;
     }
@@ -806,5 +951,34 @@ struct ArrowBatch {
         std::unique_ptr<arrow::UInt32Builder> no_chunks_builder;
         std::unique_ptr<arrow::UInt32Builder> current_chunk_builder;
         std::unique_ptr<arrow::Int32Builder> md_display_qty_builder;
+        std::unique_ptr<arrow::StringBuilder> channel_reset_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_future_27_no_events_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_future_27_no_m_d_feed_types_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_future_27_no_inst_attrib_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_future_27_no_lot_type_rules_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_spread_29_no_events_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_spread_29_no_m_d_feed_types_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_spread_29_no_inst_attrib_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_spread_29_no_lot_type_rules_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_spread_29_no_legs_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_book_32_no_m_d_entries_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_book_32_no_order_i_d_entries_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_limits_banding_34_no_m_d_entries_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_trade_36_no_m_d_entries_group_builder;
+        std::unique_ptr<arrow::StringBuilder> incremental_refresh_volume_group_builder;
+        std::unique_ptr<arrow::StringBuilder> snapshot_full_refresh_38_no_m_d_entries_group_builder;
+        std::unique_ptr<arrow::StringBuilder> related_sym_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_option_41_no_events_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_option_41_no_m_d_feed_types_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_option_41_no_inst_attrib_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_option_41_no_lot_type_rules_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_option_41_no_underlyings_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_option_41_no_related_instruments_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_builder;
+        std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_order_book_43_no_m_d_entries_group_builder;
+        std::unique_ptr<arrow::StringBuilder> snapshot_full_refresh_order_book_44_no_m_d_entries_group_builder;
 };
 }

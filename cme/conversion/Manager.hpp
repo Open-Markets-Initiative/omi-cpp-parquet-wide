@@ -62,6 +62,7 @@
 #include "../protocol/groups/MDIncrementalRefreshOrderBook43NoMDEntriesGroup.hpp"
 #include "../protocol/groups/SnapshotFullRefreshOrderBook44NoMDEntriesGroup.hpp"
 #include "../parquet/Writer.hpp"
+#include "../json/Writer.hpp"
 
 namespace cme::mdp3::v8 {
 
@@ -105,6 +106,7 @@ struct Manager {
     packet::Parser& parser;
     cme::Writer& record;
     const conversion::Options& options;
+    json::Writer json_writer_;
 
     explicit Manager(const conversion::Options& options, packet::Parser& parser, cme::Writer& record)
      : parser{ parser }, record{ record }, options{ options } {}
@@ -210,6 +212,18 @@ struct Manager {
         record.event_type.set("Channel Reset");
         record.transact_time.set(message->transact_time.get());
 
+        // repeating group: Channel Reset Group (serialized as JSON)
+        json_writer_.start_array();
+        channel_reset_group_iterator.initialize(pointer + sizeof(ChannelReset));
+        while (channel_reset_group_iterator.next()) {
+            const auto* entry = ChannelResetGroup::parse(channel_reset_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Appl Id", entry->appl_id.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.channel_reset_group.set(json_writer_.view());
+
         record.write();
         record.reset();
     }
@@ -287,6 +301,56 @@ struct Manager {
         record.user_defined_instrument.set(message->user_defined_instrument.get());
         record.trading_reference_date.set(message->trading_reference_date.get());
 
+        // repeating group: M D Instrument Definition Future 27 No Events Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_instrument_definition_future_27_no_events_group_iterator.initialize(pointer + sizeof(MdInstrumentDefinitionFuture));
+        while (m_d_instrument_definition_future_27_no_events_group_iterator.next()) {
+            const auto* entry = MDInstrumentDefinitionFuture27NoEventsGroup::parse(m_d_instrument_definition_future_27_no_events_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Event Type", entry->event_type.get());
+            json_writer_.field("Event Time", entry->event_time.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_instrument_definition_future_27_no_events_group.set(json_writer_.view());
+
+        // repeating group: M D Instrument Definition Future 27 No M D Feed Types Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_instrument_definition_future_27_no_m_d_feed_types_group_iterator.initialize(m_d_instrument_definition_future_27_no_events_group_iterator.current);
+        while (m_d_instrument_definition_future_27_no_m_d_feed_types_group_iterator.next()) {
+            const auto* entry = MDInstrumentDefinitionFuture27NoMDFeedTypesGroup::parse(m_d_instrument_definition_future_27_no_m_d_feed_types_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Md Feed Type", entry->md_feed_type.get());
+            json_writer_.field("Market Depth", entry->market_depth.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_instrument_definition_future_27_no_m_d_feed_types_group.set(json_writer_.view());
+
+        // repeating group: M D Instrument Definition Future 27 No Inst Attrib Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_instrument_definition_future_27_no_inst_attrib_group_iterator.initialize(m_d_instrument_definition_future_27_no_m_d_feed_types_group_iterator.current);
+        while (m_d_instrument_definition_future_27_no_inst_attrib_group_iterator.next()) {
+            const auto* entry = MDInstrumentDefinitionFuture27NoInstAttribGroup::parse(m_d_instrument_definition_future_27_no_inst_attrib_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_instrument_definition_future_27_no_inst_attrib_group.set(json_writer_.view());
+
+        // repeating group: M D Instrument Definition Future 27 No Lot Type Rules Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_instrument_definition_future_27_no_lot_type_rules_group_iterator.initialize(m_d_instrument_definition_future_27_no_inst_attrib_group_iterator.current);
+        while (m_d_instrument_definition_future_27_no_lot_type_rules_group_iterator.next()) {
+            const auto* entry = MDInstrumentDefinitionFuture27NoLotTypeRulesGroup::parse(m_d_instrument_definition_future_27_no_lot_type_rules_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Lot Type", entry->lot_type.get());
+            json_writer_.field("Min Lot Size", entry->min_lot_size.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_instrument_definition_future_27_no_lot_type_rules_group.set(json_writer_.view());
+
         record.write();
         record.reset();
     }
@@ -331,6 +395,72 @@ struct Manager {
         record.sub_fraction.set(message->sub_fraction.get());
         record.trading_reference_date.set(message->trading_reference_date.get());
 
+        // repeating group: M D Instrument Definition Spread 29 No Events Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_instrument_definition_spread_29_no_events_group_iterator.initialize(pointer + sizeof(MdInstrumentDefinitionSpread));
+        while (m_d_instrument_definition_spread_29_no_events_group_iterator.next()) {
+            const auto* entry = MDInstrumentDefinitionSpread29NoEventsGroup::parse(m_d_instrument_definition_spread_29_no_events_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Event Type", entry->event_type.get());
+            json_writer_.field("Event Time", entry->event_time.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_instrument_definition_spread_29_no_events_group.set(json_writer_.view());
+
+        // repeating group: M D Instrument Definition Spread 29 No M D Feed Types Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_instrument_definition_spread_29_no_m_d_feed_types_group_iterator.initialize(m_d_instrument_definition_spread_29_no_events_group_iterator.current);
+        while (m_d_instrument_definition_spread_29_no_m_d_feed_types_group_iterator.next()) {
+            const auto* entry = MDInstrumentDefinitionSpread29NoMDFeedTypesGroup::parse(m_d_instrument_definition_spread_29_no_m_d_feed_types_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Md Feed Type", entry->md_feed_type.get());
+            json_writer_.field("Market Depth", entry->market_depth.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_instrument_definition_spread_29_no_m_d_feed_types_group.set(json_writer_.view());
+
+        // repeating group: M D Instrument Definition Spread 29 No Inst Attrib Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_instrument_definition_spread_29_no_inst_attrib_group_iterator.initialize(m_d_instrument_definition_spread_29_no_m_d_feed_types_group_iterator.current);
+        while (m_d_instrument_definition_spread_29_no_inst_attrib_group_iterator.next()) {
+            const auto* entry = MDInstrumentDefinitionSpread29NoInstAttribGroup::parse(m_d_instrument_definition_spread_29_no_inst_attrib_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_instrument_definition_spread_29_no_inst_attrib_group.set(json_writer_.view());
+
+        // repeating group: M D Instrument Definition Spread 29 No Lot Type Rules Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_instrument_definition_spread_29_no_lot_type_rules_group_iterator.initialize(m_d_instrument_definition_spread_29_no_inst_attrib_group_iterator.current);
+        while (m_d_instrument_definition_spread_29_no_lot_type_rules_group_iterator.next()) {
+            const auto* entry = MDInstrumentDefinitionSpread29NoLotTypeRulesGroup::parse(m_d_instrument_definition_spread_29_no_lot_type_rules_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Lot Type", entry->lot_type.get());
+            json_writer_.field("Min Lot Size", entry->min_lot_size.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_instrument_definition_spread_29_no_lot_type_rules_group.set(json_writer_.view());
+
+        // repeating group: M D Instrument Definition Spread 29 No Legs Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_instrument_definition_spread_29_no_legs_group_iterator.initialize(m_d_instrument_definition_spread_29_no_lot_type_rules_group_iterator.current);
+        while (m_d_instrument_definition_spread_29_no_legs_group_iterator.next()) {
+            const auto* entry = MDInstrumentDefinitionSpread29NoLegsGroup::parse(m_d_instrument_definition_spread_29_no_legs_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Leg Security Id", entry->leg_security_id.get());
+            json_writer_.field("Leg Side", entry->leg_side.get());
+            json_writer_.field("Leg Ratio Qty", entry->leg_ratio_qty.get());
+            json_writer_.field("Leg Price", entry->leg_price.get());
+            json_writer_.field("Leg Option Delta", entry->leg_option_delta.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_instrument_definition_spread_29_no_legs_group.set(json_writer_.view());
+
         record.write();
         record.reset();
     }
@@ -358,6 +488,41 @@ struct Manager {
         record.event_type.set("Md Incremental Refresh Book");
         record.transact_time.set(message->transact_time.get());
 
+        // repeating group: M D Incremental Refresh Book 32 No M D Entries Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_incremental_refresh_book_32_no_m_d_entries_group_iterator.initialize(pointer + sizeof(MdIncrementalRefreshBook));
+        while (m_d_incremental_refresh_book_32_no_m_d_entries_group_iterator.next()) {
+            const auto* entry = MDIncrementalRefreshBook32NoMDEntriesGroup::parse(m_d_incremental_refresh_book_32_no_m_d_entries_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Md Entry Px Optional", entry->md_entry_px_optional.get());
+            json_writer_.field("Md Entry Size Optional", entry->md_entry_size_optional.get());
+            json_writer_.field("Security Id", entry->security_id.get());
+            json_writer_.field("Rpt Seq", entry->rpt_seq.get());
+            json_writer_.field("Number Of Orders", entry->number_of_orders.get());
+            json_writer_.field("Md Price Level", entry->md_price_level.get());
+            json_writer_.field("Md Update Action", entry->md_update_action.get());
+            json_writer_.field("Md Entry Type Book", entry->md_entry_type_book.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_incremental_refresh_book_32_no_m_d_entries_group.set(json_writer_.view());
+
+        // repeating group: M D Incremental Refresh Book 32 No Order I D Entries Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_incremental_refresh_book_32_no_order_i_d_entries_group_iterator.initialize(m_d_incremental_refresh_book_32_no_m_d_entries_group_iterator.current);
+        while (m_d_incremental_refresh_book_32_no_order_i_d_entries_group_iterator.next()) {
+            const auto* entry = MDIncrementalRefreshBook32NoOrderIDEntriesGroup::parse(m_d_incremental_refresh_book_32_no_order_i_d_entries_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Order Id", entry->order_id.get());
+            json_writer_.field("Md Order Priority", entry->md_order_priority.get());
+            json_writer_.field("Md Display Qty Optional", entry->md_display_qty_optional.get());
+            json_writer_.field("Reference Id", entry->reference_id.get());
+            json_writer_.field("Order Update Action", entry->order_update_action.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_incremental_refresh_book_32_no_order_i_d_entries_group.set(json_writer_.view());
+
         record.write();
         record.reset();
     }
@@ -367,6 +532,24 @@ struct Manager {
 
         record.event_type.set("Md Incremental Refresh Daily Statistics");
         record.transact_time.set(message->transact_time.get());
+
+        // repeating group: M D Incremental Refresh Daily Statistics 33 No M D Entries Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_iterator.initialize(pointer + sizeof(MdIncrementalRefreshDailyStatistics));
+        while (m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_iterator.next()) {
+            const auto* entry = MDIncrementalRefreshDailyStatistics33NoMDEntriesGroup::parse(m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Md Entry Px Optional", entry->md_entry_px_optional.get());
+            json_writer_.field("Md Entry Size Optional", entry->md_entry_size_optional.get());
+            json_writer_.field("Security Id", entry->security_id.get());
+            json_writer_.field("Rpt Seq", entry->rpt_seq.get());
+            json_writer_.field("Trading Reference Date", entry->trading_reference_date.get());
+            json_writer_.field("Md Update Action", entry->md_update_action.get());
+            json_writer_.field("Md Entry Type Daily Statistics", entry->md_entry_type_daily_statistics.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group.set(json_writer_.view());
 
         record.write();
         record.reset();
@@ -378,6 +561,22 @@ struct Manager {
         record.event_type.set("Md Incremental Refresh Limits Banding");
         record.transact_time.set(message->transact_time.get());
 
+        // repeating group: M D Incremental Refresh Limits Banding 34 No M D Entries Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_incremental_refresh_limits_banding_34_no_m_d_entries_group_iterator.initialize(pointer + sizeof(MdIncrementalRefreshLimitsBanding));
+        while (m_d_incremental_refresh_limits_banding_34_no_m_d_entries_group_iterator.next()) {
+            const auto* entry = MDIncrementalRefreshLimitsBanding34NoMDEntriesGroup::parse(m_d_incremental_refresh_limits_banding_34_no_m_d_entries_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("High Limit Price", entry->high_limit_price.get());
+            json_writer_.field("Low Limit Price", entry->low_limit_price.get());
+            json_writer_.field("Max Price Variation", entry->max_price_variation.get());
+            json_writer_.field("Security Id", entry->security_id.get());
+            json_writer_.field("Rpt Seq", entry->rpt_seq.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_incremental_refresh_limits_banding_34_no_m_d_entries_group.set(json_writer_.view());
+
         record.write();
         record.reset();
     }
@@ -387,6 +586,24 @@ struct Manager {
 
         record.event_type.set("Md Incremental Refresh Session Statistics");
         record.transact_time.set(message->transact_time.get());
+
+        // repeating group: M D Incremental Refresh Session Statistics 35 No M D Entries Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_iterator.initialize(pointer + sizeof(MdIncrementalRefreshSessionStatistics));
+        while (m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_iterator.next()) {
+            const auto* entry = MDIncrementalRefreshSessionStatistics35NoMDEntriesGroup::parse(m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Md Entry Px", entry->md_entry_px.get());
+            json_writer_.field("Security Id", entry->security_id.get());
+            json_writer_.field("Rpt Seq", entry->rpt_seq.get());
+            json_writer_.field("Open Close Settl Flag", entry->open_close_settl_flag.get());
+            json_writer_.field("Md Update Action", entry->md_update_action.get());
+            json_writer_.field("Md Entry Type Statistics", entry->md_entry_type_statistics.get());
+            json_writer_.field("Md Entry Size Optional", entry->md_entry_size_optional.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group.set(json_writer_.view());
 
         record.write();
         record.reset();
@@ -398,6 +615,25 @@ struct Manager {
         record.event_type.set("Md Incremental Refresh Trade");
         record.transact_time.set(message->transact_time.get());
 
+        // repeating group: M D Incremental Refresh Trade 36 No M D Entries Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_incremental_refresh_trade_36_no_m_d_entries_group_iterator.initialize(pointer + sizeof(MdIncrementalRefreshTrade));
+        while (m_d_incremental_refresh_trade_36_no_m_d_entries_group_iterator.next()) {
+            const auto* entry = MDIncrementalRefreshTrade36NoMDEntriesGroup::parse(m_d_incremental_refresh_trade_36_no_m_d_entries_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Md Entry Px", entry->md_entry_px.get());
+            json_writer_.field("Md Entry Size", entry->md_entry_size.get());
+            json_writer_.field("Security Id", entry->security_id.get());
+            json_writer_.field("Rpt Seq", entry->rpt_seq.get());
+            json_writer_.field("Number Of Orders", entry->number_of_orders.get());
+            json_writer_.field("Trade Id", entry->trade_id.get());
+            json_writer_.field("Aggressor Side", entry->aggressor_side.get());
+            json_writer_.field("Md Update Action", entry->md_update_action.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_incremental_refresh_trade_36_no_m_d_entries_group.set(json_writer_.view());
+
         record.write();
         record.reset();
     }
@@ -407,6 +643,21 @@ struct Manager {
 
         record.event_type.set("Md Incremental Refresh Volume");
         record.transact_time.set(message->transact_time.get());
+
+        // repeating group: Incremental Refresh Volume Group (serialized as JSON)
+        json_writer_.start_array();
+        incremental_refresh_volume_group_iterator.initialize(pointer + sizeof(MdIncrementalRefreshVolume));
+        while (incremental_refresh_volume_group_iterator.next()) {
+            const auto* entry = IncrementalRefreshVolumeGroup::parse(incremental_refresh_volume_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Md Entry Size", entry->md_entry_size.get());
+            json_writer_.field("Security Id", entry->security_id.get());
+            json_writer_.field("Rpt Seq", entry->rpt_seq.get());
+            json_writer_.field("Md Update Action", entry->md_update_action.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.incremental_refresh_volume_group.set(json_writer_.view());
 
         record.write();
         record.reset();
@@ -428,6 +679,24 @@ struct Manager {
         record.low_limit_price.set(message->low_limit_price.get());
         record.max_price_variation.set(message->max_price_variation.get());
 
+        // repeating group: Snapshot Full Refresh 38 No M D Entries Group (serialized as JSON)
+        json_writer_.start_array();
+        snapshot_full_refresh_38_no_m_d_entries_group_iterator.initialize(pointer + sizeof(SnapshotFullRefresh));
+        while (snapshot_full_refresh_38_no_m_d_entries_group_iterator.next()) {
+            const auto* entry = SnapshotFullRefresh38NoMDEntriesGroup::parse(snapshot_full_refresh_38_no_m_d_entries_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Md Entry Px Optional", entry->md_entry_px_optional.get());
+            json_writer_.field("Md Entry Size Optional", entry->md_entry_size_optional.get());
+            json_writer_.field("Number Of Orders", entry->number_of_orders.get());
+            json_writer_.field("Md Price Level Optional", entry->md_price_level_optional.get());
+            json_writer_.field("Trading Reference Date", entry->trading_reference_date.get());
+            json_writer_.field("Open Close Settl Flag", entry->open_close_settl_flag.get());
+            json_writer_.field("Md Entry Type ", entry->md_entry_type_.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.snapshot_full_refresh_38_no_m_d_entries_group.set(json_writer_.view());
+
         record.write();
         record.reset();
     }
@@ -438,6 +707,22 @@ struct Manager {
         record.event_type.set("Quote Request");
         record.transact_time.set(message->transact_time.get());
         record.quote_req_id.set(message->quote_req_id.get());
+
+        // repeating group: Related Sym Group (serialized as JSON)
+        json_writer_.start_array();
+        related_sym_group_iterator.initialize(pointer + sizeof(QuoteRequest));
+        while (related_sym_group_iterator.next()) {
+            const auto* entry = RelatedSymGroup::parse(related_sym_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Symbol", entry->symbol.get());
+            json_writer_.field("Security Id", entry->security_id.get());
+            json_writer_.field("Order Qty", entry->order_qty.get());
+            json_writer_.field("Quote Type", entry->quote_type.get());
+            json_writer_.field("Side", entry->side.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.related_sym_group.set(json_writer_.view());
 
         record.write();
         record.reset();
@@ -487,6 +772,82 @@ struct Manager {
         record.user_defined_instrument.set(message->user_defined_instrument.get());
         record.trading_reference_date.set(message->trading_reference_date.get());
 
+        // repeating group: M D Instrument Definition Option 41 No Events Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_instrument_definition_option_41_no_events_group_iterator.initialize(pointer + sizeof(MdInstrumentDefinitionOption));
+        while (m_d_instrument_definition_option_41_no_events_group_iterator.next()) {
+            const auto* entry = MDInstrumentDefinitionOption41NoEventsGroup::parse(m_d_instrument_definition_option_41_no_events_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Event Type", entry->event_type.get());
+            json_writer_.field("Event Time", entry->event_time.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_instrument_definition_option_41_no_events_group.set(json_writer_.view());
+
+        // repeating group: M D Instrument Definition Option 41 No M D Feed Types Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_instrument_definition_option_41_no_m_d_feed_types_group_iterator.initialize(m_d_instrument_definition_option_41_no_events_group_iterator.current);
+        while (m_d_instrument_definition_option_41_no_m_d_feed_types_group_iterator.next()) {
+            const auto* entry = MDInstrumentDefinitionOption41NoMDFeedTypesGroup::parse(m_d_instrument_definition_option_41_no_m_d_feed_types_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Md Feed Type", entry->md_feed_type.get());
+            json_writer_.field("Market Depth", entry->market_depth.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_instrument_definition_option_41_no_m_d_feed_types_group.set(json_writer_.view());
+
+        // repeating group: M D Instrument Definition Option 41 No Inst Attrib Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_instrument_definition_option_41_no_inst_attrib_group_iterator.initialize(m_d_instrument_definition_option_41_no_m_d_feed_types_group_iterator.current);
+        while (m_d_instrument_definition_option_41_no_inst_attrib_group_iterator.next()) {
+            const auto* entry = MDInstrumentDefinitionOption41NoInstAttribGroup::parse(m_d_instrument_definition_option_41_no_inst_attrib_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_instrument_definition_option_41_no_inst_attrib_group.set(json_writer_.view());
+
+        // repeating group: M D Instrument Definition Option 41 No Lot Type Rules Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_instrument_definition_option_41_no_lot_type_rules_group_iterator.initialize(m_d_instrument_definition_option_41_no_inst_attrib_group_iterator.current);
+        while (m_d_instrument_definition_option_41_no_lot_type_rules_group_iterator.next()) {
+            const auto* entry = MDInstrumentDefinitionOption41NoLotTypeRulesGroup::parse(m_d_instrument_definition_option_41_no_lot_type_rules_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Lot Type", entry->lot_type.get());
+            json_writer_.field("Min Lot Size", entry->min_lot_size.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_instrument_definition_option_41_no_lot_type_rules_group.set(json_writer_.view());
+
+        // repeating group: M D Instrument Definition Option 41 No Underlyings Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_instrument_definition_option_41_no_underlyings_group_iterator.initialize(m_d_instrument_definition_option_41_no_lot_type_rules_group_iterator.current);
+        while (m_d_instrument_definition_option_41_no_underlyings_group_iterator.next()) {
+            const auto* entry = MDInstrumentDefinitionOption41NoUnderlyingsGroup::parse(m_d_instrument_definition_option_41_no_underlyings_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Underlying Security Id", entry->underlying_security_id.get());
+            json_writer_.field("Underlying Symbol", entry->underlying_symbol.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_instrument_definition_option_41_no_underlyings_group.set(json_writer_.view());
+
+        // repeating group: M D Instrument Definition Option 41 No Related Instruments Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_instrument_definition_option_41_no_related_instruments_group_iterator.initialize(m_d_instrument_definition_option_41_no_underlyings_group_iterator.current);
+        while (m_d_instrument_definition_option_41_no_related_instruments_group_iterator.next()) {
+            const auto* entry = MDInstrumentDefinitionOption41NoRelatedInstrumentsGroup::parse(m_d_instrument_definition_option_41_no_related_instruments_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Related Security Id", entry->related_security_id.get());
+            json_writer_.field("Related Symbol", entry->related_symbol.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_instrument_definition_option_41_no_related_instruments_group.set(json_writer_.view());
+
         record.write();
         record.reset();
     }
@@ -497,6 +858,38 @@ struct Manager {
         record.event_type.set("Md Incremental Refresh Trade Summary");
         record.transact_time.set(message->transact_time.get());
 
+        // repeating group: M D Incremental Refresh Trade Summary 42 No M D Entries Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_iterator.initialize(pointer + sizeof(MdIncrementalRefreshTradeSummary));
+        while (m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_iterator.next()) {
+            const auto* entry = MDIncrementalRefreshTradeSummary42NoMDEntriesGroup::parse(m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Md Entry Px", entry->md_entry_px.get());
+            json_writer_.field("Md Entry Size", entry->md_entry_size.get());
+            json_writer_.field("Security Id", entry->security_id.get());
+            json_writer_.field("Rpt Seq", entry->rpt_seq.get());
+            json_writer_.field("Number Of Orders", entry->number_of_orders.get());
+            json_writer_.field("Aggressor Side", entry->aggressor_side.get());
+            json_writer_.field("Md Update Action", entry->md_update_action.get());
+            json_writer_.field("Md Trade Entry Id", entry->md_trade_entry_id.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group.set(json_writer_.view());
+
+        // repeating group: M D Incremental Refresh Trade Summary 42 No Order I D Entries Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_iterator.initialize(m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_iterator.current);
+        while (m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_iterator.next()) {
+            const auto* entry = MDIncrementalRefreshTradeSummary42NoOrderIDEntriesGroup::parse(m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Order Id", entry->order_id.get());
+            json_writer_.field("Last Qty", entry->last_qty.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group.set(json_writer_.view());
+
         record.write();
         record.reset();
     }
@@ -506,6 +899,24 @@ struct Manager {
 
         record.event_type.set("Md Incremental Refresh Order Book");
         record.transact_time.set(message->transact_time.get());
+
+        // repeating group: M D Incremental Refresh Order Book 43 No M D Entries Group (serialized as JSON)
+        json_writer_.start_array();
+        m_d_incremental_refresh_order_book_43_no_m_d_entries_group_iterator.initialize(pointer + sizeof(MdIncrementalRefreshOrderBook));
+        while (m_d_incremental_refresh_order_book_43_no_m_d_entries_group_iterator.next()) {
+            const auto* entry = MDIncrementalRefreshOrderBook43NoMDEntriesGroup::parse(m_d_incremental_refresh_order_book_43_no_m_d_entries_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Order Id Optional", entry->order_id_optional.get());
+            json_writer_.field("Md Order Priority", entry->md_order_priority.get());
+            json_writer_.field("Md Entry Px Optional", entry->md_entry_px_optional.get());
+            json_writer_.field("Md Display Qty Optional", entry->md_display_qty_optional.get());
+            json_writer_.field("Security Id", entry->security_id.get());
+            json_writer_.field("Md Update Action", entry->md_update_action.get());
+            json_writer_.field("Md Entry Type Book", entry->md_entry_type_book.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.m_d_incremental_refresh_order_book_43_no_m_d_entries_group.set(json_writer_.view());
 
         record.write();
         record.reset();
@@ -521,6 +932,22 @@ struct Manager {
         record.no_chunks.set(message->no_chunks.get());
         record.current_chunk.set(message->current_chunk.get());
         record.transact_time.set(message->transact_time.get());
+
+        // repeating group: Snapshot Full Refresh Order Book 44 No M D Entries Group (serialized as JSON)
+        json_writer_.start_array();
+        snapshot_full_refresh_order_book_44_no_m_d_entries_group_iterator.initialize(pointer + sizeof(SnapshotFullRefreshOrderBook));
+        while (snapshot_full_refresh_order_book_44_no_m_d_entries_group_iterator.next()) {
+            const auto* entry = SnapshotFullRefreshOrderBook44NoMDEntriesGroup::parse(snapshot_full_refresh_order_book_44_no_m_d_entries_group_iterator.entry);
+            json_writer_.start_element();
+            json_writer_.field("Order Id", entry->order_id.get());
+            json_writer_.field("Md Order Priority", entry->md_order_priority.get());
+            json_writer_.field("Md Entry Px", entry->md_entry_px.get());
+            json_writer_.field("Md Display Qty", entry->md_display_qty.get());
+            json_writer_.field("Md Entry Type Book", entry->md_entry_type_book.get());
+            json_writer_.end_element();
+        }
+        json_writer_.finish_array();
+        record.snapshot_full_refresh_order_book_44_no_m_d_entries_group.set(json_writer_.view());
 
         record.write();
         record.reset();

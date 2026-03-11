@@ -2,6 +2,7 @@
 
 #include <optional>
 #include <string>
+#include <string_view>
 #include <algorithm>
 
 #include "arrow/api.h"
@@ -24,6 +25,11 @@ struct QuoteReqId {
     // set quote_req_id
     void set(const std::string& value) {
         data = value;
+    }
+
+    // set quote_req_id
+    void set(std::string_view value) {
+        data = std::string{value};
     }
 
     // set quote_req_id

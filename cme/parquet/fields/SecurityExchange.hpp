@@ -2,6 +2,7 @@
 
 #include <optional>
 #include <string>
+#include <string_view>
 #include <algorithm>
 
 #include "arrow/api.h"
@@ -24,6 +25,11 @@ struct SecurityExchange {
     // set security_exchange
     void set(const std::string& value) {
         data = value;
+    }
+
+    // set security_exchange
+    void set(std::string_view value) {
+        data = std::string{value};
     }
 
     // set security_exchange

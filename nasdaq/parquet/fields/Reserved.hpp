@@ -2,6 +2,7 @@
 
 #include <optional>
 #include <string>
+#include <string_view>
 #include <algorithm>
 
 #include "arrow/api.h"
@@ -24,6 +25,11 @@ struct Reserved {
     // set reserved
     void set(const std::string& value) {
         data = value;
+    }
+
+    // set reserved
+    void set(std::string_view value) {
+        data = std::string{value};
     }
 
     // set reserved
