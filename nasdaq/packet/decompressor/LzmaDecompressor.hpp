@@ -14,45 +14,45 @@ namespace packet {
 
 // LZMA/XZ Decompressor
 struct LzmaDecompressor : Decompressor {
-    std::unique_ptr<Decompressor> source_;
-    lzma_stream stream_;
-    std::vector<std::uint8_t> inbuf_;
-    bool finished_ = false;
+    std::unique_ptr<Decompressor> source;
+    lzma_stream stream;
+    std::vector<std::uint8_t> inbuf;
+    bool finished = false;
 
     explicit LzmaDecompressor(std::unique_ptr<Decompressor> source,
                                std::size_t inbuf_size = 32768)
-        : source_(std::move(source)), stream_(LZMA_STREAM_INIT), inbuf_(inbuf_size) {
-        if (lzma_stream_decoder(&stream_, UINT64_MAX, 0) != LZMA_OK)
+        : source(std::move(source)), stream(LZMA_STREAM_INIT), inbuf(inbuf_size) {
+        if (lzma_stream_decoder(&stream, UINT64_MAX, 0) != LZMA_OK)
             throw std::runtime_error("lzma_stream_decoder failed");
     }
 
-    ~LzmaDecompressor() override { lzma_end(&stream_); }
+    ~LzmaDecompressor() override { lzma_end(&stream); }
 
     LzmaDecompressor(const LzmaDecompressor&) = delete;
     LzmaDecompressor& operator=(const LzmaDecompressor&) = delete;
 
     std::size_t read(void* buf, std::size_t len) override {
-        stream_.next_out = static_cast<std::uint8_t*>(buf);
-        stream_.avail_out = len;
-        while (stream_.avail_out > 0 && !finished_) {
-            if (stream_.avail_in == 0) {
-                auto n = source_->read(inbuf_.data(), inbuf_.size());
+        stream.next_out = static_cast<std::uint8_t*>(buf);
+        stream.avail_out = len;
+        while (stream.avail_out > 0 && !finished) {
+            if (stream.avail_in == 0) {
+                auto n = source->read(inbuf.data(), inbuf.size());
                 if (n == 0) {
-                    auto ret = lzma_code(&stream_, LZMA_FINISH);
-                    if (ret == LZMA_STREAM_END) finished_ = true;
+                    auto ret = lzma_code(&stream, LZMA_FINISH);
+                    if (ret == LZMA_STREAM_END) finished = true;
                     break;
                 }
-                stream_.next_in = inbuf_.data();
-                stream_.avail_in = n;
+                stream.next_in = inbuf.data();
+                stream.avail_in = n;
             }
-            auto ret = lzma_code(&stream_, LZMA_RUN);
-            if (ret == LZMA_STREAM_END) { finished_ = true; break; }
+            auto ret = lzma_code(&stream, LZMA_RUN);
+            if (ret == LZMA_STREAM_END) { finished = true; break; }
             if (ret != LZMA_OK) throw std::runtime_error("lzma_code error");
         }
-        return len - stream_.avail_out;
+        return len - stream.avail_out;
     }
 
-    bool eof() const override { return finished_; }
+    bool eof() const override { return finished; }
 };
 
 } // namespace packet

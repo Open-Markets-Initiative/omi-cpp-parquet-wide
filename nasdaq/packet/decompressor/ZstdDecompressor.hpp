@@ -14,23 +14,23 @@ namespace packet {
 
 // Zstd Decompressor
 struct ZstdDecompressor : Decompressor {
-    std::unique_ptr<Decompressor> source_;
-    ZSTD_DStream* dstream_ = nullptr;
-    std::vector<std::byte> inbuf_;
-    ZSTD_inBuffer input_{};
-    bool finished_ = false;
+    std::unique_ptr<Decompressor> source;
+    ZSTD_DStream* dstream = nullptr;
+    std::vector<std::byte> inbuf;
+    ZSTD_inBuffer input{};
+    bool finished = false;
 
     explicit ZstdDecompressor(std::unique_ptr<Decompressor> source,
                                std::size_t inbuf_size = 32768)
-        : source_(std::move(source)), inbuf_(inbuf_size) {
-        dstream_ = ZSTD_createDStream();
-        if (!dstream_)
+        : source(std::move(source)), inbuf(inbuf_size) {
+        dstream = ZSTD_createDStream();
+        if (!dstream)
             throw std::runtime_error("ZSTD_createDStream failed");
-        ZSTD_initDStream(dstream_);
+        ZSTD_initDStream(dstream);
     }
 
     ~ZstdDecompressor() override {
-        if (dstream_) ZSTD_freeDStream(dstream_);
+        if (dstream) ZSTD_freeDStream(dstream);
     }
 
     ZstdDecompressor(const ZstdDecompressor&) = delete;
@@ -38,21 +38,21 @@ struct ZstdDecompressor : Decompressor {
 
     std::size_t read(void* buf, std::size_t len) override {
         ZSTD_outBuffer output{buf, len, 0};
-        while (output.pos < output.size && !finished_) {
-            if (input_.pos >= input_.size) {
-                auto n = source_->read(inbuf_.data(), inbuf_.size());
-                if (n == 0) { finished_ = true; break; }
-                input_ = {inbuf_.data(), n, 0};
+        while (output.pos < output.size && !finished) {
+            if (input.pos >= input.size) {
+                auto n = source->read(inbuf.data(), inbuf.size());
+                if (n == 0) { finished = true; break; }
+                input = {inbuf.data(), n, 0};
             }
-            auto ret = ZSTD_decompressStream(dstream_, &output, &input_);
+            auto ret = ZSTD_decompressStream(dstream, &output, &input);
             if (ZSTD_isError(ret))
                 throw std::runtime_error("ZSTD_decompressStream error");
-            if (ret == 0) { finished_ = true; break; }
+            if (ret == 0) { finished = true; break; }
         }
         return output.pos;
     }
 
-    bool eof() const override { return finished_; }
+    bool eof() const override { return finished; }
 };
 
 } // namespace packet

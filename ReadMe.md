@@ -13,6 +13,7 @@ Each protocol generates a single wide parquet record with all message fields as 
 | Chicago Mercantile Exchange | Simple Binary Encoding 1.8 |
 | National Association of Securities Dealers Automated Quotations | Itch 5.0 |
 | Investors Exchange | Investors Exchange Transport Protocol 1.6.6 |
+| Securities Industry Automation Corporation | Opra Binary Interface 6.2 |
 
 ## Build
 

@@ -4,7 +4,6 @@
 #include "../packet/Parser.hpp"
 #include "../protocol/iterators/MessageIterator.hpp"
 #include "../parquet/Writer.hpp"
-#include "../json/Writer.hpp"
 
 namespace iex::equities::tops::iextp::v1_6_6 {
 
@@ -19,7 +18,6 @@ struct Manager {
     packet::Parser& parser;
     iex::Writer& record;
     const conversion::Options& options;
-    json::Writer json_writer_;
 
     explicit Manager(const conversion::Options& options, packet::Parser& parser, iex::Writer& record)
      : parser{ parser }, record{ record }, options{ options } {}

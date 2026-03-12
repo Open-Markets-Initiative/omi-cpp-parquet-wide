@@ -11,78 +11,78 @@ namespace json {
 // Builds a JSON object as a std::string for embedding in parquet columns
 struct Writer {
 
-    std::string buffer_;
-    bool first_field_ = true;
+    std::string buffer;
+    bool first_field = true;
 
     // Start a new JSON object
     void start() {
-        buffer_.clear();
-        buffer_ += '{';
-        first_field_ = true;
+        buffer.clear();
+        buffer += '{';
+        first_field = true;
     }
 
     // Finish object
     void finish() {
-        buffer_ += '}';
+        buffer += '}';
     }
 
     // Start a new JSON array
     void start_array() {
-        buffer_.clear();
-        buffer_ += '[';
-        first_field_ = true;
+        buffer.clear();
+        buffer += '[';
+        first_field = true;
     }
 
     // Finish array
     void finish_array() {
-        buffer_ += ']';
+        buffer += ']';
     }
 
     // Start array element object
     void start_element() {
         separator();
-        buffer_ += '{';
-        first_field_ = true;
+        buffer += '{';
+        first_field = true;
     }
 
     // End array element object
     void end_element() {
-        buffer_ += '}';
-        first_field_ = false;
+        buffer += '}';
+        first_field = false;
     }
 
     // Get result
     std::string_view view() const {
-        return std::string_view(buffer_);
+        return std::string_view(buffer);
     }
 
     // Field separator
     void separator() {
-        if (!first_field_) {
-            buffer_ += ',';
+        if (!first_field) {
+            buffer += ',';
         }
-        first_field_ = false;
+        first_field = false;
     }
 
     // Write key
     void key(std::string_view k) {
         separator();
-        buffer_ += '"';
-        buffer_.append(k.data(), k.size());
-        buffer_ += "\":";
+        buffer += '"';
+        buffer.append(k.data(), k.size());
+        buffer += "\":";
     }
 
     // Integer value
     void value(std::int64_t v) {
         char buf[24];
         auto [ptr, ec] = std::to_chars(buf, buf + sizeof(buf), v);
-        buffer_.append(buf, static_cast<std::size_t>(ptr - buf));
+        buffer.append(buf, static_cast<std::size_t>(ptr - buf));
     }
 
     void value(std::uint64_t v) {
         char buf[24];
         auto [ptr, ec] = std::to_chars(buf, buf + sizeof(buf), v);
-        buffer_.append(buf, static_cast<std::size_t>(ptr - buf));
+        buffer.append(buf, static_cast<std::size_t>(ptr - buf));
     }
 
     void value(std::int32_t v) { value(static_cast<std::int64_t>(v)); }
@@ -94,38 +94,38 @@ struct Writer {
 
     // Char value
     void value(char v) {
-        buffer_ += '"';
-        if (v == '"' || v == '\\') { buffer_ += '\\'; }
-        buffer_ += v;
-        buffer_ += '"';
+        buffer += '"';
+        if (v == '"' || v == '\\') { buffer += '\\'; }
+        buffer += v;
+        buffer += '"';
     }
 
     // Double value
     void value(double v) {
         char buf[32];
         auto [ptr, ec] = std::to_chars(buf, buf + sizeof(buf), v);
-        buffer_.append(buf, static_cast<std::size_t>(ptr - buf));
+        buffer.append(buf, static_cast<std::size_t>(ptr - buf));
     }
 
     // String value (with escaping)
     void value(std::string_view v) {
-        buffer_ += '"';
+        buffer += '"';
         for (char c : v) {
             switch (c) {
-                case '"': buffer_ += "\\\""; break;
-                case '\\': buffer_ += "\\\\"; break;
-                case '\n': buffer_ += "\\n"; break;
-                case '\r': buffer_ += "\\r"; break;
-                case '\t': buffer_ += "\\t"; break;
-                default: buffer_ += c; break;
+                case '"': buffer += "\\\""; break;
+                case '\\': buffer += "\\\\"; break;
+                case '\n': buffer += "\\n"; break;
+                case '\r': buffer += "\\r"; break;
+                case '\t': buffer += "\\t"; break;
+                default: buffer += c; break;
             }
         }
-        buffer_ += '"';
+        buffer += '"';
     }
 
     // Bool value
     void value(bool v) {
-        buffer_.append(v ? "true" : "false");
+        buffer.append(v ? "true" : "false");
     }
 
     // Convenience: key + value in one call

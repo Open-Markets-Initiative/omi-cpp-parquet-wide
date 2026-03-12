@@ -49,18 +49,18 @@ struct Frame {
     Frame() = default;
 
     Frame(const std::byte* data, std::uint32_t len)
-        : data_(data), len_(len) {
+        : data(data), len(len) {
         parse();
     }
 
     // --- Original frame access ---
 
-    const std::byte* raw_data() const { return data_; }
-    std::uint32_t raw_length() const { return len_; }
+    const std::byte* raw_data() const { return data; }
+    std::uint32_t raw_length() const { return len; }
 
 private:
-    const std::byte* data_ = nullptr;
-    std::uint32_t len_ = 0;
+    const std::byte* data = nullptr;
+    std::uint32_t len = 0;
 
     // --- Self-contained byte-order helpers ---
 
@@ -88,18 +88,18 @@ private:
 
     void parse() {
         // Minimum ethernet frame: 14 bytes (6 dst + 6 src + 2 ethertype)
-        if (!data_ || len_ < 14) return;
+        if (!data || len < 14) return;
 
         std::uint32_t offset = 12;
-        auto ethertype = read_u16(data_ + offset);
+        auto ethertype = read_u16(data + offset);
         offset += 2;
 
         // 802.1Q VLAN tag
         if (ethertype == 0x8100) {
-            if (len_ < offset + 4) return;
-            auto tci = read_u16(data_ + offset);
+            if (len < offset + 4) return;
+            auto tci = read_u16(data + offset);
             vlan_id = tci & 0x0FFF;
-            ethertype = read_u16(data_ + offset + 2);
+            ethertype = read_u16(data + offset + 2);
             offset += 4;
         }
 
@@ -108,61 +108,61 @@ private:
 
         // IPv4 header: minimum 20 bytes
         auto ip_start = offset;
-        if (len_ < ip_start + 20) return;
+        if (len < ip_start + 20) return;
 
-        auto ihl_byte = static_cast<std::uint8_t>(data_[ip_start]);
+        auto ihl_byte = static_cast<std::uint8_t>(data[ip_start]);
         auto ip_version = (ihl_byte >> 4) & 0x0F;
         if (ip_version != 4) return;
 
         auto ip_hdr_len = static_cast<std::uint32_t>(ihl_byte & 0x0F) * 4;
         if (ip_hdr_len < 20) return;
-        if (len_ < ip_start + ip_hdr_len) return;
+        if (len < ip_start + ip_hdr_len) return;
 
-        auto ip_total_len = static_cast<std::uint32_t>(read_u16(data_ + ip_start + 2));
+        auto ip_total_len = static_cast<std::uint32_t>(read_u16(data + ip_start + 2));
 
         // Clamp to capture length (truncated captures stay valid)
-        auto available = len_ - ip_start;
+        auto available = len - ip_start;
         if (ip_total_len > available) ip_total_len = available;
 
-        ip_protocol = static_cast<std::uint8_t>(data_[ip_start + 9]);
+        ip_protocol = static_cast<std::uint8_t>(data[ip_start + 9]);
 
         // src_ip and dst_ip in network byte order (raw memcpy)
-        std::memcpy(&src_ip, data_ + ip_start + 12, 4);
-        std::memcpy(&dst_ip, data_ + ip_start + 16, 4);
+        std::memcpy(&src_ip, data + ip_start + 12, 4);
+        std::memcpy(&dst_ip, data + ip_start + 16, 4);
 
         auto l4_start = ip_start + ip_hdr_len;
 
         if (ip_protocol == 17) {
             // UDP: 8-byte header
             if (ip_total_len < ip_hdr_len + 8) return;
-            if (len_ < l4_start + 8) return;
+            if (len < l4_start + 8) return;
 
-            src_port = read_u16(data_ + l4_start);
-            dst_port = read_u16(data_ + l4_start + 2);
+            src_port = read_u16(data + l4_start);
+            dst_port = read_u16(data + l4_start + 2);
 
-            auto udp_len = static_cast<std::uint32_t>(read_u16(data_ + l4_start + 4));
+            auto udp_len = static_cast<std::uint32_t>(read_u16(data + l4_start + 4));
 
             // Clamp UDP length to IP total length
             auto max_udp = ip_total_len - ip_hdr_len;
             if (udp_len > max_udp) udp_len = max_udp;
 
-            payload = data_ + l4_start + 8;
+            payload = data + l4_start + 8;
             payload_len = (udp_len >= 8) ? (udp_len - 8) : 0;
 
         } else if (ip_protocol == 6) {
             // TCP: variable header (minimum 20 bytes)
             if (ip_total_len < ip_hdr_len + 20) return;
-            if (len_ < l4_start + 20) return;
+            if (len < l4_start + 20) return;
 
-            src_port = read_u16(data_ + l4_start);
-            dst_port = read_u16(data_ + l4_start + 2);
+            src_port = read_u16(data + l4_start);
+            dst_port = read_u16(data + l4_start + 2);
 
-            auto data_offset_byte = static_cast<std::uint8_t>(data_[l4_start + 12]);
-            auto tcp_hdr_len = static_cast<std::uint32_t>((data_offset_byte >> 4) & 0x0F) * 4;
+            auto dataoffset_byte = static_cast<std::uint8_t>(data[l4_start + 12]);
+            auto tcp_hdr_len = static_cast<std::uint32_t>((dataoffset_byte >> 4) & 0x0F) * 4;
             if (tcp_hdr_len < 20) return;
-            if (len_ < l4_start + tcp_hdr_len) return;
+            if (len < l4_start + tcp_hdr_len) return;
 
-            payload = data_ + l4_start + tcp_hdr_len;
+            payload = data + l4_start + tcp_hdr_len;
             auto ip_payload = ip_total_len - ip_hdr_len;
             payload_len = (ip_payload > tcp_hdr_len) ? (ip_payload - tcp_hdr_len) : 0;
         }

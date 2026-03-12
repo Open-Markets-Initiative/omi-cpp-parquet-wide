@@ -1,0 +1,21 @@
+#pragma once
+
+#include "structs/Packet.hpp"
+#include "structs/BlockHeader.hpp"
+#include "structs/BlockTimestamp.hpp"
+#include "structs/MessageHeader.hpp"
+#include "structs/Administrative.hpp"
+#include "structs/Control.hpp"
+#include "structs/EquityAndIndexLastSale.hpp"
+#include "structs/ExpirationBlock.hpp"
+#include "structs/OpenInterest.hpp"
+#include "structs/EquityAndIndexEndOfDaySummary.hpp"
+#include "structs/LongEquityAndIndexQuote.hpp"
+#include "structs/BestBidAppendage.hpp"
+#include "structs/BestOfferAppendage.hpp"
+#include "structs/BestBidAndOfferAppendage.hpp"
+#include "structs/ShortEquityAndIndexQuote.hpp"
+#include "structs/UnderlyingValue.hpp"
+
+#include "messages/UnderlyingValueLastSaleMessage.hpp"
+#include "messages/UnderlyingValueBidAndOfferMessage.hpp"

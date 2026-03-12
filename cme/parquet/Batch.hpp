@@ -11,17 +11,17 @@ namespace cme {
 struct ArrowBatch {
 
     ArrowBatch(std::shared_ptr<arrow::Schema> schema, const parquet::Options& options)
-        : schema_(std::move(schema)),
-          max_rows_(options.max_row_group_size),
-          output_path_(options.file),
-          options_(options)
+        : schema(std::move(schema)),
+          max_rows(options.max_row_group_size),
+          output_path(options.file),
+          options(options)
     {
         OpenOutput();
     }
 
     // batch writer
     arrow::Status write(const ArrowRecord& record) {
-        if (!writer_) {
+        if (!writer) {
             OpenOutput();
         }
         ARROW_RETURN_NOT_OK(record.event_type.append(*event_type_builder));
@@ -166,9 +166,9 @@ struct ArrowBatch {
         ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_order_book_43_no_m_d_entries_group.append(*m_d_incremental_refresh_order_book_43_no_m_d_entries_group_builder));
         ARROW_RETURN_NOT_OK(record.snapshot_full_refresh_order_book_44_no_m_d_entries_group.append(*snapshot_full_refresh_order_book_44_no_m_d_entries_group_builder));
 
-        row_count_++;
+        row_count++;
 
-        if (row_count_ >= max_rows_) {
+        if (row_count >= max_rows) {
             return flush();
         }
 
@@ -177,7 +177,7 @@ struct ArrowBatch {
 
     // flush batch
     arrow::Status flush() {
-        if (row_count_ == 0) {
+        if (row_count == 0) {
             return arrow::Status::OK();
         }
 
@@ -465,7 +465,7 @@ struct ArrowBatch {
         ARROW_RETURN_NOT_OK(m_d_incremental_refresh_order_book_43_no_m_d_entries_group_builder->Finish(&m_d_incremental_refresh_order_book_43_no_m_d_entries_group_column));
         ARROW_RETURN_NOT_OK(snapshot_full_refresh_order_book_44_no_m_d_entries_group_builder->Finish(&snapshot_full_refresh_order_book_44_no_m_d_entries_group_column));
 
-        auto batch = arrow::RecordBatch::Make(schema_, row_count_, {
+        auto batch = arrow::RecordBatch::Make(schema, row_count, {
             event_type_column,
             transact_time_column,
             block_length_column,
@@ -609,15 +609,15 @@ struct ArrowBatch {
             snapshot_full_refresh_order_book_44_no_m_d_entries_group_column,
         } );
 
-        ARROW_RETURN_NOT_OK(writer_->WriteRecordBatch(*batch));
-        estimated_bytes_ += arrow::util::TotalBufferSize(*batch);
+        ARROW_RETURN_NOT_OK(writer->WriteRecordBatch(*batch));
+        estimated_bytes += arrow::util::TotalBufferSize(*batch);
 
         // roll to next file if size limit exceeded
-        if (options_.max_file_size > 0 && estimated_bytes_ >= options_.max_file_size) {
-            ARROW_RETURN_NOT_OK(writer_->Close());
-            writer_.reset();
-            estimated_bytes_ = 0;
-            file_index_++;
+        if (options.max_file_size > 0 && estimated_bytes >= options.max_file_size) {
+            ARROW_RETURN_NOT_OK(writer->Close());
+            writer.reset();
+            estimated_bytes = 0;
+            file_index++;
             return arrow::Status::OK();
         }
 
@@ -629,8 +629,8 @@ struct ArrowBatch {
     // close file
     arrow::Status close() {
         ARROW_RETURN_NOT_OK(flush());
-        if (writer_) {
-            return writer_->Close();
+        if (writer) {
+            return writer->Close();
         }
         return arrow::Status::OK();
     }
@@ -780,64 +780,64 @@ struct ArrowBatch {
         m_d_incremental_refresh_order_book_43_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
         snapshot_full_refresh_order_book_44_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
 
-        row_count_ = 0;
+        row_count = 0;
     }
 
     // open output file
     void OpenOutput() {
         // generate output path
-        auto path = output_path_;
-        if (options_.max_file_size > 0) {
-            auto dot = output_path_.rfind('.');
-            auto base = (dot != std::string::npos) ? output_path_.substr(0, dot) : output_path_;
-            auto ext = (dot != std::string::npos) ? output_path_.substr(dot) : std::string{};
-            auto idx = std::to_string(file_index_);
+        auto path = output_path;
+        if (options.max_file_size > 0) {
+            auto dot = output_path.rfind('.');
+            auto base = (dot != std::string::npos) ? output_path.substr(0, dot) : output_path;
+            auto ext = (dot != std::string::npos) ? output_path.substr(dot) : std::string{};
+            auto idx = std::to_string(file_index);
             while (idx.size() < 3) idx = "0" + idx;
             path = base + "_" + idx + ext;
         }
-        outfile_ = *arrow::io::FileOutputStream::Open(path);
+        outfile = *arrow::io::FileOutputStream::Open(path);
 
         // compression
         auto compression = parquet::Compression::ZSTD;
-        if (options_.compression == "snappy") compression = parquet::Compression::SNAPPY;
-        else if (options_.compression == "gzip") compression = parquet::Compression::GZIP;
-        else if (options_.compression == "lz4") compression = parquet::Compression::LZ4_FRAME;
-        else if (options_.compression == "brotli") compression = parquet::Compression::BROTLI;
-        else if (options_.compression == "none") compression = parquet::Compression::UNCOMPRESSED;
+        if (options.compression == "snappy") compression = parquet::Compression::SNAPPY;
+        else if (options.compression == "gzip") compression = parquet::Compression::GZIP;
+        else if (options.compression == "lz4") compression = parquet::Compression::LZ4_FRAME;
+        else if (options.compression == "brotli") compression = parquet::Compression::BROTLI;
+        else if (options.compression == "none") compression = parquet::Compression::UNCOMPRESSED;
 
         // writer properties
         parquet::WriterProperties::Builder props;
         props.compression(compression);
         if (compression == parquet::Compression::ZSTD || compression == parquet::Compression::GZIP || compression == parquet::Compression::BROTLI)
-            props.compression_level(options_.compression_level);
-        props.data_pagesize(options_.data_page_size);
-        props.dictionary_pagesize_limit(options_.dictionary_page_size);
-        if (options_.dictionary_enabled) props.enable_dictionary();
+            props.compression_level(options.compression_level);
+        props.data_pagesize(options.data_page_size);
+        props.dictionary_pagesize_limit(options.dictionary_page_size);
+        if (options.dictionary_enabled) props.enable_dictionary();
         else props.disable_dictionary();
-        if (options_.write_statistics) props.enable_statistics();
+        if (options.write_statistics) props.enable_statistics();
         else props.disable_statistics();
-        if (options_.version == "1.0") props.version(parquet::ParquetVersion::PARQUET_1_0);
+        if (options.version == "1.0") props.version(parquet::ParquetVersion::PARQUET_1_0);
         else props.version(parquet::ParquetVersion::PARQUET_2_6);
 
-        PARQUET_ASSIGN_OR_THROW(writer_,
+        PARQUET_ASSIGN_OR_THROW(writer,
             parquet::arrow::FileWriter::Open(
-                *schema_,
+                *schema,
                 arrow::default_memory_pool(),
-                outfile_,
+                outfile,
                 props.build()));
 
         reset();
     }
   protected:
-    std::shared_ptr<arrow::Schema> schema_;
-    std::int64_t max_rows_;
-    std::string output_path_;
-    parquet::Options options_;
-    std::int64_t row_count_ = 0;
-    std::int64_t file_index_ = 0;
-    std::int64_t estimated_bytes_ = 0;
-    std::shared_ptr<arrow::io::OutputStream> outfile_;
-    std::unique_ptr<parquet::arrow::FileWriter> writer_;
+    std::shared_ptr<arrow::Schema> schema;
+    std::int64_t max_rows;
+    std::string output_path;
+    parquet::Options options;
+    std::int64_t row_count = 0;
+    std::int64_t file_index = 0;
+    std::int64_t estimated_bytes = 0;
+    std::shared_ptr<arrow::io::OutputStream> outfile;
+    std::unique_ptr<parquet::arrow::FileWriter> writer;
   protected:
         std::unique_ptr<arrow::StringBuilder> event_type_builder;
         std::unique_ptr<arrow::Time64Builder> transact_time_builder;

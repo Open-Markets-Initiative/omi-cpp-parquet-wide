@@ -4,7 +4,6 @@
 #include "../packet/Parser.hpp"
 #include "../protocol/iterators/MessageIterator.hpp"
 #include "../parquet/Writer.hpp"
-#include "../json/Writer.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0 {
 
@@ -19,7 +18,6 @@ struct Manager {
     packet::Parser& parser;
     nasdaq::Writer& record;
     const conversion::Options& options;
-    json::Writer json_writer_;
 
     explicit Manager(const conversion::Options& options, packet::Parser& parser, nasdaq::Writer& record)
      : parser{ parser }, record{ record }, options{ options } {}
