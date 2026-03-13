@@ -60,6 +60,14 @@ struct ArrowBatch {
         ARROW_RETURN_NOT_OK(record.bbo_indicator.append(*bbo_indicator_builder));
         ARROW_RETURN_NOT_OK(record.bid_size.append(*bid_size_builder));
         ARROW_RETURN_NOT_OK(record.offer_size.append(*offer_size_builder));
+        ARROW_RETURN_NOT_OK(record.best_bid_participant_id.append(*best_bid_participant_id_builder));
+        ARROW_RETURN_NOT_OK(record.best_bid_denominator_code.append(*best_bid_denominator_code_builder));
+        ARROW_RETURN_NOT_OK(record.best_bid_price.append(*best_bid_price_builder));
+        ARROW_RETURN_NOT_OK(record.best_bid_size.append(*best_bid_size_builder));
+        ARROW_RETURN_NOT_OK(record.best_offer_participant_id.append(*best_offer_participant_id_builder));
+        ARROW_RETURN_NOT_OK(record.best_offer_denominator_code.append(*best_offer_denominator_code_builder));
+        ARROW_RETURN_NOT_OK(record.best_offer_price.append(*best_offer_price_builder));
+        ARROW_RETURN_NOT_OK(record.best_offer_size.append(*best_offer_size_builder));
         ARROW_RETURN_NOT_OK(record.short_equity_and_index_quote_message_type.append(*short_equity_and_index_quote_message_type_builder));
         ARROW_RETURN_NOT_OK(record.security_symbol_short.append(*security_symbol_short_builder));
         ARROW_RETURN_NOT_OK(record.strike_price_short.append(*strike_price_short_builder));
@@ -72,14 +80,6 @@ struct ArrowBatch {
         ARROW_RETURN_NOT_OK(record.index_value.append(*index_value_builder));
         ARROW_RETURN_NOT_OK(record.bid_index_value.append(*bid_index_value_builder));
         ARROW_RETURN_NOT_OK(record.offer_index_value.append(*offer_index_value_builder));
-        ARROW_RETURN_NOT_OK(record.best_bid_participant_id.append(*best_bid_participant_id_builder));
-        ARROW_RETURN_NOT_OK(record.best_bid_denominator_code.append(*best_bid_denominator_code_builder));
-        ARROW_RETURN_NOT_OK(record.best_bid_price.append(*best_bid_price_builder));
-        ARROW_RETURN_NOT_OK(record.best_bid_size.append(*best_bid_size_builder));
-        ARROW_RETURN_NOT_OK(record.best_offer_participant_id.append(*best_offer_participant_id_builder));
-        ARROW_RETURN_NOT_OK(record.best_offer_denominator_code.append(*best_offer_denominator_code_builder));
-        ARROW_RETURN_NOT_OK(record.best_offer_price.append(*best_offer_price_builder));
-        ARROW_RETURN_NOT_OK(record.best_offer_size.append(*best_offer_size_builder));
 
         row_count++;
 
@@ -132,6 +132,14 @@ struct ArrowBatch {
         std::shared_ptr<arrow::Array> bbo_indicator_column;
         std::shared_ptr<arrow::Array> bid_size_column;
         std::shared_ptr<arrow::Array> offer_size_column;
+        std::shared_ptr<arrow::Array> best_bid_participant_id_column;
+        std::shared_ptr<arrow::Array> best_bid_denominator_code_column;
+        std::shared_ptr<arrow::Array> best_bid_price_column;
+        std::shared_ptr<arrow::Array> best_bid_size_column;
+        std::shared_ptr<arrow::Array> best_offer_participant_id_column;
+        std::shared_ptr<arrow::Array> best_offer_denominator_code_column;
+        std::shared_ptr<arrow::Array> best_offer_price_column;
+        std::shared_ptr<arrow::Array> best_offer_size_column;
         std::shared_ptr<arrow::Array> short_equity_and_index_quote_message_type_column;
         std::shared_ptr<arrow::Array> security_symbol_short_column;
         std::shared_ptr<arrow::Array> strike_price_short_column;
@@ -144,14 +152,6 @@ struct ArrowBatch {
         std::shared_ptr<arrow::Array> index_value_column;
         std::shared_ptr<arrow::Array> bid_index_value_column;
         std::shared_ptr<arrow::Array> offer_index_value_column;
-        std::shared_ptr<arrow::Array> best_bid_participant_id_column;
-        std::shared_ptr<arrow::Array> best_bid_denominator_code_column;
-        std::shared_ptr<arrow::Array> best_bid_price_column;
-        std::shared_ptr<arrow::Array> best_bid_size_column;
-        std::shared_ptr<arrow::Array> best_offer_participant_id_column;
-        std::shared_ptr<arrow::Array> best_offer_denominator_code_column;
-        std::shared_ptr<arrow::Array> best_offer_price_column;
-        std::shared_ptr<arrow::Array> best_offer_size_column;
 
         ARROW_RETURN_NOT_OK(event_type_builder->Finish(&event_type_column));
         ARROW_RETURN_NOT_OK(administrative_message_type_builder->Finish(&administrative_message_type_column));
@@ -189,6 +189,14 @@ struct ArrowBatch {
         ARROW_RETURN_NOT_OK(bbo_indicator_builder->Finish(&bbo_indicator_column));
         ARROW_RETURN_NOT_OK(bid_size_builder->Finish(&bid_size_column));
         ARROW_RETURN_NOT_OK(offer_size_builder->Finish(&offer_size_column));
+        ARROW_RETURN_NOT_OK(best_bid_participant_id_builder->Finish(&best_bid_participant_id_column));
+        ARROW_RETURN_NOT_OK(best_bid_denominator_code_builder->Finish(&best_bid_denominator_code_column));
+        ARROW_RETURN_NOT_OK(best_bid_price_builder->Finish(&best_bid_price_column));
+        ARROW_RETURN_NOT_OK(best_bid_size_builder->Finish(&best_bid_size_column));
+        ARROW_RETURN_NOT_OK(best_offer_participant_id_builder->Finish(&best_offer_participant_id_column));
+        ARROW_RETURN_NOT_OK(best_offer_denominator_code_builder->Finish(&best_offer_denominator_code_column));
+        ARROW_RETURN_NOT_OK(best_offer_price_builder->Finish(&best_offer_price_column));
+        ARROW_RETURN_NOT_OK(best_offer_size_builder->Finish(&best_offer_size_column));
         ARROW_RETURN_NOT_OK(short_equity_and_index_quote_message_type_builder->Finish(&short_equity_and_index_quote_message_type_column));
         ARROW_RETURN_NOT_OK(security_symbol_short_builder->Finish(&security_symbol_short_column));
         ARROW_RETURN_NOT_OK(strike_price_short_builder->Finish(&strike_price_short_column));
@@ -201,14 +209,6 @@ struct ArrowBatch {
         ARROW_RETURN_NOT_OK(index_value_builder->Finish(&index_value_column));
         ARROW_RETURN_NOT_OK(bid_index_value_builder->Finish(&bid_index_value_column));
         ARROW_RETURN_NOT_OK(offer_index_value_builder->Finish(&offer_index_value_column));
-        ARROW_RETURN_NOT_OK(best_bid_participant_id_builder->Finish(&best_bid_participant_id_column));
-        ARROW_RETURN_NOT_OK(best_bid_denominator_code_builder->Finish(&best_bid_denominator_code_column));
-        ARROW_RETURN_NOT_OK(best_bid_price_builder->Finish(&best_bid_price_column));
-        ARROW_RETURN_NOT_OK(best_bid_size_builder->Finish(&best_bid_size_column));
-        ARROW_RETURN_NOT_OK(best_offer_participant_id_builder->Finish(&best_offer_participant_id_column));
-        ARROW_RETURN_NOT_OK(best_offer_denominator_code_builder->Finish(&best_offer_denominator_code_column));
-        ARROW_RETURN_NOT_OK(best_offer_price_builder->Finish(&best_offer_price_column));
-        ARROW_RETURN_NOT_OK(best_offer_size_builder->Finish(&best_offer_size_column));
 
         auto batch = arrow::RecordBatch::Make(schema, row_count, {
             event_type_column,
@@ -247,6 +247,14 @@ struct ArrowBatch {
             bbo_indicator_column,
             bid_size_column,
             offer_size_column,
+            best_bid_participant_id_column,
+            best_bid_denominator_code_column,
+            best_bid_price_column,
+            best_bid_size_column,
+            best_offer_participant_id_column,
+            best_offer_denominator_code_column,
+            best_offer_price_column,
+            best_offer_size_column,
             short_equity_and_index_quote_message_type_column,
             security_symbol_short_column,
             strike_price_short_column,
@@ -259,14 +267,6 @@ struct ArrowBatch {
             index_value_column,
             bid_index_value_column,
             offer_index_value_column,
-            best_bid_participant_id_column,
-            best_bid_denominator_code_column,
-            best_bid_price_column,
-            best_bid_size_column,
-            best_offer_participant_id_column,
-            best_offer_denominator_code_column,
-            best_offer_price_column,
-            best_offer_size_column,
         } );
 
         ARROW_RETURN_NOT_OK(writer->WriteRecordBatch(*batch));
@@ -334,6 +334,14 @@ struct ArrowBatch {
         bbo_indicator_builder = std::make_unique<arrow::StringBuilder>();
         bid_size_builder = std::make_unique<arrow::UInt32Builder>();
         offer_size_builder = std::make_unique<arrow::UInt32Builder>();
+        best_bid_participant_id_builder = std::make_unique<arrow::StringBuilder>();
+        best_bid_denominator_code_builder = std::make_unique<arrow::StringBuilder>();
+        best_bid_price_builder = std::make_unique<arrow::Int32Builder>();
+        best_bid_size_builder = std::make_unique<arrow::UInt32Builder>();
+        best_offer_participant_id_builder = std::make_unique<arrow::StringBuilder>();
+        best_offer_denominator_code_builder = std::make_unique<arrow::StringBuilder>();
+        best_offer_price_builder = std::make_unique<arrow::Int32Builder>();
+        best_offer_size_builder = std::make_unique<arrow::UInt32Builder>();
         short_equity_and_index_quote_message_type_builder = std::make_unique<arrow::StringBuilder>();
         security_symbol_short_builder = std::make_unique<arrow::StringBuilder>();
         strike_price_short_builder = std::make_unique<arrow::Decimal128Builder>(arrow::decimal128(StrikePriceShort::precision, StrikePriceShort::scale));
@@ -346,14 +354,6 @@ struct ArrowBatch {
         index_value_builder = std::make_unique<arrow::Int32Builder>();
         bid_index_value_builder = std::make_unique<arrow::Int32Builder>();
         offer_index_value_builder = std::make_unique<arrow::Int64Builder>();
-        best_bid_participant_id_builder = std::make_unique<arrow::StringBuilder>();
-        best_bid_denominator_code_builder = std::make_unique<arrow::StringBuilder>();
-        best_bid_price_builder = std::make_unique<arrow::Int32Builder>();
-        best_bid_size_builder = std::make_unique<arrow::UInt32Builder>();
-        best_offer_participant_id_builder = std::make_unique<arrow::StringBuilder>();
-        best_offer_denominator_code_builder = std::make_unique<arrow::StringBuilder>();
-        best_offer_price_builder = std::make_unique<arrow::Int32Builder>();
-        best_offer_size_builder = std::make_unique<arrow::UInt32Builder>();
 
         row_count = 0;
     }
@@ -450,6 +450,14 @@ struct ArrowBatch {
         std::unique_ptr<arrow::StringBuilder> bbo_indicator_builder;
         std::unique_ptr<arrow::UInt32Builder> bid_size_builder;
         std::unique_ptr<arrow::UInt32Builder> offer_size_builder;
+        std::unique_ptr<arrow::StringBuilder> best_bid_participant_id_builder;
+        std::unique_ptr<arrow::StringBuilder> best_bid_denominator_code_builder;
+        std::unique_ptr<arrow::Int32Builder> best_bid_price_builder;
+        std::unique_ptr<arrow::UInt32Builder> best_bid_size_builder;
+        std::unique_ptr<arrow::StringBuilder> best_offer_participant_id_builder;
+        std::unique_ptr<arrow::StringBuilder> best_offer_denominator_code_builder;
+        std::unique_ptr<arrow::Int32Builder> best_offer_price_builder;
+        std::unique_ptr<arrow::UInt32Builder> best_offer_size_builder;
         std::unique_ptr<arrow::StringBuilder> short_equity_and_index_quote_message_type_builder;
         std::unique_ptr<arrow::StringBuilder> security_symbol_short_builder;
         std::unique_ptr<arrow::Decimal128Builder> strike_price_short_builder;
@@ -462,13 +470,5 @@ struct ArrowBatch {
         std::unique_ptr<arrow::Int32Builder> index_value_builder;
         std::unique_ptr<arrow::Int32Builder> bid_index_value_builder;
         std::unique_ptr<arrow::Int64Builder> offer_index_value_builder;
-        std::unique_ptr<arrow::StringBuilder> best_bid_participant_id_builder;
-        std::unique_ptr<arrow::StringBuilder> best_bid_denominator_code_builder;
-        std::unique_ptr<arrow::Int32Builder> best_bid_price_builder;
-        std::unique_ptr<arrow::UInt32Builder> best_bid_size_builder;
-        std::unique_ptr<arrow::StringBuilder> best_offer_participant_id_builder;
-        std::unique_ptr<arrow::StringBuilder> best_offer_denominator_code_builder;
-        std::unique_ptr<arrow::Int32Builder> best_offer_price_builder;
-        std::unique_ptr<arrow::UInt32Builder> best_offer_size_builder;
 };
 }

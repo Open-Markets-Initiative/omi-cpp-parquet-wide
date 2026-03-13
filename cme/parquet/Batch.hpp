@@ -28,13 +28,14 @@ struct ArrowBatch {
         ARROW_RETURN_NOT_OK(record.transact_time.append(*transact_time_builder));
         ARROW_RETURN_NOT_OK(record.block_length.append(*block_length_builder));
         ARROW_RETURN_NOT_OK(record.num_in_group.append(*num_in_group_builder));
-        ARROW_RETURN_NOT_OK(record.appl_id.append(*appl_id_builder));
+        ARROW_RETURN_NOT_OK(record.channel_reset_group.append(*channel_reset_group_builder));
         ARROW_RETURN_NOT_OK(record.heart_bt_int.append(*heart_bt_int_builder));
         ARROW_RETURN_NOT_OK(record.text.append(*text_builder));
         ARROW_RETURN_NOT_OK(record.tot_num_reports_optional.append(*tot_num_reports_optional_builder));
         ARROW_RETURN_NOT_OK(record.security_update_action.append(*security_update_action_builder));
         ARROW_RETURN_NOT_OK(record.last_update_time.append(*last_update_time_builder));
         ARROW_RETURN_NOT_OK(record.md_security_trading_status.append(*md_security_trading_status_builder));
+        ARROW_RETURN_NOT_OK(record.appl_id.append(*appl_id_builder));
         ARROW_RETURN_NOT_OK(record.market_segment_id.append(*market_segment_id_builder));
         ARROW_RETURN_NOT_OK(record.underlying_product.append(*underlying_product_builder));
         ARROW_RETURN_NOT_OK(record.security_exchange.append(*security_exchange_builder));
@@ -75,77 +76,24 @@ struct ArrowBatch {
         ARROW_RETURN_NOT_OK(record.min_price_increment_amount.append(*min_price_increment_amount_builder));
         ARROW_RETURN_NOT_OK(record.user_defined_instrument.append(*user_defined_instrument_builder));
         ARROW_RETURN_NOT_OK(record.trading_reference_date.append(*trading_reference_date_builder));
-        ARROW_RETURN_NOT_OK(record.event_time.append(*event_time_builder));
-        ARROW_RETURN_NOT_OK(record.md_feed_type.append(*md_feed_type_builder));
-        ARROW_RETURN_NOT_OK(record.market_depth.append(*market_depth_builder));
-        ARROW_RETURN_NOT_OK(record.lot_type.append(*lot_type_builder));
-        ARROW_RETURN_NOT_OK(record.min_lot_size.append(*min_lot_size_builder));
-        ARROW_RETURN_NOT_OK(record.underlying_product_optional.append(*underlying_product_optional_builder));
-        ARROW_RETURN_NOT_OK(record.security_sub_type.append(*security_sub_type_builder));
-        ARROW_RETURN_NOT_OK(record.price_ratio.append(*price_ratio_builder));
-        ARROW_RETURN_NOT_OK(record.tick_rule.append(*tick_rule_builder));
-        ARROW_RETURN_NOT_OK(record.leg_security_id.append(*leg_security_id_builder));
-        ARROW_RETURN_NOT_OK(record.leg_side.append(*leg_side_builder));
-        ARROW_RETURN_NOT_OK(record.leg_ratio_qty.append(*leg_ratio_qty_builder));
-        ARROW_RETURN_NOT_OK(record.leg_price.append(*leg_price_builder));
-        ARROW_RETURN_NOT_OK(record.leg_option_delta.append(*leg_option_delta_builder));
-        ARROW_RETURN_NOT_OK(record.security_id_optional.append(*security_id_optional_builder));
-        ARROW_RETURN_NOT_OK(record.trade_date.append(*trade_date_builder));
-        ARROW_RETURN_NOT_OK(record.security_trading_status.append(*security_trading_status_builder));
-        ARROW_RETURN_NOT_OK(record.halt_reason.append(*halt_reason_builder));
-        ARROW_RETURN_NOT_OK(record.security_trading_event.append(*security_trading_event_builder));
-        ARROW_RETURN_NOT_OK(record.md_entry_px_optional.append(*md_entry_px_optional_builder));
-        ARROW_RETURN_NOT_OK(record.md_entry_size_optional.append(*md_entry_size_optional_builder));
-        ARROW_RETURN_NOT_OK(record.rpt_seq.append(*rpt_seq_builder));
-        ARROW_RETURN_NOT_OK(record.number_of_orders.append(*number_of_orders_builder));
-        ARROW_RETURN_NOT_OK(record.md_price_level.append(*md_price_level_builder));
-        ARROW_RETURN_NOT_OK(record.md_update_action.append(*md_update_action_builder));
-        ARROW_RETURN_NOT_OK(record.md_entry_type_book.append(*md_entry_type_book_builder));
-        ARROW_RETURN_NOT_OK(record.order_id.append(*order_id_builder));
-        ARROW_RETURN_NOT_OK(record.md_order_priority.append(*md_order_priority_builder));
-        ARROW_RETURN_NOT_OK(record.md_display_qty_optional.append(*md_display_qty_optional_builder));
-        ARROW_RETURN_NOT_OK(record.reference_id.append(*reference_id_builder));
-        ARROW_RETURN_NOT_OK(record.order_update_action.append(*order_update_action_builder));
-        ARROW_RETURN_NOT_OK(record.md_entry_type_daily_statistics.append(*md_entry_type_daily_statistics_builder));
-        ARROW_RETURN_NOT_OK(record.md_entry_px.append(*md_entry_px_builder));
-        ARROW_RETURN_NOT_OK(record.open_close_settl_flag.append(*open_close_settl_flag_builder));
-        ARROW_RETURN_NOT_OK(record.md_entry_type_statistics.append(*md_entry_type_statistics_builder));
-        ARROW_RETURN_NOT_OK(record.md_entry_size.append(*md_entry_size_builder));
-        ARROW_RETURN_NOT_OK(record.trade_id.append(*trade_id_builder));
-        ARROW_RETURN_NOT_OK(record.aggressor_side.append(*aggressor_side_builder));
-        ARROW_RETURN_NOT_OK(record.last_msg_seq_num_processed.append(*last_msg_seq_num_processed_builder));
-        ARROW_RETURN_NOT_OK(record.tot_num_reports.append(*tot_num_reports_builder));
-        ARROW_RETURN_NOT_OK(record.md_price_level_optional.append(*md_price_level_optional_builder));
-        ARROW_RETURN_NOT_OK(record.md_entry_type_.append(*md_entry_type__builder));
-        ARROW_RETURN_NOT_OK(record.quote_req_id.append(*quote_req_id_builder));
-        ARROW_RETURN_NOT_OK(record.order_qty.append(*order_qty_builder));
-        ARROW_RETURN_NOT_OK(record.quote_type.append(*quote_type_builder));
-        ARROW_RETURN_NOT_OK(record.side.append(*side_builder));
-        ARROW_RETURN_NOT_OK(record.put_or_call.append(*put_or_call_builder));
-        ARROW_RETURN_NOT_OK(record.strike_price.append(*strike_price_builder));
-        ARROW_RETURN_NOT_OK(record.strike_currency.append(*strike_currency_builder));
-        ARROW_RETURN_NOT_OK(record.min_cab_price.append(*min_cab_price_builder));
-        ARROW_RETURN_NOT_OK(record.min_price_increment_optional.append(*min_price_increment_optional_builder));
-        ARROW_RETURN_NOT_OK(record.underlying_security_id.append(*underlying_security_id_builder));
-        ARROW_RETURN_NOT_OK(record.underlying_symbol.append(*underlying_symbol_builder));
-        ARROW_RETURN_NOT_OK(record.related_security_id.append(*related_security_id_builder));
-        ARROW_RETURN_NOT_OK(record.related_symbol.append(*related_symbol_builder));
-        ARROW_RETURN_NOT_OK(record.md_trade_entry_id.append(*md_trade_entry_id_builder));
-        ARROW_RETURN_NOT_OK(record.last_qty.append(*last_qty_builder));
-        ARROW_RETURN_NOT_OK(record.order_id_optional.append(*order_id_optional_builder));
-        ARROW_RETURN_NOT_OK(record.no_chunks.append(*no_chunks_builder));
-        ARROW_RETURN_NOT_OK(record.current_chunk.append(*current_chunk_builder));
-        ARROW_RETURN_NOT_OK(record.md_display_qty.append(*md_display_qty_builder));
-        ARROW_RETURN_NOT_OK(record.channel_reset_group.append(*channel_reset_group_builder));
         ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_future_27_no_events_group.append(*m_d_instrument_definition_future_27_no_events_group_builder));
         ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_future_27_no_m_d_feed_types_group.append(*m_d_instrument_definition_future_27_no_m_d_feed_types_group_builder));
         ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_future_27_no_inst_attrib_group.append(*m_d_instrument_definition_future_27_no_inst_attrib_group_builder));
         ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_future_27_no_lot_type_rules_group.append(*m_d_instrument_definition_future_27_no_lot_type_rules_group_builder));
+        ARROW_RETURN_NOT_OK(record.underlying_product_optional.append(*underlying_product_optional_builder));
+        ARROW_RETURN_NOT_OK(record.security_sub_type.append(*security_sub_type_builder));
+        ARROW_RETURN_NOT_OK(record.price_ratio.append(*price_ratio_builder));
+        ARROW_RETURN_NOT_OK(record.tick_rule.append(*tick_rule_builder));
         ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_spread_29_no_events_group.append(*m_d_instrument_definition_spread_29_no_events_group_builder));
         ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_spread_29_no_m_d_feed_types_group.append(*m_d_instrument_definition_spread_29_no_m_d_feed_types_group_builder));
         ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_spread_29_no_inst_attrib_group.append(*m_d_instrument_definition_spread_29_no_inst_attrib_group_builder));
         ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_spread_29_no_lot_type_rules_group.append(*m_d_instrument_definition_spread_29_no_lot_type_rules_group_builder));
         ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_spread_29_no_legs_group.append(*m_d_instrument_definition_spread_29_no_legs_group_builder));
+        ARROW_RETURN_NOT_OK(record.security_id_optional.append(*security_id_optional_builder));
+        ARROW_RETURN_NOT_OK(record.trade_date.append(*trade_date_builder));
+        ARROW_RETURN_NOT_OK(record.security_trading_status.append(*security_trading_status_builder));
+        ARROW_RETURN_NOT_OK(record.halt_reason.append(*halt_reason_builder));
+        ARROW_RETURN_NOT_OK(record.security_trading_event.append(*security_trading_event_builder));
         ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_book_32_no_m_d_entries_group.append(*m_d_incremental_refresh_book_32_no_m_d_entries_group_builder));
         ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_book_32_no_order_i_d_entries_group.append(*m_d_incremental_refresh_book_32_no_order_i_d_entries_group_builder));
         ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group.append(*m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_builder));
@@ -153,8 +101,17 @@ struct ArrowBatch {
         ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group.append(*m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_builder));
         ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_trade_36_no_m_d_entries_group.append(*m_d_incremental_refresh_trade_36_no_m_d_entries_group_builder));
         ARROW_RETURN_NOT_OK(record.incremental_refresh_volume_group.append(*incremental_refresh_volume_group_builder));
+        ARROW_RETURN_NOT_OK(record.last_msg_seq_num_processed.append(*last_msg_seq_num_processed_builder));
+        ARROW_RETURN_NOT_OK(record.tot_num_reports.append(*tot_num_reports_builder));
+        ARROW_RETURN_NOT_OK(record.rpt_seq.append(*rpt_seq_builder));
         ARROW_RETURN_NOT_OK(record.snapshot_full_refresh_38_no_m_d_entries_group.append(*snapshot_full_refresh_38_no_m_d_entries_group_builder));
+        ARROW_RETURN_NOT_OK(record.quote_req_id.append(*quote_req_id_builder));
         ARROW_RETURN_NOT_OK(record.related_sym_group.append(*related_sym_group_builder));
+        ARROW_RETURN_NOT_OK(record.put_or_call.append(*put_or_call_builder));
+        ARROW_RETURN_NOT_OK(record.strike_price.append(*strike_price_builder));
+        ARROW_RETURN_NOT_OK(record.strike_currency.append(*strike_currency_builder));
+        ARROW_RETURN_NOT_OK(record.min_cab_price.append(*min_cab_price_builder));
+        ARROW_RETURN_NOT_OK(record.min_price_increment_optional.append(*min_price_increment_optional_builder));
         ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_option_41_no_events_group.append(*m_d_instrument_definition_option_41_no_events_group_builder));
         ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_option_41_no_m_d_feed_types_group.append(*m_d_instrument_definition_option_41_no_m_d_feed_types_group_builder));
         ARROW_RETURN_NOT_OK(record.m_d_instrument_definition_option_41_no_inst_attrib_group.append(*m_d_instrument_definition_option_41_no_inst_attrib_group_builder));
@@ -164,6 +121,8 @@ struct ArrowBatch {
         ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group.append(*m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_builder));
         ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group.append(*m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_builder));
         ARROW_RETURN_NOT_OK(record.m_d_incremental_refresh_order_book_43_no_m_d_entries_group.append(*m_d_incremental_refresh_order_book_43_no_m_d_entries_group_builder));
+        ARROW_RETURN_NOT_OK(record.no_chunks.append(*no_chunks_builder));
+        ARROW_RETURN_NOT_OK(record.current_chunk.append(*current_chunk_builder));
         ARROW_RETURN_NOT_OK(record.snapshot_full_refresh_order_book_44_no_m_d_entries_group.append(*snapshot_full_refresh_order_book_44_no_m_d_entries_group_builder));
 
         row_count++;
@@ -185,13 +144,14 @@ struct ArrowBatch {
         std::shared_ptr<arrow::Array> transact_time_column;
         std::shared_ptr<arrow::Array> block_length_column;
         std::shared_ptr<arrow::Array> num_in_group_column;
-        std::shared_ptr<arrow::Array> appl_id_column;
+        std::shared_ptr<arrow::Array> channel_reset_group_column;
         std::shared_ptr<arrow::Array> heart_bt_int_column;
         std::shared_ptr<arrow::Array> text_column;
         std::shared_ptr<arrow::Array> tot_num_reports_optional_column;
         std::shared_ptr<arrow::Array> security_update_action_column;
         std::shared_ptr<arrow::Array> last_update_time_column;
         std::shared_ptr<arrow::Array> md_security_trading_status_column;
+        std::shared_ptr<arrow::Array> appl_id_column;
         std::shared_ptr<arrow::Array> market_segment_id_column;
         std::shared_ptr<arrow::Array> underlying_product_column;
         std::shared_ptr<arrow::Array> security_exchange_column;
@@ -232,77 +192,24 @@ struct ArrowBatch {
         std::shared_ptr<arrow::Array> min_price_increment_amount_column;
         std::shared_ptr<arrow::Array> user_defined_instrument_column;
         std::shared_ptr<arrow::Array> trading_reference_date_column;
-        std::shared_ptr<arrow::Array> event_time_column;
-        std::shared_ptr<arrow::Array> md_feed_type_column;
-        std::shared_ptr<arrow::Array> market_depth_column;
-        std::shared_ptr<arrow::Array> lot_type_column;
-        std::shared_ptr<arrow::Array> min_lot_size_column;
-        std::shared_ptr<arrow::Array> underlying_product_optional_column;
-        std::shared_ptr<arrow::Array> security_sub_type_column;
-        std::shared_ptr<arrow::Array> price_ratio_column;
-        std::shared_ptr<arrow::Array> tick_rule_column;
-        std::shared_ptr<arrow::Array> leg_security_id_column;
-        std::shared_ptr<arrow::Array> leg_side_column;
-        std::shared_ptr<arrow::Array> leg_ratio_qty_column;
-        std::shared_ptr<arrow::Array> leg_price_column;
-        std::shared_ptr<arrow::Array> leg_option_delta_column;
-        std::shared_ptr<arrow::Array> security_id_optional_column;
-        std::shared_ptr<arrow::Array> trade_date_column;
-        std::shared_ptr<arrow::Array> security_trading_status_column;
-        std::shared_ptr<arrow::Array> halt_reason_column;
-        std::shared_ptr<arrow::Array> security_trading_event_column;
-        std::shared_ptr<arrow::Array> md_entry_px_optional_column;
-        std::shared_ptr<arrow::Array> md_entry_size_optional_column;
-        std::shared_ptr<arrow::Array> rpt_seq_column;
-        std::shared_ptr<arrow::Array> number_of_orders_column;
-        std::shared_ptr<arrow::Array> md_price_level_column;
-        std::shared_ptr<arrow::Array> md_update_action_column;
-        std::shared_ptr<arrow::Array> md_entry_type_book_column;
-        std::shared_ptr<arrow::Array> order_id_column;
-        std::shared_ptr<arrow::Array> md_order_priority_column;
-        std::shared_ptr<arrow::Array> md_display_qty_optional_column;
-        std::shared_ptr<arrow::Array> reference_id_column;
-        std::shared_ptr<arrow::Array> order_update_action_column;
-        std::shared_ptr<arrow::Array> md_entry_type_daily_statistics_column;
-        std::shared_ptr<arrow::Array> md_entry_px_column;
-        std::shared_ptr<arrow::Array> open_close_settl_flag_column;
-        std::shared_ptr<arrow::Array> md_entry_type_statistics_column;
-        std::shared_ptr<arrow::Array> md_entry_size_column;
-        std::shared_ptr<arrow::Array> trade_id_column;
-        std::shared_ptr<arrow::Array> aggressor_side_column;
-        std::shared_ptr<arrow::Array> last_msg_seq_num_processed_column;
-        std::shared_ptr<arrow::Array> tot_num_reports_column;
-        std::shared_ptr<arrow::Array> md_price_level_optional_column;
-        std::shared_ptr<arrow::Array> md_entry_type__column;
-        std::shared_ptr<arrow::Array> quote_req_id_column;
-        std::shared_ptr<arrow::Array> order_qty_column;
-        std::shared_ptr<arrow::Array> quote_type_column;
-        std::shared_ptr<arrow::Array> side_column;
-        std::shared_ptr<arrow::Array> put_or_call_column;
-        std::shared_ptr<arrow::Array> strike_price_column;
-        std::shared_ptr<arrow::Array> strike_currency_column;
-        std::shared_ptr<arrow::Array> min_cab_price_column;
-        std::shared_ptr<arrow::Array> min_price_increment_optional_column;
-        std::shared_ptr<arrow::Array> underlying_security_id_column;
-        std::shared_ptr<arrow::Array> underlying_symbol_column;
-        std::shared_ptr<arrow::Array> related_security_id_column;
-        std::shared_ptr<arrow::Array> related_symbol_column;
-        std::shared_ptr<arrow::Array> md_trade_entry_id_column;
-        std::shared_ptr<arrow::Array> last_qty_column;
-        std::shared_ptr<arrow::Array> order_id_optional_column;
-        std::shared_ptr<arrow::Array> no_chunks_column;
-        std::shared_ptr<arrow::Array> current_chunk_column;
-        std::shared_ptr<arrow::Array> md_display_qty_column;
-        std::shared_ptr<arrow::Array> channel_reset_group_column;
         std::shared_ptr<arrow::Array> m_d_instrument_definition_future_27_no_events_group_column;
         std::shared_ptr<arrow::Array> m_d_instrument_definition_future_27_no_m_d_feed_types_group_column;
         std::shared_ptr<arrow::Array> m_d_instrument_definition_future_27_no_inst_attrib_group_column;
         std::shared_ptr<arrow::Array> m_d_instrument_definition_future_27_no_lot_type_rules_group_column;
+        std::shared_ptr<arrow::Array> underlying_product_optional_column;
+        std::shared_ptr<arrow::Array> security_sub_type_column;
+        std::shared_ptr<arrow::Array> price_ratio_column;
+        std::shared_ptr<arrow::Array> tick_rule_column;
         std::shared_ptr<arrow::Array> m_d_instrument_definition_spread_29_no_events_group_column;
         std::shared_ptr<arrow::Array> m_d_instrument_definition_spread_29_no_m_d_feed_types_group_column;
         std::shared_ptr<arrow::Array> m_d_instrument_definition_spread_29_no_inst_attrib_group_column;
         std::shared_ptr<arrow::Array> m_d_instrument_definition_spread_29_no_lot_type_rules_group_column;
         std::shared_ptr<arrow::Array> m_d_instrument_definition_spread_29_no_legs_group_column;
+        std::shared_ptr<arrow::Array> security_id_optional_column;
+        std::shared_ptr<arrow::Array> trade_date_column;
+        std::shared_ptr<arrow::Array> security_trading_status_column;
+        std::shared_ptr<arrow::Array> halt_reason_column;
+        std::shared_ptr<arrow::Array> security_trading_event_column;
         std::shared_ptr<arrow::Array> m_d_incremental_refresh_book_32_no_m_d_entries_group_column;
         std::shared_ptr<arrow::Array> m_d_incremental_refresh_book_32_no_order_i_d_entries_group_column;
         std::shared_ptr<arrow::Array> m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_column;
@@ -310,8 +217,17 @@ struct ArrowBatch {
         std::shared_ptr<arrow::Array> m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_column;
         std::shared_ptr<arrow::Array> m_d_incremental_refresh_trade_36_no_m_d_entries_group_column;
         std::shared_ptr<arrow::Array> incremental_refresh_volume_group_column;
+        std::shared_ptr<arrow::Array> last_msg_seq_num_processed_column;
+        std::shared_ptr<arrow::Array> tot_num_reports_column;
+        std::shared_ptr<arrow::Array> rpt_seq_column;
         std::shared_ptr<arrow::Array> snapshot_full_refresh_38_no_m_d_entries_group_column;
+        std::shared_ptr<arrow::Array> quote_req_id_column;
         std::shared_ptr<arrow::Array> related_sym_group_column;
+        std::shared_ptr<arrow::Array> put_or_call_column;
+        std::shared_ptr<arrow::Array> strike_price_column;
+        std::shared_ptr<arrow::Array> strike_currency_column;
+        std::shared_ptr<arrow::Array> min_cab_price_column;
+        std::shared_ptr<arrow::Array> min_price_increment_optional_column;
         std::shared_ptr<arrow::Array> m_d_instrument_definition_option_41_no_events_group_column;
         std::shared_ptr<arrow::Array> m_d_instrument_definition_option_41_no_m_d_feed_types_group_column;
         std::shared_ptr<arrow::Array> m_d_instrument_definition_option_41_no_inst_attrib_group_column;
@@ -321,19 +237,22 @@ struct ArrowBatch {
         std::shared_ptr<arrow::Array> m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_column;
         std::shared_ptr<arrow::Array> m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_column;
         std::shared_ptr<arrow::Array> m_d_incremental_refresh_order_book_43_no_m_d_entries_group_column;
+        std::shared_ptr<arrow::Array> no_chunks_column;
+        std::shared_ptr<arrow::Array> current_chunk_column;
         std::shared_ptr<arrow::Array> snapshot_full_refresh_order_book_44_no_m_d_entries_group_column;
 
         ARROW_RETURN_NOT_OK(event_type_builder->Finish(&event_type_column));
         ARROW_RETURN_NOT_OK(transact_time_builder->Finish(&transact_time_column));
         ARROW_RETURN_NOT_OK(block_length_builder->Finish(&block_length_column));
         ARROW_RETURN_NOT_OK(num_in_group_builder->Finish(&num_in_group_column));
-        ARROW_RETURN_NOT_OK(appl_id_builder->Finish(&appl_id_column));
+        ARROW_RETURN_NOT_OK(channel_reset_group_builder->Finish(&channel_reset_group_column));
         ARROW_RETURN_NOT_OK(heart_bt_int_builder->Finish(&heart_bt_int_column));
         ARROW_RETURN_NOT_OK(text_builder->Finish(&text_column));
         ARROW_RETURN_NOT_OK(tot_num_reports_optional_builder->Finish(&tot_num_reports_optional_column));
         ARROW_RETURN_NOT_OK(security_update_action_builder->Finish(&security_update_action_column));
         ARROW_RETURN_NOT_OK(last_update_time_builder->Finish(&last_update_time_column));
         ARROW_RETURN_NOT_OK(md_security_trading_status_builder->Finish(&md_security_trading_status_column));
+        ARROW_RETURN_NOT_OK(appl_id_builder->Finish(&appl_id_column));
         ARROW_RETURN_NOT_OK(market_segment_id_builder->Finish(&market_segment_id_column));
         ARROW_RETURN_NOT_OK(underlying_product_builder->Finish(&underlying_product_column));
         ARROW_RETURN_NOT_OK(security_exchange_builder->Finish(&security_exchange_column));
@@ -374,77 +293,24 @@ struct ArrowBatch {
         ARROW_RETURN_NOT_OK(min_price_increment_amount_builder->Finish(&min_price_increment_amount_column));
         ARROW_RETURN_NOT_OK(user_defined_instrument_builder->Finish(&user_defined_instrument_column));
         ARROW_RETURN_NOT_OK(trading_reference_date_builder->Finish(&trading_reference_date_column));
-        ARROW_RETURN_NOT_OK(event_time_builder->Finish(&event_time_column));
-        ARROW_RETURN_NOT_OK(md_feed_type_builder->Finish(&md_feed_type_column));
-        ARROW_RETURN_NOT_OK(market_depth_builder->Finish(&market_depth_column));
-        ARROW_RETURN_NOT_OK(lot_type_builder->Finish(&lot_type_column));
-        ARROW_RETURN_NOT_OK(min_lot_size_builder->Finish(&min_lot_size_column));
-        ARROW_RETURN_NOT_OK(underlying_product_optional_builder->Finish(&underlying_product_optional_column));
-        ARROW_RETURN_NOT_OK(security_sub_type_builder->Finish(&security_sub_type_column));
-        ARROW_RETURN_NOT_OK(price_ratio_builder->Finish(&price_ratio_column));
-        ARROW_RETURN_NOT_OK(tick_rule_builder->Finish(&tick_rule_column));
-        ARROW_RETURN_NOT_OK(leg_security_id_builder->Finish(&leg_security_id_column));
-        ARROW_RETURN_NOT_OK(leg_side_builder->Finish(&leg_side_column));
-        ARROW_RETURN_NOT_OK(leg_ratio_qty_builder->Finish(&leg_ratio_qty_column));
-        ARROW_RETURN_NOT_OK(leg_price_builder->Finish(&leg_price_column));
-        ARROW_RETURN_NOT_OK(leg_option_delta_builder->Finish(&leg_option_delta_column));
-        ARROW_RETURN_NOT_OK(security_id_optional_builder->Finish(&security_id_optional_column));
-        ARROW_RETURN_NOT_OK(trade_date_builder->Finish(&trade_date_column));
-        ARROW_RETURN_NOT_OK(security_trading_status_builder->Finish(&security_trading_status_column));
-        ARROW_RETURN_NOT_OK(halt_reason_builder->Finish(&halt_reason_column));
-        ARROW_RETURN_NOT_OK(security_trading_event_builder->Finish(&security_trading_event_column));
-        ARROW_RETURN_NOT_OK(md_entry_px_optional_builder->Finish(&md_entry_px_optional_column));
-        ARROW_RETURN_NOT_OK(md_entry_size_optional_builder->Finish(&md_entry_size_optional_column));
-        ARROW_RETURN_NOT_OK(rpt_seq_builder->Finish(&rpt_seq_column));
-        ARROW_RETURN_NOT_OK(number_of_orders_builder->Finish(&number_of_orders_column));
-        ARROW_RETURN_NOT_OK(md_price_level_builder->Finish(&md_price_level_column));
-        ARROW_RETURN_NOT_OK(md_update_action_builder->Finish(&md_update_action_column));
-        ARROW_RETURN_NOT_OK(md_entry_type_book_builder->Finish(&md_entry_type_book_column));
-        ARROW_RETURN_NOT_OK(order_id_builder->Finish(&order_id_column));
-        ARROW_RETURN_NOT_OK(md_order_priority_builder->Finish(&md_order_priority_column));
-        ARROW_RETURN_NOT_OK(md_display_qty_optional_builder->Finish(&md_display_qty_optional_column));
-        ARROW_RETURN_NOT_OK(reference_id_builder->Finish(&reference_id_column));
-        ARROW_RETURN_NOT_OK(order_update_action_builder->Finish(&order_update_action_column));
-        ARROW_RETURN_NOT_OK(md_entry_type_daily_statistics_builder->Finish(&md_entry_type_daily_statistics_column));
-        ARROW_RETURN_NOT_OK(md_entry_px_builder->Finish(&md_entry_px_column));
-        ARROW_RETURN_NOT_OK(open_close_settl_flag_builder->Finish(&open_close_settl_flag_column));
-        ARROW_RETURN_NOT_OK(md_entry_type_statistics_builder->Finish(&md_entry_type_statistics_column));
-        ARROW_RETURN_NOT_OK(md_entry_size_builder->Finish(&md_entry_size_column));
-        ARROW_RETURN_NOT_OK(trade_id_builder->Finish(&trade_id_column));
-        ARROW_RETURN_NOT_OK(aggressor_side_builder->Finish(&aggressor_side_column));
-        ARROW_RETURN_NOT_OK(last_msg_seq_num_processed_builder->Finish(&last_msg_seq_num_processed_column));
-        ARROW_RETURN_NOT_OK(tot_num_reports_builder->Finish(&tot_num_reports_column));
-        ARROW_RETURN_NOT_OK(md_price_level_optional_builder->Finish(&md_price_level_optional_column));
-        ARROW_RETURN_NOT_OK(md_entry_type__builder->Finish(&md_entry_type__column));
-        ARROW_RETURN_NOT_OK(quote_req_id_builder->Finish(&quote_req_id_column));
-        ARROW_RETURN_NOT_OK(order_qty_builder->Finish(&order_qty_column));
-        ARROW_RETURN_NOT_OK(quote_type_builder->Finish(&quote_type_column));
-        ARROW_RETURN_NOT_OK(side_builder->Finish(&side_column));
-        ARROW_RETURN_NOT_OK(put_or_call_builder->Finish(&put_or_call_column));
-        ARROW_RETURN_NOT_OK(strike_price_builder->Finish(&strike_price_column));
-        ARROW_RETURN_NOT_OK(strike_currency_builder->Finish(&strike_currency_column));
-        ARROW_RETURN_NOT_OK(min_cab_price_builder->Finish(&min_cab_price_column));
-        ARROW_RETURN_NOT_OK(min_price_increment_optional_builder->Finish(&min_price_increment_optional_column));
-        ARROW_RETURN_NOT_OK(underlying_security_id_builder->Finish(&underlying_security_id_column));
-        ARROW_RETURN_NOT_OK(underlying_symbol_builder->Finish(&underlying_symbol_column));
-        ARROW_RETURN_NOT_OK(related_security_id_builder->Finish(&related_security_id_column));
-        ARROW_RETURN_NOT_OK(related_symbol_builder->Finish(&related_symbol_column));
-        ARROW_RETURN_NOT_OK(md_trade_entry_id_builder->Finish(&md_trade_entry_id_column));
-        ARROW_RETURN_NOT_OK(last_qty_builder->Finish(&last_qty_column));
-        ARROW_RETURN_NOT_OK(order_id_optional_builder->Finish(&order_id_optional_column));
-        ARROW_RETURN_NOT_OK(no_chunks_builder->Finish(&no_chunks_column));
-        ARROW_RETURN_NOT_OK(current_chunk_builder->Finish(&current_chunk_column));
-        ARROW_RETURN_NOT_OK(md_display_qty_builder->Finish(&md_display_qty_column));
-        ARROW_RETURN_NOT_OK(channel_reset_group_builder->Finish(&channel_reset_group_column));
         ARROW_RETURN_NOT_OK(m_d_instrument_definition_future_27_no_events_group_builder->Finish(&m_d_instrument_definition_future_27_no_events_group_column));
         ARROW_RETURN_NOT_OK(m_d_instrument_definition_future_27_no_m_d_feed_types_group_builder->Finish(&m_d_instrument_definition_future_27_no_m_d_feed_types_group_column));
         ARROW_RETURN_NOT_OK(m_d_instrument_definition_future_27_no_inst_attrib_group_builder->Finish(&m_d_instrument_definition_future_27_no_inst_attrib_group_column));
         ARROW_RETURN_NOT_OK(m_d_instrument_definition_future_27_no_lot_type_rules_group_builder->Finish(&m_d_instrument_definition_future_27_no_lot_type_rules_group_column));
+        ARROW_RETURN_NOT_OK(underlying_product_optional_builder->Finish(&underlying_product_optional_column));
+        ARROW_RETURN_NOT_OK(security_sub_type_builder->Finish(&security_sub_type_column));
+        ARROW_RETURN_NOT_OK(price_ratio_builder->Finish(&price_ratio_column));
+        ARROW_RETURN_NOT_OK(tick_rule_builder->Finish(&tick_rule_column));
         ARROW_RETURN_NOT_OK(m_d_instrument_definition_spread_29_no_events_group_builder->Finish(&m_d_instrument_definition_spread_29_no_events_group_column));
         ARROW_RETURN_NOT_OK(m_d_instrument_definition_spread_29_no_m_d_feed_types_group_builder->Finish(&m_d_instrument_definition_spread_29_no_m_d_feed_types_group_column));
         ARROW_RETURN_NOT_OK(m_d_instrument_definition_spread_29_no_inst_attrib_group_builder->Finish(&m_d_instrument_definition_spread_29_no_inst_attrib_group_column));
         ARROW_RETURN_NOT_OK(m_d_instrument_definition_spread_29_no_lot_type_rules_group_builder->Finish(&m_d_instrument_definition_spread_29_no_lot_type_rules_group_column));
         ARROW_RETURN_NOT_OK(m_d_instrument_definition_spread_29_no_legs_group_builder->Finish(&m_d_instrument_definition_spread_29_no_legs_group_column));
+        ARROW_RETURN_NOT_OK(security_id_optional_builder->Finish(&security_id_optional_column));
+        ARROW_RETURN_NOT_OK(trade_date_builder->Finish(&trade_date_column));
+        ARROW_RETURN_NOT_OK(security_trading_status_builder->Finish(&security_trading_status_column));
+        ARROW_RETURN_NOT_OK(halt_reason_builder->Finish(&halt_reason_column));
+        ARROW_RETURN_NOT_OK(security_trading_event_builder->Finish(&security_trading_event_column));
         ARROW_RETURN_NOT_OK(m_d_incremental_refresh_book_32_no_m_d_entries_group_builder->Finish(&m_d_incremental_refresh_book_32_no_m_d_entries_group_column));
         ARROW_RETURN_NOT_OK(m_d_incremental_refresh_book_32_no_order_i_d_entries_group_builder->Finish(&m_d_incremental_refresh_book_32_no_order_i_d_entries_group_column));
         ARROW_RETURN_NOT_OK(m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_builder->Finish(&m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_column));
@@ -452,8 +318,17 @@ struct ArrowBatch {
         ARROW_RETURN_NOT_OK(m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_builder->Finish(&m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_column));
         ARROW_RETURN_NOT_OK(m_d_incremental_refresh_trade_36_no_m_d_entries_group_builder->Finish(&m_d_incremental_refresh_trade_36_no_m_d_entries_group_column));
         ARROW_RETURN_NOT_OK(incremental_refresh_volume_group_builder->Finish(&incremental_refresh_volume_group_column));
+        ARROW_RETURN_NOT_OK(last_msg_seq_num_processed_builder->Finish(&last_msg_seq_num_processed_column));
+        ARROW_RETURN_NOT_OK(tot_num_reports_builder->Finish(&tot_num_reports_column));
+        ARROW_RETURN_NOT_OK(rpt_seq_builder->Finish(&rpt_seq_column));
         ARROW_RETURN_NOT_OK(snapshot_full_refresh_38_no_m_d_entries_group_builder->Finish(&snapshot_full_refresh_38_no_m_d_entries_group_column));
+        ARROW_RETURN_NOT_OK(quote_req_id_builder->Finish(&quote_req_id_column));
         ARROW_RETURN_NOT_OK(related_sym_group_builder->Finish(&related_sym_group_column));
+        ARROW_RETURN_NOT_OK(put_or_call_builder->Finish(&put_or_call_column));
+        ARROW_RETURN_NOT_OK(strike_price_builder->Finish(&strike_price_column));
+        ARROW_RETURN_NOT_OK(strike_currency_builder->Finish(&strike_currency_column));
+        ARROW_RETURN_NOT_OK(min_cab_price_builder->Finish(&min_cab_price_column));
+        ARROW_RETURN_NOT_OK(min_price_increment_optional_builder->Finish(&min_price_increment_optional_column));
         ARROW_RETURN_NOT_OK(m_d_instrument_definition_option_41_no_events_group_builder->Finish(&m_d_instrument_definition_option_41_no_events_group_column));
         ARROW_RETURN_NOT_OK(m_d_instrument_definition_option_41_no_m_d_feed_types_group_builder->Finish(&m_d_instrument_definition_option_41_no_m_d_feed_types_group_column));
         ARROW_RETURN_NOT_OK(m_d_instrument_definition_option_41_no_inst_attrib_group_builder->Finish(&m_d_instrument_definition_option_41_no_inst_attrib_group_column));
@@ -463,6 +338,8 @@ struct ArrowBatch {
         ARROW_RETURN_NOT_OK(m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_builder->Finish(&m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_column));
         ARROW_RETURN_NOT_OK(m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_builder->Finish(&m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_column));
         ARROW_RETURN_NOT_OK(m_d_incremental_refresh_order_book_43_no_m_d_entries_group_builder->Finish(&m_d_incremental_refresh_order_book_43_no_m_d_entries_group_column));
+        ARROW_RETURN_NOT_OK(no_chunks_builder->Finish(&no_chunks_column));
+        ARROW_RETURN_NOT_OK(current_chunk_builder->Finish(&current_chunk_column));
         ARROW_RETURN_NOT_OK(snapshot_full_refresh_order_book_44_no_m_d_entries_group_builder->Finish(&snapshot_full_refresh_order_book_44_no_m_d_entries_group_column));
 
         auto batch = arrow::RecordBatch::Make(schema, row_count, {
@@ -470,13 +347,14 @@ struct ArrowBatch {
             transact_time_column,
             block_length_column,
             num_in_group_column,
-            appl_id_column,
+            channel_reset_group_column,
             heart_bt_int_column,
             text_column,
             tot_num_reports_optional_column,
             security_update_action_column,
             last_update_time_column,
             md_security_trading_status_column,
+            appl_id_column,
             market_segment_id_column,
             underlying_product_column,
             security_exchange_column,
@@ -517,77 +395,24 @@ struct ArrowBatch {
             min_price_increment_amount_column,
             user_defined_instrument_column,
             trading_reference_date_column,
-            event_time_column,
-            md_feed_type_column,
-            market_depth_column,
-            lot_type_column,
-            min_lot_size_column,
-            underlying_product_optional_column,
-            security_sub_type_column,
-            price_ratio_column,
-            tick_rule_column,
-            leg_security_id_column,
-            leg_side_column,
-            leg_ratio_qty_column,
-            leg_price_column,
-            leg_option_delta_column,
-            security_id_optional_column,
-            trade_date_column,
-            security_trading_status_column,
-            halt_reason_column,
-            security_trading_event_column,
-            md_entry_px_optional_column,
-            md_entry_size_optional_column,
-            rpt_seq_column,
-            number_of_orders_column,
-            md_price_level_column,
-            md_update_action_column,
-            md_entry_type_book_column,
-            order_id_column,
-            md_order_priority_column,
-            md_display_qty_optional_column,
-            reference_id_column,
-            order_update_action_column,
-            md_entry_type_daily_statistics_column,
-            md_entry_px_column,
-            open_close_settl_flag_column,
-            md_entry_type_statistics_column,
-            md_entry_size_column,
-            trade_id_column,
-            aggressor_side_column,
-            last_msg_seq_num_processed_column,
-            tot_num_reports_column,
-            md_price_level_optional_column,
-            md_entry_type__column,
-            quote_req_id_column,
-            order_qty_column,
-            quote_type_column,
-            side_column,
-            put_or_call_column,
-            strike_price_column,
-            strike_currency_column,
-            min_cab_price_column,
-            min_price_increment_optional_column,
-            underlying_security_id_column,
-            underlying_symbol_column,
-            related_security_id_column,
-            related_symbol_column,
-            md_trade_entry_id_column,
-            last_qty_column,
-            order_id_optional_column,
-            no_chunks_column,
-            current_chunk_column,
-            md_display_qty_column,
-            channel_reset_group_column,
             m_d_instrument_definition_future_27_no_events_group_column,
             m_d_instrument_definition_future_27_no_m_d_feed_types_group_column,
             m_d_instrument_definition_future_27_no_inst_attrib_group_column,
             m_d_instrument_definition_future_27_no_lot_type_rules_group_column,
+            underlying_product_optional_column,
+            security_sub_type_column,
+            price_ratio_column,
+            tick_rule_column,
             m_d_instrument_definition_spread_29_no_events_group_column,
             m_d_instrument_definition_spread_29_no_m_d_feed_types_group_column,
             m_d_instrument_definition_spread_29_no_inst_attrib_group_column,
             m_d_instrument_definition_spread_29_no_lot_type_rules_group_column,
             m_d_instrument_definition_spread_29_no_legs_group_column,
+            security_id_optional_column,
+            trade_date_column,
+            security_trading_status_column,
+            halt_reason_column,
+            security_trading_event_column,
             m_d_incremental_refresh_book_32_no_m_d_entries_group_column,
             m_d_incremental_refresh_book_32_no_order_i_d_entries_group_column,
             m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_column,
@@ -595,8 +420,17 @@ struct ArrowBatch {
             m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_column,
             m_d_incremental_refresh_trade_36_no_m_d_entries_group_column,
             incremental_refresh_volume_group_column,
+            last_msg_seq_num_processed_column,
+            tot_num_reports_column,
+            rpt_seq_column,
             snapshot_full_refresh_38_no_m_d_entries_group_column,
+            quote_req_id_column,
             related_sym_group_column,
+            put_or_call_column,
+            strike_price_column,
+            strike_currency_column,
+            min_cab_price_column,
+            min_price_increment_optional_column,
             m_d_instrument_definition_option_41_no_events_group_column,
             m_d_instrument_definition_option_41_no_m_d_feed_types_group_column,
             m_d_instrument_definition_option_41_no_inst_attrib_group_column,
@@ -606,6 +440,8 @@ struct ArrowBatch {
             m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_column,
             m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_column,
             m_d_incremental_refresh_order_book_43_no_m_d_entries_group_column,
+            no_chunks_column,
+            current_chunk_column,
             snapshot_full_refresh_order_book_44_no_m_d_entries_group_column,
         } );
 
@@ -642,13 +478,14 @@ struct ArrowBatch {
         transact_time_builder = std::make_unique<arrow::Time64Builder>(arrow::time64(arrow::TimeUnit::NANO), arrow::default_memory_pool());
         block_length_builder = std::make_unique<arrow::UInt16Builder>();
         num_in_group_builder = std::make_unique<arrow::UInt8Builder>();
-        appl_id_builder = std::make_unique<arrow::Int16Builder>();
+        channel_reset_group_builder = std::make_unique<arrow::StringBuilder>();
         heart_bt_int_builder = std::make_unique<arrow::Int8Builder>();
         text_builder = std::make_unique<arrow::StringBuilder>();
         tot_num_reports_optional_builder = std::make_unique<arrow::UInt32Builder>();
         security_update_action_builder = std::make_unique<arrow::StringBuilder>();
         last_update_time_builder = std::make_unique<arrow::Time64Builder>(arrow::time64(arrow::TimeUnit::NANO), arrow::default_memory_pool());
         md_security_trading_status_builder = std::make_unique<arrow::UInt8Builder>();
+        appl_id_builder = std::make_unique<arrow::Int16Builder>();
         market_segment_id_builder = std::make_unique<arrow::UInt8Builder>();
         underlying_product_builder = std::make_unique<arrow::UInt8Builder>();
         security_exchange_builder = std::make_unique<arrow::StringBuilder>();
@@ -689,77 +526,24 @@ struct ArrowBatch {
         min_price_increment_amount_builder = std::make_unique<arrow::Decimal128Builder>(arrow::decimal128(MinPriceIncrementAmount::precision, MinPriceIncrementAmount::scale));
         user_defined_instrument_builder = std::make_unique<arrow::StringBuilder>();
         trading_reference_date_builder = std::make_unique<arrow::UInt16Builder>();
-        event_time_builder = std::make_unique<arrow::Time64Builder>(arrow::time64(arrow::TimeUnit::NANO), arrow::default_memory_pool());
-        md_feed_type_builder = std::make_unique<arrow::StringBuilder>();
-        market_depth_builder = std::make_unique<arrow::Int8Builder>();
-        lot_type_builder = std::make_unique<arrow::Int8Builder>();
-        min_lot_size_builder = std::make_unique<arrow::Decimal128Builder>(arrow::decimal128(MinLotSize::precision, MinLotSize::scale));
-        underlying_product_optional_builder = std::make_unique<arrow::UInt8Builder>();
-        security_sub_type_builder = std::make_unique<arrow::StringBuilder>();
-        price_ratio_builder = std::make_unique<arrow::Decimal128Builder>(arrow::decimal128(PriceRatio::precision, PriceRatio::scale));
-        tick_rule_builder = std::make_unique<arrow::Int8Builder>();
-        leg_security_id_builder = std::make_unique<arrow::Int32Builder>();
-        leg_side_builder = std::make_unique<arrow::UInt8Builder>();
-        leg_ratio_qty_builder = std::make_unique<arrow::Int8Builder>();
-        leg_price_builder = std::make_unique<arrow::Decimal128Builder>(arrow::decimal128(LegPrice::precision, LegPrice::scale));
-        leg_option_delta_builder = std::make_unique<arrow::Decimal128Builder>(arrow::decimal128(LegOptionDelta::precision, LegOptionDelta::scale));
-        security_id_optional_builder = std::make_unique<arrow::Int32Builder>();
-        trade_date_builder = std::make_unique<arrow::UInt16Builder>();
-        security_trading_status_builder = std::make_unique<arrow::UInt8Builder>();
-        halt_reason_builder = std::make_unique<arrow::UInt8Builder>();
-        security_trading_event_builder = std::make_unique<arrow::UInt8Builder>();
-        md_entry_px_optional_builder = std::make_unique<arrow::Decimal128Builder>(arrow::decimal128(MdEntryPxOptional::precision, MdEntryPxOptional::scale));
-        md_entry_size_optional_builder = std::make_unique<arrow::Int32Builder>();
-        rpt_seq_builder = std::make_unique<arrow::UInt32Builder>();
-        number_of_orders_builder = std::make_unique<arrow::Int32Builder>();
-        md_price_level_builder = std::make_unique<arrow::UInt8Builder>();
-        md_update_action_builder = std::make_unique<arrow::UInt8Builder>();
-        md_entry_type_book_builder = std::make_unique<arrow::StringBuilder>();
-        order_id_builder = std::make_unique<arrow::UInt64Builder>();
-        md_order_priority_builder = std::make_unique<arrow::UInt64Builder>();
-        md_display_qty_optional_builder = std::make_unique<arrow::Int32Builder>();
-        reference_id_builder = std::make_unique<arrow::UInt8Builder>();
-        order_update_action_builder = std::make_unique<arrow::UInt8Builder>();
-        md_entry_type_daily_statistics_builder = std::make_unique<arrow::StringBuilder>();
-        md_entry_px_builder = std::make_unique<arrow::Decimal128Builder>(arrow::decimal128(MdEntryPx::precision, MdEntryPx::scale));
-        open_close_settl_flag_builder = std::make_unique<arrow::UInt8Builder>();
-        md_entry_type_statistics_builder = std::make_unique<arrow::StringBuilder>();
-        md_entry_size_builder = std::make_unique<arrow::Int32Builder>();
-        trade_id_builder = std::make_unique<arrow::Int32Builder>();
-        aggressor_side_builder = std::make_unique<arrow::UInt8Builder>();
-        last_msg_seq_num_processed_builder = std::make_unique<arrow::UInt32Builder>();
-        tot_num_reports_builder = std::make_unique<arrow::UInt32Builder>();
-        md_price_level_optional_builder = std::make_unique<arrow::Int8Builder>();
-        md_entry_type__builder = std::make_unique<arrow::StringBuilder>();
-        quote_req_id_builder = std::make_unique<arrow::StringBuilder>();
-        order_qty_builder = std::make_unique<arrow::Int32Builder>();
-        quote_type_builder = std::make_unique<arrow::Int8Builder>();
-        side_builder = std::make_unique<arrow::Int8Builder>();
-        put_or_call_builder = std::make_unique<arrow::UInt8Builder>();
-        strike_price_builder = std::make_unique<arrow::Decimal128Builder>(arrow::decimal128(StrikePrice::precision, StrikePrice::scale));
-        strike_currency_builder = std::make_unique<arrow::StringBuilder>();
-        min_cab_price_builder = std::make_unique<arrow::Decimal128Builder>(arrow::decimal128(MinCabPrice::precision, MinCabPrice::scale));
-        min_price_increment_optional_builder = std::make_unique<arrow::Decimal128Builder>(arrow::decimal128(MinPriceIncrementOptional::precision, MinPriceIncrementOptional::scale));
-        underlying_security_id_builder = std::make_unique<arrow::Int32Builder>();
-        underlying_symbol_builder = std::make_unique<arrow::StringBuilder>();
-        related_security_id_builder = std::make_unique<arrow::Int32Builder>();
-        related_symbol_builder = std::make_unique<arrow::StringBuilder>();
-        md_trade_entry_id_builder = std::make_unique<arrow::UInt32Builder>();
-        last_qty_builder = std::make_unique<arrow::Int32Builder>();
-        order_id_optional_builder = std::make_unique<arrow::UInt64Builder>();
-        no_chunks_builder = std::make_unique<arrow::UInt32Builder>();
-        current_chunk_builder = std::make_unique<arrow::UInt32Builder>();
-        md_display_qty_builder = std::make_unique<arrow::Int32Builder>();
-        channel_reset_group_builder = std::make_unique<arrow::StringBuilder>();
         m_d_instrument_definition_future_27_no_events_group_builder = std::make_unique<arrow::StringBuilder>();
         m_d_instrument_definition_future_27_no_m_d_feed_types_group_builder = std::make_unique<arrow::StringBuilder>();
         m_d_instrument_definition_future_27_no_inst_attrib_group_builder = std::make_unique<arrow::StringBuilder>();
         m_d_instrument_definition_future_27_no_lot_type_rules_group_builder = std::make_unique<arrow::StringBuilder>();
+        underlying_product_optional_builder = std::make_unique<arrow::UInt8Builder>();
+        security_sub_type_builder = std::make_unique<arrow::StringBuilder>();
+        price_ratio_builder = std::make_unique<arrow::Decimal128Builder>(arrow::decimal128(PriceRatio::precision, PriceRatio::scale));
+        tick_rule_builder = std::make_unique<arrow::Int8Builder>();
         m_d_instrument_definition_spread_29_no_events_group_builder = std::make_unique<arrow::StringBuilder>();
         m_d_instrument_definition_spread_29_no_m_d_feed_types_group_builder = std::make_unique<arrow::StringBuilder>();
         m_d_instrument_definition_spread_29_no_inst_attrib_group_builder = std::make_unique<arrow::StringBuilder>();
         m_d_instrument_definition_spread_29_no_lot_type_rules_group_builder = std::make_unique<arrow::StringBuilder>();
         m_d_instrument_definition_spread_29_no_legs_group_builder = std::make_unique<arrow::StringBuilder>();
+        security_id_optional_builder = std::make_unique<arrow::Int32Builder>();
+        trade_date_builder = std::make_unique<arrow::UInt16Builder>();
+        security_trading_status_builder = std::make_unique<arrow::UInt8Builder>();
+        halt_reason_builder = std::make_unique<arrow::UInt8Builder>();
+        security_trading_event_builder = std::make_unique<arrow::UInt8Builder>();
         m_d_incremental_refresh_book_32_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
         m_d_incremental_refresh_book_32_no_order_i_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
         m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
@@ -767,8 +551,17 @@ struct ArrowBatch {
         m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
         m_d_incremental_refresh_trade_36_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
         incremental_refresh_volume_group_builder = std::make_unique<arrow::StringBuilder>();
+        last_msg_seq_num_processed_builder = std::make_unique<arrow::UInt32Builder>();
+        tot_num_reports_builder = std::make_unique<arrow::UInt32Builder>();
+        rpt_seq_builder = std::make_unique<arrow::UInt32Builder>();
         snapshot_full_refresh_38_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
+        quote_req_id_builder = std::make_unique<arrow::StringBuilder>();
         related_sym_group_builder = std::make_unique<arrow::StringBuilder>();
+        put_or_call_builder = std::make_unique<arrow::UInt8Builder>();
+        strike_price_builder = std::make_unique<arrow::Decimal128Builder>(arrow::decimal128(StrikePrice::precision, StrikePrice::scale));
+        strike_currency_builder = std::make_unique<arrow::StringBuilder>();
+        min_cab_price_builder = std::make_unique<arrow::Decimal128Builder>(arrow::decimal128(MinCabPrice::precision, MinCabPrice::scale));
+        min_price_increment_optional_builder = std::make_unique<arrow::Decimal128Builder>(arrow::decimal128(MinPriceIncrementOptional::precision, MinPriceIncrementOptional::scale));
         m_d_instrument_definition_option_41_no_events_group_builder = std::make_unique<arrow::StringBuilder>();
         m_d_instrument_definition_option_41_no_m_d_feed_types_group_builder = std::make_unique<arrow::StringBuilder>();
         m_d_instrument_definition_option_41_no_inst_attrib_group_builder = std::make_unique<arrow::StringBuilder>();
@@ -778,6 +571,8 @@ struct ArrowBatch {
         m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
         m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
         m_d_incremental_refresh_order_book_43_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
+        no_chunks_builder = std::make_unique<arrow::UInt32Builder>();
+        current_chunk_builder = std::make_unique<arrow::UInt32Builder>();
         snapshot_full_refresh_order_book_44_no_m_d_entries_group_builder = std::make_unique<arrow::StringBuilder>();
 
         row_count = 0;
@@ -843,13 +638,14 @@ struct ArrowBatch {
         std::unique_ptr<arrow::Time64Builder> transact_time_builder;
         std::unique_ptr<arrow::UInt16Builder> block_length_builder;
         std::unique_ptr<arrow::UInt8Builder> num_in_group_builder;
-        std::unique_ptr<arrow::Int16Builder> appl_id_builder;
+        std::unique_ptr<arrow::StringBuilder> channel_reset_group_builder;
         std::unique_ptr<arrow::Int8Builder> heart_bt_int_builder;
         std::unique_ptr<arrow::StringBuilder> text_builder;
         std::unique_ptr<arrow::UInt32Builder> tot_num_reports_optional_builder;
         std::unique_ptr<arrow::StringBuilder> security_update_action_builder;
         std::unique_ptr<arrow::Time64Builder> last_update_time_builder;
         std::unique_ptr<arrow::UInt8Builder> md_security_trading_status_builder;
+        std::unique_ptr<arrow::Int16Builder> appl_id_builder;
         std::unique_ptr<arrow::UInt8Builder> market_segment_id_builder;
         std::unique_ptr<arrow::UInt8Builder> underlying_product_builder;
         std::unique_ptr<arrow::StringBuilder> security_exchange_builder;
@@ -890,77 +686,24 @@ struct ArrowBatch {
         std::unique_ptr<arrow::Decimal128Builder> min_price_increment_amount_builder;
         std::unique_ptr<arrow::StringBuilder> user_defined_instrument_builder;
         std::unique_ptr<arrow::UInt16Builder> trading_reference_date_builder;
-        std::unique_ptr<arrow::Time64Builder> event_time_builder;
-        std::unique_ptr<arrow::StringBuilder> md_feed_type_builder;
-        std::unique_ptr<arrow::Int8Builder> market_depth_builder;
-        std::unique_ptr<arrow::Int8Builder> lot_type_builder;
-        std::unique_ptr<arrow::Decimal128Builder> min_lot_size_builder;
-        std::unique_ptr<arrow::UInt8Builder> underlying_product_optional_builder;
-        std::unique_ptr<arrow::StringBuilder> security_sub_type_builder;
-        std::unique_ptr<arrow::Decimal128Builder> price_ratio_builder;
-        std::unique_ptr<arrow::Int8Builder> tick_rule_builder;
-        std::unique_ptr<arrow::Int32Builder> leg_security_id_builder;
-        std::unique_ptr<arrow::UInt8Builder> leg_side_builder;
-        std::unique_ptr<arrow::Int8Builder> leg_ratio_qty_builder;
-        std::unique_ptr<arrow::Decimal128Builder> leg_price_builder;
-        std::unique_ptr<arrow::Decimal128Builder> leg_option_delta_builder;
-        std::unique_ptr<arrow::Int32Builder> security_id_optional_builder;
-        std::unique_ptr<arrow::UInt16Builder> trade_date_builder;
-        std::unique_ptr<arrow::UInt8Builder> security_trading_status_builder;
-        std::unique_ptr<arrow::UInt8Builder> halt_reason_builder;
-        std::unique_ptr<arrow::UInt8Builder> security_trading_event_builder;
-        std::unique_ptr<arrow::Decimal128Builder> md_entry_px_optional_builder;
-        std::unique_ptr<arrow::Int32Builder> md_entry_size_optional_builder;
-        std::unique_ptr<arrow::UInt32Builder> rpt_seq_builder;
-        std::unique_ptr<arrow::Int32Builder> number_of_orders_builder;
-        std::unique_ptr<arrow::UInt8Builder> md_price_level_builder;
-        std::unique_ptr<arrow::UInt8Builder> md_update_action_builder;
-        std::unique_ptr<arrow::StringBuilder> md_entry_type_book_builder;
-        std::unique_ptr<arrow::UInt64Builder> order_id_builder;
-        std::unique_ptr<arrow::UInt64Builder> md_order_priority_builder;
-        std::unique_ptr<arrow::Int32Builder> md_display_qty_optional_builder;
-        std::unique_ptr<arrow::UInt8Builder> reference_id_builder;
-        std::unique_ptr<arrow::UInt8Builder> order_update_action_builder;
-        std::unique_ptr<arrow::StringBuilder> md_entry_type_daily_statistics_builder;
-        std::unique_ptr<arrow::Decimal128Builder> md_entry_px_builder;
-        std::unique_ptr<arrow::UInt8Builder> open_close_settl_flag_builder;
-        std::unique_ptr<arrow::StringBuilder> md_entry_type_statistics_builder;
-        std::unique_ptr<arrow::Int32Builder> md_entry_size_builder;
-        std::unique_ptr<arrow::Int32Builder> trade_id_builder;
-        std::unique_ptr<arrow::UInt8Builder> aggressor_side_builder;
-        std::unique_ptr<arrow::UInt32Builder> last_msg_seq_num_processed_builder;
-        std::unique_ptr<arrow::UInt32Builder> tot_num_reports_builder;
-        std::unique_ptr<arrow::Int8Builder> md_price_level_optional_builder;
-        std::unique_ptr<arrow::StringBuilder> md_entry_type__builder;
-        std::unique_ptr<arrow::StringBuilder> quote_req_id_builder;
-        std::unique_ptr<arrow::Int32Builder> order_qty_builder;
-        std::unique_ptr<arrow::Int8Builder> quote_type_builder;
-        std::unique_ptr<arrow::Int8Builder> side_builder;
-        std::unique_ptr<arrow::UInt8Builder> put_or_call_builder;
-        std::unique_ptr<arrow::Decimal128Builder> strike_price_builder;
-        std::unique_ptr<arrow::StringBuilder> strike_currency_builder;
-        std::unique_ptr<arrow::Decimal128Builder> min_cab_price_builder;
-        std::unique_ptr<arrow::Decimal128Builder> min_price_increment_optional_builder;
-        std::unique_ptr<arrow::Int32Builder> underlying_security_id_builder;
-        std::unique_ptr<arrow::StringBuilder> underlying_symbol_builder;
-        std::unique_ptr<arrow::Int32Builder> related_security_id_builder;
-        std::unique_ptr<arrow::StringBuilder> related_symbol_builder;
-        std::unique_ptr<arrow::UInt32Builder> md_trade_entry_id_builder;
-        std::unique_ptr<arrow::Int32Builder> last_qty_builder;
-        std::unique_ptr<arrow::UInt64Builder> order_id_optional_builder;
-        std::unique_ptr<arrow::UInt32Builder> no_chunks_builder;
-        std::unique_ptr<arrow::UInt32Builder> current_chunk_builder;
-        std::unique_ptr<arrow::Int32Builder> md_display_qty_builder;
-        std::unique_ptr<arrow::StringBuilder> channel_reset_group_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_future_27_no_events_group_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_future_27_no_m_d_feed_types_group_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_future_27_no_inst_attrib_group_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_future_27_no_lot_type_rules_group_builder;
+        std::unique_ptr<arrow::UInt8Builder> underlying_product_optional_builder;
+        std::unique_ptr<arrow::StringBuilder> security_sub_type_builder;
+        std::unique_ptr<arrow::Decimal128Builder> price_ratio_builder;
+        std::unique_ptr<arrow::Int8Builder> tick_rule_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_spread_29_no_events_group_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_spread_29_no_m_d_feed_types_group_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_spread_29_no_inst_attrib_group_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_spread_29_no_lot_type_rules_group_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_spread_29_no_legs_group_builder;
+        std::unique_ptr<arrow::Int32Builder> security_id_optional_builder;
+        std::unique_ptr<arrow::UInt16Builder> trade_date_builder;
+        std::unique_ptr<arrow::UInt8Builder> security_trading_status_builder;
+        std::unique_ptr<arrow::UInt8Builder> halt_reason_builder;
+        std::unique_ptr<arrow::UInt8Builder> security_trading_event_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_book_32_no_m_d_entries_group_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_book_32_no_order_i_d_entries_group_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_daily_statistics_33_no_m_d_entries_group_builder;
@@ -968,8 +711,17 @@ struct ArrowBatch {
         std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_session_statistics_35_no_m_d_entries_group_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_trade_36_no_m_d_entries_group_builder;
         std::unique_ptr<arrow::StringBuilder> incremental_refresh_volume_group_builder;
+        std::unique_ptr<arrow::UInt32Builder> last_msg_seq_num_processed_builder;
+        std::unique_ptr<arrow::UInt32Builder> tot_num_reports_builder;
+        std::unique_ptr<arrow::UInt32Builder> rpt_seq_builder;
         std::unique_ptr<arrow::StringBuilder> snapshot_full_refresh_38_no_m_d_entries_group_builder;
+        std::unique_ptr<arrow::StringBuilder> quote_req_id_builder;
         std::unique_ptr<arrow::StringBuilder> related_sym_group_builder;
+        std::unique_ptr<arrow::UInt8Builder> put_or_call_builder;
+        std::unique_ptr<arrow::Decimal128Builder> strike_price_builder;
+        std::unique_ptr<arrow::StringBuilder> strike_currency_builder;
+        std::unique_ptr<arrow::Decimal128Builder> min_cab_price_builder;
+        std::unique_ptr<arrow::Decimal128Builder> min_price_increment_optional_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_option_41_no_events_group_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_option_41_no_m_d_feed_types_group_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_instrument_definition_option_41_no_inst_attrib_group_builder;
@@ -979,6 +731,8 @@ struct ArrowBatch {
         std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_trade_summary_42_no_m_d_entries_group_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_trade_summary_42_no_order_i_d_entries_group_builder;
         std::unique_ptr<arrow::StringBuilder> m_d_incremental_refresh_order_book_43_no_m_d_entries_group_builder;
+        std::unique_ptr<arrow::UInt32Builder> no_chunks_builder;
+        std::unique_ptr<arrow::UInt32Builder> current_chunk_builder;
         std::unique_ptr<arrow::StringBuilder> snapshot_full_refresh_order_book_44_no_m_d_entries_group_builder;
 };
 }

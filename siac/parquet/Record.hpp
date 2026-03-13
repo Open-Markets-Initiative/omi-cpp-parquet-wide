@@ -38,6 +38,14 @@
 #include "fields/BboIndicator.hpp"
 #include "fields/BidSize.hpp"
 #include "fields/OfferSize.hpp"
+#include "fields/BestBidParticipantId.hpp"
+#include "fields/BestBidDenominatorCode.hpp"
+#include "fields/BestBidPrice.hpp"
+#include "fields/BestBidSize.hpp"
+#include "fields/BestOfferParticipantId.hpp"
+#include "fields/BestOfferDenominatorCode.hpp"
+#include "fields/BestOfferPrice.hpp"
+#include "fields/BestOfferSize.hpp"
 #include "fields/ShortEquityAndIndexQuoteMessageType.hpp"
 #include "fields/SecuritySymbolShort.hpp"
 #include "fields/StrikePriceShort.hpp"
@@ -50,14 +58,6 @@
 #include "fields/IndexValue.hpp"
 #include "fields/BidIndexValue.hpp"
 #include "fields/OfferIndexValue.hpp"
-#include "fields/BestBidParticipantId.hpp"
-#include "fields/BestBidDenominatorCode.hpp"
-#include "fields/BestBidPrice.hpp"
-#include "fields/BestBidSize.hpp"
-#include "fields/BestOfferParticipantId.hpp"
-#include "fields/BestOfferDenominatorCode.hpp"
-#include "fields/BestOfferPrice.hpp"
-#include "fields/BestOfferSize.hpp"
 
 namespace siac {
 struct ArrowRecord {
@@ -98,6 +98,14 @@ struct ArrowRecord {
     BboIndicator bbo_indicator;
     BidSize bid_size;
     OfferSize offer_size;
+    BestBidParticipantId best_bid_participant_id;
+    BestBidDenominatorCode best_bid_denominator_code;
+    BestBidPrice best_bid_price;
+    BestBidSize best_bid_size;
+    BestOfferParticipantId best_offer_participant_id;
+    BestOfferDenominatorCode best_offer_denominator_code;
+    BestOfferPrice best_offer_price;
+    BestOfferSize best_offer_size;
     ShortEquityAndIndexQuoteMessageType short_equity_and_index_quote_message_type;
     SecuritySymbolShort security_symbol_short;
     StrikePriceShort strike_price_short;
@@ -110,14 +118,6 @@ struct ArrowRecord {
     IndexValue index_value;
     BidIndexValue bid_index_value;
     OfferIndexValue offer_index_value;
-    BestBidParticipantId best_bid_participant_id;
-    BestBidDenominatorCode best_bid_denominator_code;
-    BestBidPrice best_bid_price;
-    BestBidSize best_bid_size;
-    BestOfferParticipantId best_offer_participant_id;
-    BestOfferDenominatorCode best_offer_denominator_code;
-    BestOfferPrice best_offer_price;
-    BestOfferSize best_offer_size;
 
     ArrowRecord() = default;
 
@@ -159,6 +159,14 @@ struct ArrowRecord {
         bbo_indicator.reset();
         bid_size.reset();
         offer_size.reset();
+        best_bid_participant_id.reset();
+        best_bid_denominator_code.reset();
+        best_bid_price.reset();
+        best_bid_size.reset();
+        best_offer_participant_id.reset();
+        best_offer_denominator_code.reset();
+        best_offer_price.reset();
+        best_offer_size.reset();
         short_equity_and_index_quote_message_type.reset();
         security_symbol_short.reset();
         strike_price_short.reset();
@@ -171,14 +179,6 @@ struct ArrowRecord {
         index_value.reset();
         bid_index_value.reset();
         offer_index_value.reset();
-        best_bid_participant_id.reset();
-        best_bid_denominator_code.reset();
-        best_bid_price.reset();
-        best_bid_size.reset();
-        best_offer_participant_id.reset();
-        best_offer_denominator_code.reset();
-        best_offer_price.reset();
-        best_offer_size.reset();
     }
 
     // arrow schema
@@ -220,6 +220,14 @@ struct ArrowRecord {
             BboIndicator::column(),
             BidSize::column(),
             OfferSize::column(),
+            BestBidParticipantId::column(),
+            BestBidDenominatorCode::column(),
+            BestBidPrice::column(),
+            BestBidSize::column(),
+            BestOfferParticipantId::column(),
+            BestOfferDenominatorCode::column(),
+            BestOfferPrice::column(),
+            BestOfferSize::column(),
             ShortEquityAndIndexQuoteMessageType::column(),
             SecuritySymbolShort::column(),
             StrikePriceShort::column(),
@@ -231,15 +239,7 @@ struct ArrowRecord {
             IndexValueDenominatorCode::column(),
             IndexValue::column(),
             BidIndexValue::column(),
-            OfferIndexValue::column(),
-            BestBidParticipantId::column(),
-            BestBidDenominatorCode::column(),
-            BestBidPrice::column(),
-            BestBidSize::column(),
-            BestOfferParticipantId::column(),
-            BestOfferDenominatorCode::column(),
-            BestOfferPrice::column(),
-            BestOfferSize::column()
+            OfferIndexValue::column()
         } );
     }
 };

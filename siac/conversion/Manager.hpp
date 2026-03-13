@@ -185,50 +185,24 @@ struct Manager {
         record.offer_size.set(message->offer_size.get());
         if (message->bbo_indicator.get() == 'M' || message->bbo_indicator.get() == 'N' || message->bbo_indicator.get() == 'P') {
             record.best_bid_participant_id.set(message->best_bid_appendage.best_bid_participant_id.get());
-        }
-        if (message->bbo_indicator.get() == 'M' || message->bbo_indicator.get() == 'N' || message->bbo_indicator.get() == 'P') {
             record.best_bid_denominator_code.set(message->best_bid_appendage.best_bid_denominator_code.get());
-        }
-        if (message->bbo_indicator.get() == 'M' || message->bbo_indicator.get() == 'N' || message->bbo_indicator.get() == 'P') {
             record.best_bid_price.set(message->best_bid_appendage.best_bid_price.get());
-        }
-        if (message->bbo_indicator.get() == 'M' || message->bbo_indicator.get() == 'N' || message->bbo_indicator.get() == 'P') {
             record.best_bid_size.set(message->best_bid_appendage.best_bid_size.get());
         }
         if (message->bbo_indicator.get() == 'C' || message->bbo_indicator.get() == 'G' || message->bbo_indicator.get() == 'K') {
             record.best_offer_participant_id.set(message->best_offer_appendage.best_offer_participant_id.get());
-        }
-        if (message->bbo_indicator.get() == 'C' || message->bbo_indicator.get() == 'G' || message->bbo_indicator.get() == 'K') {
             record.best_offer_denominator_code.set(message->best_offer_appendage.best_offer_denominator_code.get());
-        }
-        if (message->bbo_indicator.get() == 'C' || message->bbo_indicator.get() == 'G' || message->bbo_indicator.get() == 'K') {
             record.best_offer_price.set(message->best_offer_appendage.best_offer_price.get());
-        }
-        if (message->bbo_indicator.get() == 'C' || message->bbo_indicator.get() == 'G' || message->bbo_indicator.get() == 'K') {
             record.best_offer_size.set(message->best_offer_appendage.best_offer_size.get());
         }
         if (message->bbo_indicator.get() == 'O') {
             record.best_bid_participant_id.set(message->best_bid_and_offer_appendage.best_bid_participant_id.get());
-        }
-        if (message->bbo_indicator.get() == 'O') {
             record.best_bid_denominator_code.set(message->best_bid_and_offer_appendage.best_bid_denominator_code.get());
-        }
-        if (message->bbo_indicator.get() == 'O') {
             record.best_bid_price.set(message->best_bid_and_offer_appendage.best_bid_price.get());
-        }
-        if (message->bbo_indicator.get() == 'O') {
             record.best_bid_size.set(message->best_bid_and_offer_appendage.best_bid_size.get());
-        }
-        if (message->bbo_indicator.get() == 'O') {
             record.best_offer_participant_id.set(message->best_bid_and_offer_appendage.best_offer_participant_id.get());
-        }
-        if (message->bbo_indicator.get() == 'O') {
             record.best_offer_denominator_code.set(message->best_bid_and_offer_appendage.best_offer_denominator_code.get());
-        }
-        if (message->bbo_indicator.get() == 'O') {
             record.best_offer_price.set(message->best_bid_and_offer_appendage.best_offer_price.get());
-        }
-        if (message->bbo_indicator.get() == 'O') {
             record.best_offer_size.set(message->best_bid_and_offer_appendage.best_offer_size.get());
         }
 
@@ -252,26 +226,14 @@ struct Manager {
         record.offer_size_short.set(message->offer_size_short.get());
         if (message->bbo_indicator.get() == 'M' || message->bbo_indicator.get() == 'N' || message->bbo_indicator.get() == 'P') {
             record.best_bid_participant_id.set(message->best_bid_appendage.best_bid_participant_id.get());
-        }
-        if (message->bbo_indicator.get() == 'M' || message->bbo_indicator.get() == 'N' || message->bbo_indicator.get() == 'P') {
             record.best_bid_denominator_code.set(message->best_bid_appendage.best_bid_denominator_code.get());
-        }
-        if (message->bbo_indicator.get() == 'M' || message->bbo_indicator.get() == 'N' || message->bbo_indicator.get() == 'P') {
             record.best_bid_price.set(message->best_bid_appendage.best_bid_price.get());
-        }
-        if (message->bbo_indicator.get() == 'M' || message->bbo_indicator.get() == 'N' || message->bbo_indicator.get() == 'P') {
             record.best_bid_size.set(message->best_bid_appendage.best_bid_size.get());
         }
         if (message->bbo_indicator.get() == 'C' || message->bbo_indicator.get() == 'G' || message->bbo_indicator.get() == 'K') {
             record.best_offer_participant_id.set(message->best_offer_appendage.best_offer_participant_id.get());
-        }
-        if (message->bbo_indicator.get() == 'C' || message->bbo_indicator.get() == 'G' || message->bbo_indicator.get() == 'K') {
             record.best_offer_denominator_code.set(message->best_offer_appendage.best_offer_denominator_code.get());
-        }
-        if (message->bbo_indicator.get() == 'C' || message->bbo_indicator.get() == 'G' || message->bbo_indicator.get() == 'K') {
             record.best_offer_price.set(message->best_offer_appendage.best_offer_price.get());
-        }
-        if (message->bbo_indicator.get() == 'C' || message->bbo_indicator.get() == 'G' || message->bbo_indicator.get() == 'K') {
             record.best_offer_size.set(message->best_offer_appendage.best_offer_size.get());
         }
 
