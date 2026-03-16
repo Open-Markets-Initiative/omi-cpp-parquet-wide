@@ -14,6 +14,7 @@ Each protocol generates a single wide parquet record with all message fields as 
 | National Association of Securities Dealers Automated Quotations | Itch 5.0 |
 | Investors Exchange | Investors Exchange Transport Protocol 1.6.6 |
 | Securities Industry Automation Corporation | Opra Binary Interface 6.2 |
+| European New Exchange Technology | Simple Binary Encoding 5.25 |
 
 ## Build
 

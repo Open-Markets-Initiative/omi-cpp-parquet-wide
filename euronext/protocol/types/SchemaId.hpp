@@ -1,0 +1,31 @@
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+
+namespace euronext::optiq::marketdatagateway::sbe::v5_25 {
+
+// schemaId
+struct SchemaId {
+
+    static constexpr const char* name = "Schema Id";
+    static constexpr std::size_t size =  2;
+static const std::uint16_t static_value = 0;
+
+    // default constructor
+    constexpr SchemaId()
+     : value{ 0 } {}
+
+    // standard constructor
+    constexpr explicit SchemaId(const std::uint16_t value)
+     : value{ value } {}
+
+    // get value of SchemaId field
+    [[nodiscard]] std::uint16_t get() const {
+        return value;
+    }
+
+  protected:
+    std::uint16_t value;
+};
+}

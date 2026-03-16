@@ -331,7 +331,6 @@ struct Manager {
         json_writer.start_array();
         m_d_instrument_definition_future_27_no_inst_attrib_group_iterator.initialize(m_d_instrument_definition_future_27_no_m_d_feed_types_group_iterator.current);
         while (m_d_instrument_definition_future_27_no_inst_attrib_group_iterator.next()) {
-            const auto* entry = MDInstrumentDefinitionFuture27NoInstAttribGroup::parse(m_d_instrument_definition_future_27_no_inst_attrib_group_iterator.entry);
             json_writer.start_element();
             json_writer.end_element();
         }
@@ -425,7 +424,6 @@ struct Manager {
         json_writer.start_array();
         m_d_instrument_definition_spread_29_no_inst_attrib_group_iterator.initialize(m_d_instrument_definition_spread_29_no_m_d_feed_types_group_iterator.current);
         while (m_d_instrument_definition_spread_29_no_inst_attrib_group_iterator.next()) {
-            const auto* entry = MDInstrumentDefinitionSpread29NoInstAttribGroup::parse(m_d_instrument_definition_spread_29_no_inst_attrib_group_iterator.entry);
             json_writer.start_element();
             json_writer.end_element();
         }
@@ -802,7 +800,6 @@ struct Manager {
         json_writer.start_array();
         m_d_instrument_definition_option_41_no_inst_attrib_group_iterator.initialize(m_d_instrument_definition_option_41_no_m_d_feed_types_group_iterator.current);
         while (m_d_instrument_definition_option_41_no_inst_attrib_group_iterator.next()) {
-            const auto* entry = MDInstrumentDefinitionOption41NoInstAttribGroup::parse(m_d_instrument_definition_option_41_no_inst_attrib_group_iterator.entry);
             json_writer.start_element();
             json_writer.end_element();
         }
