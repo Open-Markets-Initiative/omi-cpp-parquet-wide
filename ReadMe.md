@@ -1,5 +1,7 @@
 # Omi C++ Parquet Wide Record Writers
 
+[![Build](https://github.com/Open-Markets-Initiative/omi-cpp-parquet-wide/actions/workflows/build.yml/badge.svg)](https://github.com/Open-Markets-Initiative/omi-cpp-parquet-wide/actions/workflows/build.yml)
+
 [![Omi](https://github.com/Open-Markets-Initiative/Directory/blob/main/About/Images/Logo.png)](https://github.com/Open-Markets-Initiative/Directory)
 
 Omi C++ Parquet wide record writers convert binary exchange protocol pcap data into [Apache Parquet](https://parquet.apache.org) columnar format using [Apache Arrow](https://arrow.apache.org).

@@ -371,7 +371,7 @@ struct ArrowBatch {
         sequence_number_builder = std::make_unique<arrow::UInt64Builder>();
         stock_locate_builder = std::make_unique<arrow::UInt16Builder>();
         tracking_number_builder = std::make_unique<arrow::UInt16Builder>();
-        timestamp_builder = std::make_unique<arrow::Time64Builder>(arrow::time64(arrow::TimeUnit::NANO), arrow::default_memory_pool());
+        timestamp_builder = std::make_unique<arrow::UInt64Builder>();
         event_code_builder = std::make_unique<arrow::StringBuilder>();
         stock_builder = std::make_unique<arrow::StringBuilder>();
         market_category_builder = std::make_unique<arrow::StringBuilder>();
@@ -504,7 +504,7 @@ struct ArrowBatch {
         std::unique_ptr<arrow::UInt64Builder> sequence_number_builder;
         std::unique_ptr<arrow::UInt16Builder> stock_locate_builder;
         std::unique_ptr<arrow::UInt16Builder> tracking_number_builder;
-        std::unique_ptr<arrow::Time64Builder> timestamp_builder;
+        std::unique_ptr<arrow::UInt64Builder> timestamp_builder;
         std::unique_ptr<arrow::StringBuilder> event_code_builder;
         std::unique_ptr<arrow::StringBuilder> stock_builder;
         std::unique_ptr<arrow::StringBuilder> market_category_builder;

@@ -45,3 +45,7 @@ jobs:
         run: ./build/siac/siac_opra_recipient_obi_v6_2_siac --input omi-data-packets/Siac/Opra.Recipient.v6.2/BestBidAppendageMessage.pcap --output siac_output.parquet && test -s siac_output.parquet && rm siac_output.parquet
 
 
+      - name: Unit Tests
+        run: cd build && ctest --output-on-failure
+
+

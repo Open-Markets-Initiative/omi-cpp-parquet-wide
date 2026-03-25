@@ -7,26 +7,25 @@
 
 namespace nasdaq {
 
-// field: Timestamp
+// Timestamp
 struct Timestamp {
 
     static constexpr auto name = "timestamp";
     static constexpr auto nullable = true;
-    static constexpr auto type = arrow::TimeUnit::MICRO;
-    static constexpr auto timezone = "0";
 
     Timestamp() = default;
 
+    void set(std::uint64_t value) {
+        data = value;
+    }
+
+    // rest timestamp record field
     void reset() {
         data.reset();
     }
 
-    void set(const std::uint64_t value) {
-        data = static_cast<std::int64_t>(value);
-    }
-
     // append timestamp
-    auto append(arrow::Time64Builder& builder) const {
+    auto append(arrow::UInt64Builder& builder) const {
         if (data) {
             return builder.Append(*data);
         }
@@ -34,12 +33,12 @@ struct Timestamp {
         return builder.AppendNull();
     }
 
-    // timestamp schema field
+    // timestamp arrow schema field
     static auto column() {
-        return arrow::field(name, arrow::timestamp(arrow::TimeUnit::NANO, timezone), nullable);
+        return arrow::field(name, arrow::uint64(), nullable);
     }
 
-    std::optional<std::int64_t> data;
+    std::optional<std::uint64_t> data;
 };
 
 }
