@@ -10,6 +10,7 @@ struct MaxTradeVol {
 
     static constexpr const char* name = "Max Trade Vol";
     static constexpr std::size_t size =  4;
+    using type = std::uint32_t;
 
     // default constructor
     constexpr MaxTradeVol()

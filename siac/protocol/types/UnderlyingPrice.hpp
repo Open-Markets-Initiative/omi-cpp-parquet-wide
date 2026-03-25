@@ -11,6 +11,7 @@ struct UnderlyingPrice {
 
     static constexpr const char* name = "Underlying Price";
     static constexpr std::size_t size = 8;
+    using type = std::int64_t;
 
     // default constructor
     constexpr UnderlyingPrice()

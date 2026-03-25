@@ -11,6 +11,7 @@ struct AuctionCollarExtension {
 
     static constexpr const char* name = "Auction Collar Extension";
     static constexpr std::size_t size = 4;
+    using type = std::uint32_t;
 
     // default constructor
     constexpr AuctionCollarExtension()

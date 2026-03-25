@@ -74,6 +74,15 @@ struct Manager {
         const auto message = Administrative::parse(pointer);
 
         record.event_type.set("Administrative");
+        record.version.set(obi.block_header->version.get());
+        record.block_size.set(obi.block_header->block_size.get());
+        record.data_feed_indicator.set(obi.block_header->data_feed_indicator.get());
+        record.retransmission_indicator.set(obi.block_header->retransmission_indicator.get());
+        record.session_indicator.set(obi.block_header->session_indicator.get());
+        record.block_sequence_number.set(obi.block_header->block_sequence_number.get());
+        record.seconds.set(obi.block_header->block_timestamp.seconds.get());
+        record.nanoseconds.set(obi.block_header->block_timestamp.nanoseconds.get());
+        record.block_checksum.set(obi.block_header->block_checksum.get());
         record.administrative_message_type.set(message->administrative_message_type.get());
         record.message_indicator.set(message->message_indicator.get());
         record.transaction_id.set(message->transaction_id.get());
@@ -88,6 +97,15 @@ struct Manager {
         const auto message = Control::parse(pointer);
 
         record.event_type.set("Control");
+        record.version.set(obi.block_header->version.get());
+        record.block_size.set(obi.block_header->block_size.get());
+        record.data_feed_indicator.set(obi.block_header->data_feed_indicator.get());
+        record.retransmission_indicator.set(obi.block_header->retransmission_indicator.get());
+        record.session_indicator.set(obi.block_header->session_indicator.get());
+        record.block_sequence_number.set(obi.block_header->block_sequence_number.get());
+        record.seconds.set(obi.block_header->block_timestamp.seconds.get());
+        record.nanoseconds.set(obi.block_header->block_timestamp.nanoseconds.get());
+        record.block_checksum.set(obi.block_header->block_checksum.get());
         record.control_message_type.set(message->control_message_type.get());
         record.message_indicator.set(message->message_indicator.get());
         record.transaction_id.set(message->transaction_id.get());
@@ -101,6 +119,15 @@ struct Manager {
         const auto message = EquityAndIndexLastSale::parse(pointer);
 
         record.event_type.set("Equity And Index Last Sale");
+        record.version.set(obi.block_header->version.get());
+        record.block_size.set(obi.block_header->block_size.get());
+        record.data_feed_indicator.set(obi.block_header->data_feed_indicator.get());
+        record.retransmission_indicator.set(obi.block_header->retransmission_indicator.get());
+        record.session_indicator.set(obi.block_header->session_indicator.get());
+        record.block_sequence_number.set(obi.block_header->block_sequence_number.get());
+        record.seconds.set(obi.block_header->block_timestamp.seconds.get());
+        record.nanoseconds.set(obi.block_header->block_timestamp.nanoseconds.get());
+        record.block_checksum.set(obi.block_header->block_checksum.get());
         record.equity_and_index_last_sale_message_type.set(message->equity_and_index_last_sale_message_type.get());
         record.message_indicator.set(message->message_indicator.get());
         record.transaction_id.set(message->transaction_id.get());
@@ -123,6 +150,15 @@ struct Manager {
         const auto message = OpenInterest::parse(pointer);
 
         record.event_type.set("Open Interest");
+        record.version.set(obi.block_header->version.get());
+        record.block_size.set(obi.block_header->block_size.get());
+        record.data_feed_indicator.set(obi.block_header->data_feed_indicator.get());
+        record.retransmission_indicator.set(obi.block_header->retransmission_indicator.get());
+        record.session_indicator.set(obi.block_header->session_indicator.get());
+        record.block_sequence_number.set(obi.block_header->block_sequence_number.get());
+        record.seconds.set(obi.block_header->block_timestamp.seconds.get());
+        record.nanoseconds.set(obi.block_header->block_timestamp.nanoseconds.get());
+        record.block_checksum.set(obi.block_header->block_checksum.get());
         record.open_interest_message_type.set(message->open_interest_message_type.get());
         record.message_indicator.set(message->message_indicator.get());
         record.transaction_id.set(message->transaction_id.get());
@@ -141,6 +177,15 @@ struct Manager {
         const auto message = EquityAndIndexEndOfDaySummary::parse(pointer);
 
         record.event_type.set("Equity And Index End Of Day Summary");
+        record.version.set(obi.block_header->version.get());
+        record.block_size.set(obi.block_header->block_size.get());
+        record.data_feed_indicator.set(obi.block_header->data_feed_indicator.get());
+        record.retransmission_indicator.set(obi.block_header->retransmission_indicator.get());
+        record.session_indicator.set(obi.block_header->session_indicator.get());
+        record.block_sequence_number.set(obi.block_header->block_sequence_number.get());
+        record.seconds.set(obi.block_header->block_timestamp.seconds.get());
+        record.nanoseconds.set(obi.block_header->block_timestamp.nanoseconds.get());
+        record.block_checksum.set(obi.block_header->block_checksum.get());
         record.equity_and_index_end_of_day_summary_message_type.set(message->equity_and_index_end_of_day_summary_message_type.get());
         record.message_indicator.set(message->message_indicator.get());
         record.transaction_id.set(message->transaction_id.get());
@@ -170,6 +215,15 @@ struct Manager {
         const auto message = LongEquityAndIndexQuote::parse(pointer);
 
         record.event_type.set("Long Equity And Index Quote");
+        record.version.set(obi.block_header->version.get());
+        record.block_size.set(obi.block_header->block_size.get());
+        record.data_feed_indicator.set(obi.block_header->data_feed_indicator.get());
+        record.retransmission_indicator.set(obi.block_header->retransmission_indicator.get());
+        record.session_indicator.set(obi.block_header->session_indicator.get());
+        record.block_sequence_number.set(obi.block_header->block_sequence_number.get());
+        record.seconds.set(obi.block_header->block_timestamp.seconds.get());
+        record.nanoseconds.set(obi.block_header->block_timestamp.nanoseconds.get());
+        record.block_checksum.set(obi.block_header->block_checksum.get());
         record.long_equity_and_index_quote_message_type.set(message->long_equity_and_index_quote_message_type.get());
         record.bbo_indicator.set(message->bbo_indicator.get());
         record.transaction_id.set(message->transaction_id.get());
@@ -214,6 +268,15 @@ struct Manager {
         const auto message = ShortEquityAndIndexQuote::parse(pointer);
 
         record.event_type.set("Short Equity And Index Quote");
+        record.version.set(obi.block_header->version.get());
+        record.block_size.set(obi.block_header->block_size.get());
+        record.data_feed_indicator.set(obi.block_header->data_feed_indicator.get());
+        record.retransmission_indicator.set(obi.block_header->retransmission_indicator.get());
+        record.session_indicator.set(obi.block_header->session_indicator.get());
+        record.block_sequence_number.set(obi.block_header->block_sequence_number.get());
+        record.seconds.set(obi.block_header->block_timestamp.seconds.get());
+        record.nanoseconds.set(obi.block_header->block_timestamp.nanoseconds.get());
+        record.block_checksum.set(obi.block_header->block_checksum.get());
         record.short_equity_and_index_quote_message_type.set(message->short_equity_and_index_quote_message_type.get());
         record.bbo_indicator.set(message->bbo_indicator.get());
         record.transaction_id.set(message->transaction_id.get());

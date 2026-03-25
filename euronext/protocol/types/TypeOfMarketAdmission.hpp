@@ -10,6 +10,7 @@ struct TypeOfMarketAdmission {
     static constexpr const char* name = "Type Of Market Admission";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr TypeOfMarketAdmission()
      : value{ 0 } {}

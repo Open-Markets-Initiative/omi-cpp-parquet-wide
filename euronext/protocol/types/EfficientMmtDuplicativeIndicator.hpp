@@ -10,6 +10,7 @@ struct EfficientMmtDuplicativeIndicator {
     static constexpr const char* name = "Efficient Mmt Duplicative Indicator";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr EfficientMmtDuplicativeIndicator()
      : value{ 0 } {}

@@ -10,6 +10,7 @@ struct TradeId {
 
     static constexpr const char* name = "Trade Id";
     static constexpr std::size_t size =  4;
+    using type = std::int32_t;
 
     // default constructor
     constexpr TradeId()

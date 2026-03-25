@@ -10,6 +10,7 @@ struct AccountType {
 
     static constexpr const char* name = "Account Type";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr AccountType()

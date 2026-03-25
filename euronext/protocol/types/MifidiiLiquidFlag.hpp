@@ -10,6 +10,7 @@ struct MifidiiLiquidFlag {
 
     static constexpr const char* name = "Mifidii Liquid Flag";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr MifidiiLiquidFlag()

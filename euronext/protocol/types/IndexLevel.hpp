@@ -10,6 +10,7 @@ struct IndexLevel {
 
     static constexpr const char* name = "Index Level";
     static constexpr std::size_t size =  8;
+    using type = std::int64_t;
 
     // default constructor
     constexpr IndexLevel()

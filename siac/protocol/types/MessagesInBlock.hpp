@@ -11,6 +11,7 @@ struct MessagesInBlock {
 
     static constexpr const char* name = "Messages In Block";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr MessagesInBlock()

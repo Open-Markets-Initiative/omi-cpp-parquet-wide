@@ -10,6 +10,7 @@ struct MdPriceLevel {
 
     static constexpr const char* name = "Md Price Level";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr MdPriceLevel()

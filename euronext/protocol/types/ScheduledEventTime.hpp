@@ -13,7 +13,7 @@ struct ScheduledEventTime {
 
     // underlying type
     using type = std::uint64_t;
-    static const std::uint64_t no_value = 18446744073709551615;
+    static const type no_value = 18446744073709551615;
 
     // default constructor
     constexpr ScheduledEventTime()

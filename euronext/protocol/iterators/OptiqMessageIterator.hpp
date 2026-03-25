@@ -9,6 +9,8 @@ struct OptiqMessageIterator {
     const std::byte* current = nullptr;
     const std::byte* end = nullptr;
 
+    const MarketDataPacketHeader* market_data_packet_header = nullptr;
+
     std::uint16_t template_id = 0;
     std::uint16_t frame = 0;
     const std::byte* message = nullptr;
@@ -16,8 +18,19 @@ struct OptiqMessageIterator {
     // initialize parser
     void initialize(const std::byte* data, std::size_t length) {
 
-        current = data + sizeof(MarketDataPacketHeader);
         end = data + length;
+
+        if (length < sizeof(MarketDataPacketHeader)) {
+            current = end;
+            message = nullptr;
+            market_data_packet_header = nullptr;
+            template_id = 0;
+            frame = 0;
+            return;
+        }
+
+        market_data_packet_header = MarketDataPacketHeader::parse(data);
+        current = data + sizeof(MarketDataPacketHeader);
         message = nullptr;
 
         template_id = 0;
@@ -28,6 +41,10 @@ struct OptiqMessageIterator {
     bool next() {
 
         if (current >= end) {
+            return false;
+        }
+
+        if (current + sizeof(OptiqMessage) > end) {
             return false;
         }
 
@@ -47,6 +64,7 @@ struct OptiqMessageIterator {
         current = nullptr;
         end = nullptr;
 
+        market_data_packet_header = nullptr;
         message = nullptr;
         template_id = 0;
         frame = 0;

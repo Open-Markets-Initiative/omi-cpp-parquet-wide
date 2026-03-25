@@ -10,6 +10,7 @@ struct EfficientMmtPostTradeDeferral {
     static constexpr const char* name = "Efficient Mmt Post Trade Deferral";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr EfficientMmtPostTradeDeferral()
      : value{ 0 } {}

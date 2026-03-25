@@ -10,6 +10,7 @@ struct LegSecurityId {
 
     static constexpr const char* name = "Leg Security Id";
     static constexpr std::size_t size =  4;
+    using type = std::int32_t;
 
     // default constructor
     constexpr LegSecurityId()

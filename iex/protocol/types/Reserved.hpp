@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 #include <cstddef>
 
 namespace iex::equities::tops::iextp::v1_6_6 {

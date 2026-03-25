@@ -13,6 +13,7 @@ struct StrikePriceShort {
     static constexpr std::size_t size = 2;
     static constexpr std::size_t precision = 1;
     static constexpr double denominator = 10;
+    using type = std::uint16_t;
 
     // default constructor
     constexpr StrikePriceShort()

@@ -3,6 +3,14 @@
 #include <memory>
 
 #include "fields/EventType.hpp"
+#include "fields/Version.hpp"
+#include "fields/MessageProtocolId.hpp"
+#include "fields/ChannelId.hpp"
+#include "fields/SessionId.hpp"
+#include "fields/PayloadLength.hpp"
+#include "fields/StreamOffset.hpp"
+#include "fields/FirstMessageSequenceNumber.hpp"
+#include "fields/SendTime.hpp"
 #include "fields/SystemEvent.hpp"
 #include "fields/Timestamp.hpp"
 #include "fields/Symbol.hpp"
@@ -41,6 +49,14 @@ namespace iex {
 struct ArrowRecord {
 
     EventType event_type;
+    Version version;
+    MessageProtocolId message_protocol_id;
+    ChannelId channel_id;
+    SessionId session_id;
+    PayloadLength payload_length;
+    StreamOffset stream_offset;
+    FirstMessageSequenceNumber first_message_sequence_number;
+    SendTime send_time;
     SystemEvent system_event;
     Timestamp timestamp;
     Symbol symbol;
@@ -80,6 +96,14 @@ struct ArrowRecord {
     // parquet record reset
     void reset() {
         event_type.reset();
+        version.reset();
+        message_protocol_id.reset();
+        channel_id.reset();
+        session_id.reset();
+        payload_length.reset();
+        stream_offset.reset();
+        first_message_sequence_number.reset();
+        send_time.reset();
         system_event.reset();
         timestamp.reset();
         symbol.reset();
@@ -119,6 +143,14 @@ struct ArrowRecord {
     static auto schema() {
         return arrow::schema( {
             EventType::column(),
+            Version::column(),
+            MessageProtocolId::column(),
+            ChannelId::column(),
+            SessionId::column(),
+            PayloadLength::column(),
+            StreamOffset::column(),
+            FirstMessageSequenceNumber::column(),
+            SendTime::column(),
             SystemEvent::column(),
             Timestamp::column(),
             Symbol::column(),

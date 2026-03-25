@@ -10,6 +10,7 @@ struct HighLevel {
 
     static constexpr const char* name = "High Level";
     static constexpr std::size_t size =  8;
+    using type = std::int64_t;
 
     // default constructor
     constexpr HighLevel()

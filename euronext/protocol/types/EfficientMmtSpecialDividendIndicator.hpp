@@ -10,6 +10,7 @@ struct EfficientMmtSpecialDividendIndicator {
     static constexpr const char* name = "Efficient Mmt Special Dividend Indicator";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr EfficientMmtSpecialDividendIndicator()
      : value{ 0 } {}

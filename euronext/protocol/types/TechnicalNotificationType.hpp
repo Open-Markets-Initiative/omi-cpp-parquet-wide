@@ -10,6 +10,7 @@ struct TechnicalNotificationType {
 
     static constexpr const char* name = "Technical Notification Type";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr TechnicalNotificationType()

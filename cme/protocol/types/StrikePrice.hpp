@@ -12,7 +12,8 @@ struct StrikePrice {
     static constexpr std::size_t size =  8;
     static constexpr std::size_t precision = 7;
     static constexpr double denominator = 10000000;
-static const std::int64_t no_value = 9223372036854775807;
+    using type = std::int64_t;
+static const type no_value = 9223372036854775807;
 
     // default constructor
     constexpr StrikePrice()

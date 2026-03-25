@@ -7,6 +7,7 @@ namespace nasdaq::nsmequities::totalview::itch::v5_0 {
 struct MessageIterator {
 
     const std::byte* current = nullptr;
+    const std::byte* end = nullptr;
 
     const PacketHeader* packet_header = nullptr;
     const MessageHeader* message_header = nullptr;
@@ -18,7 +19,16 @@ struct MessageIterator {
     const std::byte* message = nullptr;
 
     // initialize parser
-    void initialize(const std::byte* data) {
+    void initialize(const std::byte* data, std::size_t length) {
+
+        end = data + length;
+
+        if (length < sizeof(PacketHeader)) {
+            current = end;
+            message = nullptr;
+            message_count = 0;
+            return;
+        }
 
         current = data;
         message = nullptr;
@@ -40,6 +50,10 @@ struct MessageIterator {
             return false;
         }
 
+        if (current + sizeof(MessageHeader) > end) {
+            return false;
+        }
+
         message_index++;
 
         message_header = MessageHeader::parse(current);
@@ -56,6 +70,7 @@ struct MessageIterator {
     // reset iterator
     void reset() {
         current = nullptr;
+        end = nullptr;
 
         packet_header = nullptr;
         message_header = nullptr;

@@ -3,6 +3,8 @@
 #include <memory>
 
 #include "fields/EventType.hpp"
+#include "fields/Session.hpp"
+#include "fields/SequenceNumber.hpp"
 #include "fields/StockLocate.hpp"
 #include "fields/TrackingNumber.hpp"
 #include "fields/Timestamp.hpp"
@@ -78,6 +80,8 @@ namespace nasdaq {
 struct ArrowRecord {
 
     EventType event_type;
+    Session session;
+    SequenceNumber sequence_number;
     StockLocate stock_locate;
     TrackingNumber tracking_number;
     Timestamp timestamp;
@@ -154,6 +158,8 @@ struct ArrowRecord {
     // parquet record reset
     void reset() {
         event_type.reset();
+        session.reset();
+        sequence_number.reset();
         stock_locate.reset();
         tracking_number.reset();
         timestamp.reset();
@@ -230,6 +236,8 @@ struct ArrowRecord {
     static auto schema() {
         return arrow::schema( {
             EventType::column(),
+            Session::column(),
+            SequenceNumber::column(),
             StockLocate::column(),
             TrackingNumber::column(),
             Timestamp::column(),

@@ -10,7 +10,8 @@ struct Version {
 
     static constexpr const char* name = "Version";
     static constexpr std::size_t size =  2;
-static const std::uint16_t static_value = 8;
+    using type = std::uint16_t;
+static const type static_value = 8;
 
     // default constructor
     constexpr Version()

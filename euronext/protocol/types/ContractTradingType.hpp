@@ -10,6 +10,7 @@ struct ContractTradingType {
 
     static constexpr const char* name = "Contract Trading Type";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr ContractTradingType()

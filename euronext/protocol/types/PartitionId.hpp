@@ -10,6 +10,7 @@ struct PartitionId {
 
     static constexpr const char* name = "Partition Id";
     static constexpr std::size_t size =  2;
+    using type = std::uint16_t;
 
     // default constructor
     constexpr PartitionId()

@@ -10,6 +10,7 @@ struct HaltReason {
 
     static constexpr const char* name = "Halt Reason";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr HaltReason()

@@ -3,6 +3,11 @@
 #include <memory>
 
 #include "fields/EventType.hpp"
+#include "fields/PacketTime.hpp"
+#include "fields/PacketSequenceNumber.hpp"
+#include "fields/MdgRestartCount.hpp"
+#include "fields/PsnHighWeight.hpp"
+#include "fields/ChannelId.hpp"
 #include "fields/MdSeqNum.hpp"
 #include "fields/SessionTradingDay.hpp"
 #include "fields/EventTime.hpp"
@@ -277,6 +282,11 @@ namespace euronext {
 struct ArrowRecord {
 
     EventType event_type;
+    PacketTime packet_time;
+    PacketSequenceNumber packet_sequence_number;
+    MdgRestartCount mdg_restart_count;
+    PsnHighWeight psn_high_weight;
+    ChannelId channel_id;
     MdSeqNum md_seq_num;
     SessionTradingDay session_trading_day;
     EventTime event_time;
@@ -552,6 +562,11 @@ struct ArrowRecord {
     // parquet record reset
     void reset() {
         event_type.reset();
+        packet_time.reset();
+        packet_sequence_number.reset();
+        mdg_restart_count.reset();
+        psn_high_weight.reset();
+        channel_id.reset();
         md_seq_num.reset();
         session_trading_day.reset();
         event_time.reset();
@@ -827,6 +842,11 @@ struct ArrowRecord {
     static auto schema() {
         return arrow::schema( {
             EventType::column(),
+            PacketTime::column(),
+            PacketSequenceNumber::column(),
+            MdgRestartCount::column(),
+            PsnHighWeight::column(),
+            ChannelId::column(),
             MdSeqNum::column(),
             SessionTradingDay::column(),
             EventTime::column(),

@@ -11,6 +11,7 @@ struct TradeIdentifier {
 
     static constexpr const char* name = "Trade Identifier";
     static constexpr std::size_t size = 4;
+    using type = std::uint32_t;
 
     // default constructor
     constexpr TradeIdentifier()

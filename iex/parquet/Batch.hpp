@@ -25,6 +25,14 @@ struct ArrowBatch {
             OpenOutput();
         }
         ARROW_RETURN_NOT_OK(record.event_type.append(*event_type_builder));
+        ARROW_RETURN_NOT_OK(record.version.append(*version_builder));
+        ARROW_RETURN_NOT_OK(record.message_protocol_id.append(*message_protocol_id_builder));
+        ARROW_RETURN_NOT_OK(record.channel_id.append(*channel_id_builder));
+        ARROW_RETURN_NOT_OK(record.session_id.append(*session_id_builder));
+        ARROW_RETURN_NOT_OK(record.payload_length.append(*payload_length_builder));
+        ARROW_RETURN_NOT_OK(record.stream_offset.append(*stream_offset_builder));
+        ARROW_RETURN_NOT_OK(record.first_message_sequence_number.append(*first_message_sequence_number_builder));
+        ARROW_RETURN_NOT_OK(record.send_time.append(*send_time_builder));
         ARROW_RETURN_NOT_OK(record.system_event.append(*system_event_builder));
         ARROW_RETURN_NOT_OK(record.timestamp.append(*timestamp_builder));
         ARROW_RETURN_NOT_OK(record.symbol.append(*symbol_builder));
@@ -75,6 +83,14 @@ struct ArrowBatch {
         }
 
         std::shared_ptr<arrow::Array> event_type_column;
+        std::shared_ptr<arrow::Array> version_column;
+        std::shared_ptr<arrow::Array> message_protocol_id_column;
+        std::shared_ptr<arrow::Array> channel_id_column;
+        std::shared_ptr<arrow::Array> session_id_column;
+        std::shared_ptr<arrow::Array> payload_length_column;
+        std::shared_ptr<arrow::Array> stream_offset_column;
+        std::shared_ptr<arrow::Array> first_message_sequence_number_column;
+        std::shared_ptr<arrow::Array> send_time_column;
         std::shared_ptr<arrow::Array> system_event_column;
         std::shared_ptr<arrow::Array> timestamp_column;
         std::shared_ptr<arrow::Array> symbol_column;
@@ -110,6 +126,14 @@ struct ArrowBatch {
         std::shared_ptr<arrow::Array> upper_auction_collar_column;
 
         ARROW_RETURN_NOT_OK(event_type_builder->Finish(&event_type_column));
+        ARROW_RETURN_NOT_OK(version_builder->Finish(&version_column));
+        ARROW_RETURN_NOT_OK(message_protocol_id_builder->Finish(&message_protocol_id_column));
+        ARROW_RETURN_NOT_OK(channel_id_builder->Finish(&channel_id_column));
+        ARROW_RETURN_NOT_OK(session_id_builder->Finish(&session_id_column));
+        ARROW_RETURN_NOT_OK(payload_length_builder->Finish(&payload_length_column));
+        ARROW_RETURN_NOT_OK(stream_offset_builder->Finish(&stream_offset_column));
+        ARROW_RETURN_NOT_OK(first_message_sequence_number_builder->Finish(&first_message_sequence_number_column));
+        ARROW_RETURN_NOT_OK(send_time_builder->Finish(&send_time_column));
         ARROW_RETURN_NOT_OK(system_event_builder->Finish(&system_event_column));
         ARROW_RETURN_NOT_OK(timestamp_builder->Finish(&timestamp_column));
         ARROW_RETURN_NOT_OK(symbol_builder->Finish(&symbol_column));
@@ -146,6 +170,14 @@ struct ArrowBatch {
 
         auto batch = arrow::RecordBatch::Make(schema, row_count, {
             event_type_column,
+            version_column,
+            message_protocol_id_column,
+            channel_id_column,
+            session_id_column,
+            payload_length_column,
+            stream_offset_column,
+            first_message_sequence_number_column,
+            send_time_column,
             system_event_column,
             timestamp_column,
             symbol_column,
@@ -211,6 +243,14 @@ struct ArrowBatch {
     // reset arrow builders
     void reset() {
         event_type_builder = std::make_unique<arrow::StringBuilder>();
+        version_builder = std::make_unique<arrow::UInt8Builder>();
+        message_protocol_id_builder = std::make_unique<arrow::UInt16Builder>();
+        channel_id_builder = std::make_unique<arrow::UInt32Builder>();
+        session_id_builder = std::make_unique<arrow::UInt32Builder>();
+        payload_length_builder = std::make_unique<arrow::UInt16Builder>();
+        stream_offset_builder = std::make_unique<arrow::UInt64Builder>();
+        first_message_sequence_number_builder = std::make_unique<arrow::UInt64Builder>();
+        send_time_builder = std::make_unique<arrow::Time64Builder>(arrow::time64(arrow::TimeUnit::NANO), arrow::default_memory_pool());
         system_event_builder = std::make_unique<arrow::StringBuilder>();
         timestamp_builder = std::make_unique<arrow::Time64Builder>(arrow::time64(arrow::TimeUnit::NANO), arrow::default_memory_pool());
         symbol_builder = std::make_unique<arrow::StringBuilder>();
@@ -305,6 +345,14 @@ struct ArrowBatch {
     std::unique_ptr<parquet::arrow::FileWriter> writer;
   protected:
         std::unique_ptr<arrow::StringBuilder> event_type_builder;
+        std::unique_ptr<arrow::UInt8Builder> version_builder;
+        std::unique_ptr<arrow::UInt16Builder> message_protocol_id_builder;
+        std::unique_ptr<arrow::UInt32Builder> channel_id_builder;
+        std::unique_ptr<arrow::UInt32Builder> session_id_builder;
+        std::unique_ptr<arrow::UInt16Builder> payload_length_builder;
+        std::unique_ptr<arrow::UInt64Builder> stream_offset_builder;
+        std::unique_ptr<arrow::UInt64Builder> first_message_sequence_number_builder;
+        std::unique_ptr<arrow::Time64Builder> send_time_builder;
         std::unique_ptr<arrow::StringBuilder> system_event_builder;
         std::unique_ptr<arrow::Time64Builder> timestamp_builder;
         std::unique_ptr<arrow::StringBuilder> symbol_builder;

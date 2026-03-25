@@ -11,6 +11,7 @@ struct Reserved4 {
 
     static constexpr const char* name = "Reserved 4";
     static constexpr std::size_t size = 4;
+    using type = std::uint32_t;
 
     // default constructor
     constexpr Reserved4()

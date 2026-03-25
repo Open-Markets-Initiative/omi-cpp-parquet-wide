@@ -25,6 +25,8 @@ struct ArrowBatch {
             OpenOutput();
         }
         ARROW_RETURN_NOT_OK(record.event_type.append(*event_type_builder));
+        ARROW_RETURN_NOT_OK(record.packet_sequence_number.append(*packet_sequence_number_builder));
+        ARROW_RETURN_NOT_OK(record.sending_time.append(*sending_time_builder));
         ARROW_RETURN_NOT_OK(record.transact_time.append(*transact_time_builder));
         ARROW_RETURN_NOT_OK(record.block_length.append(*block_length_builder));
         ARROW_RETURN_NOT_OK(record.num_in_group.append(*num_in_group_builder));
@@ -141,6 +143,8 @@ struct ArrowBatch {
         }
 
         std::shared_ptr<arrow::Array> event_type_column;
+        std::shared_ptr<arrow::Array> packet_sequence_number_column;
+        std::shared_ptr<arrow::Array> sending_time_column;
         std::shared_ptr<arrow::Array> transact_time_column;
         std::shared_ptr<arrow::Array> block_length_column;
         std::shared_ptr<arrow::Array> num_in_group_column;
@@ -242,6 +246,8 @@ struct ArrowBatch {
         std::shared_ptr<arrow::Array> snapshot_full_refresh_order_book_44_no_m_d_entries_group_column;
 
         ARROW_RETURN_NOT_OK(event_type_builder->Finish(&event_type_column));
+        ARROW_RETURN_NOT_OK(packet_sequence_number_builder->Finish(&packet_sequence_number_column));
+        ARROW_RETURN_NOT_OK(sending_time_builder->Finish(&sending_time_column));
         ARROW_RETURN_NOT_OK(transact_time_builder->Finish(&transact_time_column));
         ARROW_RETURN_NOT_OK(block_length_builder->Finish(&block_length_column));
         ARROW_RETURN_NOT_OK(num_in_group_builder->Finish(&num_in_group_column));
@@ -344,6 +350,8 @@ struct ArrowBatch {
 
         auto batch = arrow::RecordBatch::Make(schema, row_count, {
             event_type_column,
+            packet_sequence_number_column,
+            sending_time_column,
             transact_time_column,
             block_length_column,
             num_in_group_column,
@@ -475,6 +483,8 @@ struct ArrowBatch {
     // reset arrow builders
     void reset() {
         event_type_builder = std::make_unique<arrow::StringBuilder>();
+        packet_sequence_number_builder = std::make_unique<arrow::UInt32Builder>();
+        sending_time_builder = std::make_unique<arrow::Time64Builder>(arrow::time64(arrow::TimeUnit::NANO), arrow::default_memory_pool());
         transact_time_builder = std::make_unique<arrow::Time64Builder>(arrow::time64(arrow::TimeUnit::NANO), arrow::default_memory_pool());
         block_length_builder = std::make_unique<arrow::UInt16Builder>();
         num_in_group_builder = std::make_unique<arrow::UInt8Builder>();
@@ -635,6 +645,8 @@ struct ArrowBatch {
     std::unique_ptr<parquet::arrow::FileWriter> writer;
   protected:
         std::unique_ptr<arrow::StringBuilder> event_type_builder;
+        std::unique_ptr<arrow::UInt32Builder> packet_sequence_number_builder;
+        std::unique_ptr<arrow::Time64Builder> sending_time_builder;
         std::unique_ptr<arrow::Time64Builder> transact_time_builder;
         std::unique_ptr<arrow::UInt16Builder> block_length_builder;
         std::unique_ptr<arrow::UInt8Builder> num_in_group_builder;

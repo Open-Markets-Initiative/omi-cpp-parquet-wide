@@ -11,6 +11,7 @@ struct BlockSize {
 
     static constexpr const char* name = "Block Size";
     static constexpr std::size_t size = 2;
+    using type = std::uint16_t;
 
     // default constructor
     constexpr BlockSize()

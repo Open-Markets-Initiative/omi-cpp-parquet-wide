@@ -11,6 +11,7 @@ struct CrossShares {
 
     static constexpr const char* name = "Cross Shares";
     static constexpr std::size_t size = 8;
+    using type = std::uint64_t;
 
     // default constructor
     constexpr CrossShares()

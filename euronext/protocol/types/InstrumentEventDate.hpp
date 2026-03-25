@@ -10,6 +10,7 @@ struct InstrumentEventDate {
 
     static constexpr const char* name = "Instrument Event Date";
     static constexpr std::size_t size =  2;
+    using type = std::uint16_t;
 
     // default constructor
     constexpr InstrumentEventDate()

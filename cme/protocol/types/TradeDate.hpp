@@ -10,7 +10,8 @@ struct TradeDate {
 
     static constexpr const char* name = "Trade Date";
     static constexpr std::size_t size =  2;
-static const std::uint16_t no_value = 65535;
+    using type = std::uint16_t;
+static const type no_value = 65535;
 
     // default constructor
     constexpr TradeDate()

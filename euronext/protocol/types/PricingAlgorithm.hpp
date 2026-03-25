@@ -10,6 +10,7 @@ struct PricingAlgorithm {
 
     static constexpr const char* name = "Pricing Algorithm";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr PricingAlgorithm()

@@ -10,7 +10,8 @@ struct PegOffset {
 
     static constexpr const char* name = "Peg Offset";
     static constexpr std::size_t size = 1;
-    static const std::int8_t no_value = -128;
+    using type = std::int8_t;
+    static const type no_value = -128;
 
     // default constructor
     constexpr PegOffset()

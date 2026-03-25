@@ -25,7 +25,11 @@ struct Manager {
     // process udp packet
     void udp() {
         const auto& frame = parser.frame();
-        iextp.initialize(frame.payload);
+        iextp.initialize(frame.payload, frame.payload_len);
+
+        if (iextp.message_count == 0) {
+            return;
+        }
 
         while (iextp.next()) {
             process(iextp.message, iextp.message_type);
@@ -89,6 +93,14 @@ struct Manager {
         const auto message = SystemEventMessage::parse(pointer);
 
         record.event_type.set("System Event Message");
+        record.version.set(iextp.iextp_header->version.get());
+        record.message_protocol_id.set(iextp.iextp_header->message_protocol_id.get());
+        record.channel_id.set(iextp.iextp_header->channel_id.get());
+        record.session_id.set(iextp.iextp_header->session_id.get());
+        record.payload_length.set(iextp.iextp_header->payload_length.get());
+        record.stream_offset.set(iextp.iextp_header->stream_offset.get());
+        record.first_message_sequence_number.set(iextp.iextp_header->first_message_sequence_number.get());
+        record.send_time.set(iextp.iextp_header->send_time.get());
         record.system_event.set(message->system_event.get());
         record.timestamp.set(message->timestamp.get());
 
@@ -100,6 +112,14 @@ struct Manager {
         const auto message = SecurityDirectoryMessage::parse(pointer);
 
         record.event_type.set("Security Directory Message");
+        record.version.set(iextp.iextp_header->version.get());
+        record.message_protocol_id.set(iextp.iextp_header->message_protocol_id.get());
+        record.channel_id.set(iextp.iextp_header->channel_id.get());
+        record.session_id.set(iextp.iextp_header->session_id.get());
+        record.payload_length.set(iextp.iextp_header->payload_length.get());
+        record.stream_offset.set(iextp.iextp_header->stream_offset.get());
+        record.first_message_sequence_number.set(iextp.iextp_header->first_message_sequence_number.get());
+        record.send_time.set(iextp.iextp_header->send_time.get());
         record.timestamp.set(message->timestamp.get());
         record.symbol.set(message->symbol.get());
         record.round_lot_size.set(message->round_lot_size.get());
@@ -114,6 +134,14 @@ struct Manager {
         const auto message = TradingStatusMessage::parse(pointer);
 
         record.event_type.set("Trading Status Message");
+        record.version.set(iextp.iextp_header->version.get());
+        record.message_protocol_id.set(iextp.iextp_header->message_protocol_id.get());
+        record.channel_id.set(iextp.iextp_header->channel_id.get());
+        record.session_id.set(iextp.iextp_header->session_id.get());
+        record.payload_length.set(iextp.iextp_header->payload_length.get());
+        record.stream_offset.set(iextp.iextp_header->stream_offset.get());
+        record.first_message_sequence_number.set(iextp.iextp_header->first_message_sequence_number.get());
+        record.send_time.set(iextp.iextp_header->send_time.get());
         record.trading_status.set(message->trading_status.get());
         record.timestamp.set(message->timestamp.get());
         record.symbol.set(message->symbol.get());
@@ -127,6 +155,14 @@ struct Manager {
         const auto message = RetailLiquidityIndicatorMessage::parse(pointer);
 
         record.event_type.set("Retail Liquidity Indicator Message");
+        record.version.set(iextp.iextp_header->version.get());
+        record.message_protocol_id.set(iextp.iextp_header->message_protocol_id.get());
+        record.channel_id.set(iextp.iextp_header->channel_id.get());
+        record.session_id.set(iextp.iextp_header->session_id.get());
+        record.payload_length.set(iextp.iextp_header->payload_length.get());
+        record.stream_offset.set(iextp.iextp_header->stream_offset.get());
+        record.first_message_sequence_number.set(iextp.iextp_header->first_message_sequence_number.get());
+        record.send_time.set(iextp.iextp_header->send_time.get());
         record.retail_liquidity_indicator.set(message->retail_liquidity_indicator.get());
         record.timestamp.set(message->timestamp.get());
         record.symbol.set(message->symbol.get());
@@ -139,6 +175,14 @@ struct Manager {
         const auto message = OperationalHaltStatusMessage::parse(pointer);
 
         record.event_type.set("Operational Halt Status Message");
+        record.version.set(iextp.iextp_header->version.get());
+        record.message_protocol_id.set(iextp.iextp_header->message_protocol_id.get());
+        record.channel_id.set(iextp.iextp_header->channel_id.get());
+        record.session_id.set(iextp.iextp_header->session_id.get());
+        record.payload_length.set(iextp.iextp_header->payload_length.get());
+        record.stream_offset.set(iextp.iextp_header->stream_offset.get());
+        record.first_message_sequence_number.set(iextp.iextp_header->first_message_sequence_number.get());
+        record.send_time.set(iextp.iextp_header->send_time.get());
         record.operational_halt_status.set(message->operational_halt_status.get());
         record.timestamp.set(message->timestamp.get());
         record.symbol.set(message->symbol.get());
@@ -151,6 +195,14 @@ struct Manager {
         const auto message = ShortSalePriceTestStatusMessage::parse(pointer);
 
         record.event_type.set("Short Sale Price Test Status Message");
+        record.version.set(iextp.iextp_header->version.get());
+        record.message_protocol_id.set(iextp.iextp_header->message_protocol_id.get());
+        record.channel_id.set(iextp.iextp_header->channel_id.get());
+        record.session_id.set(iextp.iextp_header->session_id.get());
+        record.payload_length.set(iextp.iextp_header->payload_length.get());
+        record.stream_offset.set(iextp.iextp_header->stream_offset.get());
+        record.first_message_sequence_number.set(iextp.iextp_header->first_message_sequence_number.get());
+        record.send_time.set(iextp.iextp_header->send_time.get());
         record.short_sale_price_test_status.set(message->short_sale_price_test_status.get());
         record.timestamp.set(message->timestamp.get());
         record.symbol.set(message->symbol.get());
@@ -164,6 +216,14 @@ struct Manager {
         const auto message = QuoteUpdateMessage::parse(pointer);
 
         record.event_type.set("Quote Update Message");
+        record.version.set(iextp.iextp_header->version.get());
+        record.message_protocol_id.set(iextp.iextp_header->message_protocol_id.get());
+        record.channel_id.set(iextp.iextp_header->channel_id.get());
+        record.session_id.set(iextp.iextp_header->session_id.get());
+        record.payload_length.set(iextp.iextp_header->payload_length.get());
+        record.stream_offset.set(iextp.iextp_header->stream_offset.get());
+        record.first_message_sequence_number.set(iextp.iextp_header->first_message_sequence_number.get());
+        record.send_time.set(iextp.iextp_header->send_time.get());
         record.timestamp.set(message->timestamp.get());
         record.symbol.set(message->symbol.get());
         record.bid_size.set(message->bid_size.get());
@@ -179,6 +239,14 @@ struct Manager {
         const auto message = TradeReportMessage::parse(pointer);
 
         record.event_type.set("Trade Report Message");
+        record.version.set(iextp.iextp_header->version.get());
+        record.message_protocol_id.set(iextp.iextp_header->message_protocol_id.get());
+        record.channel_id.set(iextp.iextp_header->channel_id.get());
+        record.session_id.set(iextp.iextp_header->session_id.get());
+        record.payload_length.set(iextp.iextp_header->payload_length.get());
+        record.stream_offset.set(iextp.iextp_header->stream_offset.get());
+        record.first_message_sequence_number.set(iextp.iextp_header->first_message_sequence_number.get());
+        record.send_time.set(iextp.iextp_header->send_time.get());
         record.timestamp.set(message->timestamp.get());
         record.symbol.set(message->symbol.get());
         record.size.set(message->size.get());
@@ -193,6 +261,14 @@ struct Manager {
         const auto message = OfficialPriceMessage::parse(pointer);
 
         record.event_type.set("Official Price Message");
+        record.version.set(iextp.iextp_header->version.get());
+        record.message_protocol_id.set(iextp.iextp_header->message_protocol_id.get());
+        record.channel_id.set(iextp.iextp_header->channel_id.get());
+        record.session_id.set(iextp.iextp_header->session_id.get());
+        record.payload_length.set(iextp.iextp_header->payload_length.get());
+        record.stream_offset.set(iextp.iextp_header->stream_offset.get());
+        record.first_message_sequence_number.set(iextp.iextp_header->first_message_sequence_number.get());
+        record.send_time.set(iextp.iextp_header->send_time.get());
         record.price_type.set(message->price_type.get());
         record.timestamp.set(message->timestamp.get());
         record.symbol.set(message->symbol.get());
@@ -206,6 +282,14 @@ struct Manager {
         const auto message = TradeBreakMessage::parse(pointer);
 
         record.event_type.set("Trade Break Message");
+        record.version.set(iextp.iextp_header->version.get());
+        record.message_protocol_id.set(iextp.iextp_header->message_protocol_id.get());
+        record.channel_id.set(iextp.iextp_header->channel_id.get());
+        record.session_id.set(iextp.iextp_header->session_id.get());
+        record.payload_length.set(iextp.iextp_header->payload_length.get());
+        record.stream_offset.set(iextp.iextp_header->stream_offset.get());
+        record.first_message_sequence_number.set(iextp.iextp_header->first_message_sequence_number.get());
+        record.send_time.set(iextp.iextp_header->send_time.get());
         record.timestamp.set(message->timestamp.get());
         record.symbol.set(message->symbol.get());
         record.size.set(message->size.get());
@@ -220,6 +304,14 @@ struct Manager {
         const auto message = AuctionInformationMessage::parse(pointer);
 
         record.event_type.set("Auction Information Message");
+        record.version.set(iextp.iextp_header->version.get());
+        record.message_protocol_id.set(iextp.iextp_header->message_protocol_id.get());
+        record.channel_id.set(iextp.iextp_header->channel_id.get());
+        record.session_id.set(iextp.iextp_header->session_id.get());
+        record.payload_length.set(iextp.iextp_header->payload_length.get());
+        record.stream_offset.set(iextp.iextp_header->stream_offset.get());
+        record.first_message_sequence_number.set(iextp.iextp_header->first_message_sequence_number.get());
+        record.send_time.set(iextp.iextp_header->send_time.get());
         record.auction_type.set(message->auction_type.get());
         record.timestamp.set(message->timestamp.get());
         record.symbol.set(message->symbol.get());

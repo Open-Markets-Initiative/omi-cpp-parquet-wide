@@ -10,7 +10,8 @@ struct PriceMultiplier {
 
     static constexpr const char* name = "Price Multiplier";
     static constexpr std::size_t size =  4;
-static const std::uint32_t no_value = 4294967295;
+    using type = std::uint32_t;
+static const type no_value = 4294967295;
 
     // default constructor
     constexpr PriceMultiplier()

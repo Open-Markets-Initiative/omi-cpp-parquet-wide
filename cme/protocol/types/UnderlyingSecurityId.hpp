@@ -10,6 +10,7 @@ struct UnderlyingSecurityId {
 
     static constexpr const char* name = "Underlying Security Id";
     static constexpr std::size_t size =  4;
+    using type = std::int32_t;
 
     // default constructor
     constexpr UnderlyingSecurityId()

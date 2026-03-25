@@ -25,6 +25,8 @@ struct ArrowBatch {
             OpenOutput();
         }
         ARROW_RETURN_NOT_OK(record.event_type.append(*event_type_builder));
+        ARROW_RETURN_NOT_OK(record.session.append(*session_builder));
+        ARROW_RETURN_NOT_OK(record.sequence_number.append(*sequence_number_builder));
         ARROW_RETURN_NOT_OK(record.stock_locate.append(*stock_locate_builder));
         ARROW_RETURN_NOT_OK(record.tracking_number.append(*tracking_number_builder));
         ARROW_RETURN_NOT_OK(record.timestamp.append(*timestamp_builder));
@@ -112,6 +114,8 @@ struct ArrowBatch {
         }
 
         std::shared_ptr<arrow::Array> event_type_column;
+        std::shared_ptr<arrow::Array> session_column;
+        std::shared_ptr<arrow::Array> sequence_number_column;
         std::shared_ptr<arrow::Array> stock_locate_column;
         std::shared_ptr<arrow::Array> tracking_number_column;
         std::shared_ptr<arrow::Array> timestamp_column;
@@ -184,6 +188,8 @@ struct ArrowBatch {
         std::shared_ptr<arrow::Array> upper_price_range_collar_column;
 
         ARROW_RETURN_NOT_OK(event_type_builder->Finish(&event_type_column));
+        ARROW_RETURN_NOT_OK(session_builder->Finish(&session_column));
+        ARROW_RETURN_NOT_OK(sequence_number_builder->Finish(&sequence_number_column));
         ARROW_RETURN_NOT_OK(stock_locate_builder->Finish(&stock_locate_column));
         ARROW_RETURN_NOT_OK(tracking_number_builder->Finish(&tracking_number_column));
         ARROW_RETURN_NOT_OK(timestamp_builder->Finish(&timestamp_column));
@@ -257,6 +263,8 @@ struct ArrowBatch {
 
         auto batch = arrow::RecordBatch::Make(schema, row_count, {
             event_type_column,
+            session_column,
+            sequence_number_column,
             stock_locate_column,
             tracking_number_column,
             timestamp_column,
@@ -359,6 +367,8 @@ struct ArrowBatch {
     // reset arrow builders
     void reset() {
         event_type_builder = std::make_unique<arrow::StringBuilder>();
+        session_builder = std::make_unique<arrow::StringBuilder>();
+        sequence_number_builder = std::make_unique<arrow::UInt64Builder>();
         stock_locate_builder = std::make_unique<arrow::UInt16Builder>();
         tracking_number_builder = std::make_unique<arrow::UInt16Builder>();
         timestamp_builder = std::make_unique<arrow::Time64Builder>(arrow::time64(arrow::TimeUnit::NANO), arrow::default_memory_pool());
@@ -490,6 +500,8 @@ struct ArrowBatch {
     std::unique_ptr<parquet::arrow::FileWriter> writer;
   protected:
         std::unique_ptr<arrow::StringBuilder> event_type_builder;
+        std::unique_ptr<arrow::StringBuilder> session_builder;
+        std::unique_ptr<arrow::UInt64Builder> sequence_number_builder;
         std::unique_ptr<arrow::UInt16Builder> stock_locate_builder;
         std::unique_ptr<arrow::UInt16Builder> tracking_number_builder;
         std::unique_ptr<arrow::Time64Builder> timestamp_builder;

@@ -10,7 +10,8 @@ struct StartTimeVwap {
 
     static constexpr const char* name = "Start Time Vwap";
     static constexpr std::size_t size =  4;
-static const std::uint32_t no_value = 4294967295;
+    using type = std::uint32_t;
+static const type no_value = 4294967295;
 
     // default constructor
     constexpr StartTimeVwap()

@@ -10,6 +10,7 @@ struct Emm {
 
     static constexpr const char* name = "Emm";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr Emm()

@@ -10,6 +10,7 @@ struct EfficientMmtAlgorithmicIndicator {
     static constexpr const char* name = "Efficient Mmt Algorithmic Indicator";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr EfficientMmtAlgorithmicIndicator()
      : value{ 0 } {}

@@ -10,6 +10,7 @@ struct GrossOfCdscIndicator {
     static constexpr const char* name = "Gross Of Cdsc Indicator";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr GrossOfCdscIndicator()
      : value{ 0 } {}

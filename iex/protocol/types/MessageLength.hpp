@@ -10,6 +10,7 @@ struct MessageLength {
 
     static constexpr const char* name = "Message Length";
     static constexpr std::size_t size =  2;
+    using type = std::uint16_t;
 
     // default constructor
     constexpr MessageLength()

@@ -10,6 +10,7 @@ struct PhaseId {
 
     static constexpr const char* name = "Phase Id";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr PhaseId()

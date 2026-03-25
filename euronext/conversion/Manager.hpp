@@ -200,6 +200,11 @@ struct Manager {
         const auto message = StartOfDayMessage::parse(pointer);
 
         record.event_type.set("Start Of Day Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.session_trading_day.set(message->session_trading_day.get());
 
@@ -211,6 +216,11 @@ struct Manager {
         const auto message = EndOfDayMessage::parse(pointer);
 
         record.event_type.set("End Of Day Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.session_trading_day.set(message->session_trading_day.get());
 
@@ -222,6 +232,11 @@ struct Manager {
         const auto message = HealthStatusMessage::parse(pointer);
 
         record.event_type.set("Health Status Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.event_time.set(message->event_time.get());
 
@@ -233,6 +248,11 @@ struct Manager {
         const auto message = TechnicalNotificationMessage::parse(pointer);
 
         record.event_type.set("Technical Notification Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num_optional.set(message->md_seq_num_optional.get());
         record.technical_notification_type.set(message->technical_notification_type.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
@@ -248,6 +268,11 @@ struct Manager {
         const auto message = MarketUpdateMessage::parse(pointer);
 
         record.event_type.set("Market Update Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.emm.set(message->emm.get());
@@ -277,6 +302,11 @@ struct Manager {
         const auto message = OrderUpdateMessage::parse(pointer);
 
         record.event_type.set("Order Update Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.emm.set(message->emm.get());
@@ -310,6 +340,11 @@ struct Manager {
         const auto message = PriceUpdateMessage::parse(pointer);
 
         record.event_type.set("Price Update Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.emm.set(message->emm.get());
@@ -341,6 +376,11 @@ struct Manager {
         const auto message = FullTradeInformationMessage::parse(pointer);
 
         record.event_type.set("Full Trade Information Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.emm.set(message->emm.get());
@@ -413,6 +453,11 @@ struct Manager {
         const auto message = MarketStatusChangeMessage::parse(pointer);
 
         record.event_type.set("Market Status Change Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.emm.set(message->emm.get());
@@ -450,6 +495,11 @@ struct Manager {
         const auto message = TimetableMessage::parse(pointer);
 
         record.event_type.set("Timetable Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.emm_optional.set(message->emm_optional.get());
@@ -481,6 +531,11 @@ struct Manager {
         const auto message = StandingDataMessage::parse(pointer);
 
         record.event_type.set("Standing Data Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.symbol_index.set(message->symbol_index.get());
@@ -575,6 +630,11 @@ struct Manager {
         const auto message = RealTimeIndexMessage::parse(pointer);
 
         record.event_type.set("Real Time Index Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.emm.set(message->emm.get());
@@ -595,6 +655,11 @@ struct Manager {
         const auto message = StatisticsMessage::parse(pointer);
 
         record.event_type.set("Statistics Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.symbol_index.set(message->symbol_index.get());
@@ -620,6 +685,11 @@ struct Manager {
         const auto message = IndexSummaryMessage::parse(pointer);
 
         record.event_type.set("Index Summary Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.emm.set(message->emm.get());
@@ -647,6 +717,11 @@ struct Manager {
         const auto message = StrategyStandingDataMessage::parse(pointer);
 
         record.event_type.set("Strategy Standing Data Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.emm.set(message->emm.get());
@@ -681,6 +756,11 @@ struct Manager {
         const auto message = ContractStandingDataMessage::parse(pointer);
 
         record.event_type.set("Contract Standing Data Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.symbol_index.set(message->symbol_index.get());
@@ -750,6 +830,11 @@ struct Manager {
         const auto message = OutrightStandingDataMessage::parse(pointer);
 
         record.event_type.set("Outright Standing Data Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.symbol_index.set(message->symbol_index.get());
@@ -789,6 +874,11 @@ struct Manager {
         const auto message = LongOrderUpdateMessage::parse(pointer);
 
         record.event_type.set("Long Order Update Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.emm.set(message->emm.get());
@@ -824,6 +914,11 @@ struct Manager {
         const auto message = LisPackageStructureMessage::parse(pointer);
 
         record.event_type.set("Lis Package Structure Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.emm.set(message->emm.get());
@@ -855,6 +950,11 @@ struct Manager {
         const auto message = ApaQuotesMessage::parse(pointer);
 
         record.event_type.set("Apa Quotes Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num_optional.set(message->md_seq_num_optional.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.mifid_instrument_id_type.set(message->mifid_instrument_id_type.get());
@@ -876,6 +976,11 @@ struct Manager {
         const auto message = ApaStandingDataMessage::parse(pointer);
 
         record.event_type.set("Apa Standing Data Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num_optional.set(message->md_seq_num_optional.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.mifid_instrument_id_type.set(message->mifid_instrument_id_type.get());
@@ -905,6 +1010,11 @@ struct Manager {
         const auto message = ApaFullTradeInformationMessage::parse(pointer);
 
         record.event_type.set("Apa Full Trade Information Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num.set(message->md_seq_num.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.emm.set(message->emm.get());
@@ -956,6 +1066,11 @@ struct Manager {
         const auto message = BfInstrumentReferenceMessage::parse(pointer);
 
         record.event_type.set("Bf Instrument Reference Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num_optional.set(message->md_seq_num_optional.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.symbol_index.set(message->symbol_index.get());
@@ -1016,6 +1131,11 @@ struct Manager {
         const auto message = BfTradeMessage::parse(pointer);
 
         record.event_type.set("Bf Trade Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num_optional.set(message->md_seq_num_optional.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.symbol_index.set(message->symbol_index.get());
@@ -1044,6 +1164,11 @@ struct Manager {
         const auto message = BfnavMessage::parse(pointer);
 
         record.event_type.set("Bfnav Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num_optional.set(message->md_seq_num_optional.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.symbol_index.set(message->symbol_index.get());
@@ -1063,6 +1188,11 @@ struct Manager {
         const auto message = BfInstrumentSuspensionMessage::parse(pointer);
 
         record.event_type.set("Bf Instrument Suspension Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.md_seq_num_optional.set(message->md_seq_num_optional.get());
         record.rebroadcast_indicator.set(message->rebroadcast_indicator.get());
         record.symbol_index.set(message->symbol_index.get());
@@ -1077,6 +1207,11 @@ struct Manager {
         const auto message = StartOfSnapshotMessage::parse(pointer);
 
         record.event_type.set("Start Of Snapshot Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.last_md_seq_num.set(message->last_md_seq_num.get());
         record.snapshot_time.set(message->snapshot_time.get());
 
@@ -1088,6 +1223,11 @@ struct Manager {
         const auto message = EndOfSnapshotMessage::parse(pointer);
 
         record.event_type.set("End Of Snapshot Message");
+        record.packet_time.set(sbe.market_data_packet_header->packet_time.get());
+        record.packet_sequence_number.set(sbe.market_data_packet_header->packet_sequence_number.get());
+        record.mdg_restart_count.set(sbe.market_data_packet_header->packet_flags.mdg_restart_count.get());
+        record.psn_high_weight.set(sbe.market_data_packet_header->packet_flags.psn_high_weight.get());
+        record.channel_id.set(sbe.market_data_packet_header->channel_id.get());
         record.last_md_seq_num.set(message->last_md_seq_num.get());
         record.snapshot_time.set(message->snapshot_time.get());
 

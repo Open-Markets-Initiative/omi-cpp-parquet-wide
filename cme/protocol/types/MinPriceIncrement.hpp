@@ -12,6 +12,7 @@ struct MinPriceIncrement {
     static constexpr std::size_t size =  8;
     static constexpr std::size_t precision = 7;
     static constexpr double denominator = 10000000;
+    using type = std::int64_t;
 
     // default constructor
     constexpr MinPriceIncrement()

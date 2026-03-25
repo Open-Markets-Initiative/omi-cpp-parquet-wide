@@ -10,6 +10,7 @@ struct ClosingReferenceLevel {
 
     static constexpr const char* name = "Closing Reference Level";
     static constexpr std::size_t size =  8;
+    using type = std::int64_t;
 
     // default constructor
     constexpr ClosingReferenceLevel()

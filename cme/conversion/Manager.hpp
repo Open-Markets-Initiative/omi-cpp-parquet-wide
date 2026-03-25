@@ -116,6 +116,10 @@ struct Manager {
         const auto& frame = parser.frame();
         sbe.initialize(frame.payload, frame.payload_len);
 
+        if (sbe.template_id == 12) {
+            return;
+        }
+
         while (sbe.next()) {
             process(sbe.message, sbe.template_id);
         }
@@ -210,6 +214,8 @@ struct Manager {
         const auto message = ChannelReset::parse(pointer);
 
         record.event_type.set("Channel Reset");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.transact_time.set(message->transact_time.get());
 
         // repeating group: Channel Reset Group (serialized as JSON)
@@ -230,6 +236,8 @@ struct Manager {
 
     void process_admin_heartbeat(const std::byte* pointer) {
         record.event_type.set("Admin Heartbeat");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
 
         record.write();
         record.reset();
@@ -239,6 +247,8 @@ struct Manager {
         const auto message = AdminLogin::parse(pointer);
 
         record.event_type.set("Admin Login");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.heart_bt_int.set(message->heart_bt_int.get());
 
         record.write();
@@ -249,6 +259,8 @@ struct Manager {
         const auto message = AdminLogout::parse(pointer);
 
         record.event_type.set("Admin Logout");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.text.set(message->text.get());
 
         record.write();
@@ -259,6 +271,8 @@ struct Manager {
         const auto message = MdInstrumentDefinitionFuture::parse(pointer);
 
         record.event_type.set("Md Instrument Definition Future");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.tot_num_reports_optional.set(message->tot_num_reports_optional.get());
         record.security_update_action.set(message->security_update_action.get());
         record.last_update_time.set(message->last_update_time.get());
@@ -358,6 +372,8 @@ struct Manager {
         const auto message = MdInstrumentDefinitionSpread::parse(pointer);
 
         record.event_type.set("Md Instrument Definition Spread");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.tot_num_reports_optional.set(message->tot_num_reports_optional.get());
         record.security_update_action.set(message->security_update_action.get());
         record.last_update_time.set(message->last_update_time.get());
@@ -467,6 +483,8 @@ struct Manager {
         const auto message = SecurityStatus::parse(pointer);
 
         record.event_type.set("Security Status");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.transact_time.set(message->transact_time.get());
         record.security_group.set(message->security_group.get());
         record.asset.set(message->asset.get());
@@ -484,6 +502,8 @@ struct Manager {
         const auto message = MdIncrementalRefreshBook::parse(pointer);
 
         record.event_type.set("Md Incremental Refresh Book");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.transact_time.set(message->transact_time.get());
 
         // repeating group: M D Incremental Refresh Book 32 No M D Entries Group (serialized as JSON)
@@ -529,6 +549,8 @@ struct Manager {
         const auto message = MdIncrementalRefreshDailyStatistics::parse(pointer);
 
         record.event_type.set("Md Incremental Refresh Daily Statistics");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.transact_time.set(message->transact_time.get());
 
         // repeating group: M D Incremental Refresh Daily Statistics 33 No M D Entries Group (serialized as JSON)
@@ -557,6 +579,8 @@ struct Manager {
         const auto message = MdIncrementalRefreshLimitsBanding::parse(pointer);
 
         record.event_type.set("Md Incremental Refresh Limits Banding");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.transact_time.set(message->transact_time.get());
 
         // repeating group: M D Incremental Refresh Limits Banding 34 No M D Entries Group (serialized as JSON)
@@ -583,6 +607,8 @@ struct Manager {
         const auto message = MdIncrementalRefreshSessionStatistics::parse(pointer);
 
         record.event_type.set("Md Incremental Refresh Session Statistics");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.transact_time.set(message->transact_time.get());
 
         // repeating group: M D Incremental Refresh Session Statistics 35 No M D Entries Group (serialized as JSON)
@@ -611,6 +637,8 @@ struct Manager {
         const auto message = MdIncrementalRefreshTrade::parse(pointer);
 
         record.event_type.set("Md Incremental Refresh Trade");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.transact_time.set(message->transact_time.get());
 
         // repeating group: M D Incremental Refresh Trade 36 No M D Entries Group (serialized as JSON)
@@ -640,6 +668,8 @@ struct Manager {
         const auto message = MdIncrementalRefreshVolume::parse(pointer);
 
         record.event_type.set("Md Incremental Refresh Volume");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.transact_time.set(message->transact_time.get());
 
         // repeating group: Incremental Refresh Volume Group (serialized as JSON)
@@ -665,6 +695,8 @@ struct Manager {
         const auto message = SnapshotFullRefresh::parse(pointer);
 
         record.event_type.set("Snapshot Full Refresh");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.last_msg_seq_num_processed.set(message->last_msg_seq_num_processed.get());
         record.tot_num_reports.set(message->tot_num_reports.get());
         record.security_id.set(message->security_id.get());
@@ -689,7 +721,7 @@ struct Manager {
             json_writer.field("Md Price Level Optional", entry->md_price_level_optional.get());
             json_writer.field("Trading Reference Date", entry->trading_reference_date.get());
             json_writer.field("Open Close Settl Flag", entry->open_close_settl_flag.get());
-            json_writer.field("Md Entry Type ", entry->md_entry_type_.get());
+            json_writer.field("Md Entry Type ", entry->md_entry_type.get());
             json_writer.end_element();
         }
         json_writer.finish_array();
@@ -703,6 +735,8 @@ struct Manager {
         const auto message = QuoteRequest::parse(pointer);
 
         record.event_type.set("Quote Request");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.transact_time.set(message->transact_time.get());
         record.quote_req_id.set(message->quote_req_id.get());
 
@@ -730,6 +764,8 @@ struct Manager {
         const auto message = MdInstrumentDefinitionOption::parse(pointer);
 
         record.event_type.set("Md Instrument Definition Option");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.tot_num_reports_optional.set(message->tot_num_reports_optional.get());
         record.security_update_action.set(message->security_update_action.get());
         record.last_update_time.set(message->last_update_time.get());
@@ -853,6 +889,8 @@ struct Manager {
         const auto message = MdIncrementalRefreshTradeSummary::parse(pointer);
 
         record.event_type.set("Md Incremental Refresh Trade Summary");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.transact_time.set(message->transact_time.get());
 
         // repeating group: M D Incremental Refresh Trade Summary 42 No M D Entries Group (serialized as JSON)
@@ -895,6 +933,8 @@ struct Manager {
         const auto message = MdIncrementalRefreshOrderBook::parse(pointer);
 
         record.event_type.set("Md Incremental Refresh Order Book");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.transact_time.set(message->transact_time.get());
 
         // repeating group: M D Incremental Refresh Order Book 43 No M D Entries Group (serialized as JSON)
@@ -923,6 +963,8 @@ struct Manager {
         const auto message = SnapshotFullRefreshOrderBook::parse(pointer);
 
         record.event_type.set("Snapshot Full Refresh Order Book");
+        record.packet_sequence_number.set(sbe.binary_packet_header->packet_sequence_number.get());
+        record.sending_time.set(sbe.binary_packet_header->sending_time.get());
         record.last_msg_seq_num_processed.set(message->last_msg_seq_num_processed.get());
         record.tot_num_reports.set(message->tot_num_reports.get());
         record.security_id.set(message->security_id.get());

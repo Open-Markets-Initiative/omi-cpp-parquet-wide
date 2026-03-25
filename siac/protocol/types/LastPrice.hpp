@@ -11,6 +11,7 @@ struct LastPrice {
 
     static constexpr const char* name = "Last Price";
     static constexpr std::size_t size = 4;
+    using type = std::int32_t;
 
     // default constructor
     constexpr LastPrice()

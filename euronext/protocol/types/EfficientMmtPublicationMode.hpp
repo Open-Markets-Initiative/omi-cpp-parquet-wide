@@ -10,6 +10,7 @@ struct EfficientMmtPublicationMode {
     static constexpr const char* name = "Efficient Mmt Publication Mode";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr EfficientMmtPublicationMode()
      : value{ 0 } {}

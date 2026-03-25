@@ -3,6 +3,8 @@
 #include <memory>
 
 #include "fields/EventType.hpp"
+#include "fields/PacketSequenceNumber.hpp"
+#include "fields/SendingTime.hpp"
 #include "fields/TransactTime.hpp"
 #include "fields/BlockLength.hpp"
 #include "fields/NumInGroup.hpp"
@@ -107,6 +109,8 @@ namespace cme {
 struct ArrowRecord {
 
     EventType event_type;
+    PacketSequenceNumber packet_sequence_number;
+    SendingTime sending_time;
     TransactTime transact_time;
     BlockLength block_length;
     NumInGroup num_in_group;
@@ -212,6 +216,8 @@ struct ArrowRecord {
     // parquet record reset
     void reset() {
         event_type.reset();
+        packet_sequence_number.reset();
+        sending_time.reset();
         transact_time.reset();
         block_length.reset();
         num_in_group.reset();
@@ -317,6 +323,8 @@ struct ArrowRecord {
     static auto schema() {
         return arrow::schema( {
             EventType::column(),
+            PacketSequenceNumber::column(),
+            SendingTime::column(),
             TransactTime::column(),
             BlockLength::column(),
             NumInGroup::column(),

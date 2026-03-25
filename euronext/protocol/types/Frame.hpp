@@ -10,6 +10,7 @@ struct Frame {
 
     static constexpr const char* name = "Frame";
     static constexpr std::size_t size =  2;
+    using type = std::uint16_t;
 
     // default constructor
     constexpr Frame()

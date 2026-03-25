@@ -10,7 +10,8 @@ struct Coupon {
 
     static constexpr const char* name = "Coupon";
     static constexpr std::size_t size =  8;
-static const std::int64_t no_value = -9223372036854775808;
+    using type = std::int64_t;
+static const type no_value = -9223372036854775808;
 
     // default constructor
     constexpr Coupon()

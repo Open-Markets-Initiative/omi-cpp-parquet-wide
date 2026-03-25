@@ -10,6 +10,7 @@ struct LastMsgSeqNumProcessed {
 
     static constexpr const char* name = "Last Msg Seq Num Processed";
     static constexpr std::size_t size =  4;
+    using type = std::uint32_t;
 
     // default constructor
     constexpr LastMsgSeqNumProcessed()

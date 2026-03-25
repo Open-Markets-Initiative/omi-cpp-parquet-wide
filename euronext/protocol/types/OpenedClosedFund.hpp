@@ -10,6 +10,7 @@ struct OpenedClosedFund {
     static constexpr const char* name = "Opened Closed Fund";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr OpenedClosedFund()
      : value{ 0 } {}

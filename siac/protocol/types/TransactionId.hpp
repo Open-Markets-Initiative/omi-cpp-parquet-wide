@@ -11,6 +11,7 @@ struct TransactionId {
 
     static constexpr const char* name = "Transaction Id";
     static constexpr std::size_t size = 4;
+    using type = std::uint32_t;
 
     // default constructor
     constexpr TransactionId()

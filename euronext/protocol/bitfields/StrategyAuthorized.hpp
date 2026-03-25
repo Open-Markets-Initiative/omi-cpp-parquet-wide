@@ -13,7 +13,7 @@ struct StrategyAuthorized {
 
     static constexpr const char* name = "Strategy Authorized";
     static constexpr std::size_t size = 8;
-    static const std::uint64_t no_value = 18446744073709551615;
+    static const type no_value = 18446744073709551615;
 
     struct mask {
         static const type JellyRoll = 0x0000000000000001;

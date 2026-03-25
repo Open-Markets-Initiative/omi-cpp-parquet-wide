@@ -12,6 +12,7 @@ struct IndicativeClearingPrice {
     static constexpr std::size_t size =  8;
     static constexpr std::size_t precision = 4;
     static constexpr double denominator = 10000;
+    using type = std::int64_t;
 
     // default constructor
     constexpr IndicativeClearingPrice()

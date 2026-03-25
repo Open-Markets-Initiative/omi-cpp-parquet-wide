@@ -25,6 +25,11 @@ struct ArrowBatch {
             OpenOutput();
         }
         ARROW_RETURN_NOT_OK(record.event_type.append(*event_type_builder));
+        ARROW_RETURN_NOT_OK(record.packet_time.append(*packet_time_builder));
+        ARROW_RETURN_NOT_OK(record.packet_sequence_number.append(*packet_sequence_number_builder));
+        ARROW_RETURN_NOT_OK(record.mdg_restart_count.append(*mdg_restart_count_builder));
+        ARROW_RETURN_NOT_OK(record.psn_high_weight.append(*psn_high_weight_builder));
+        ARROW_RETURN_NOT_OK(record.channel_id.append(*channel_id_builder));
         ARROW_RETURN_NOT_OK(record.md_seq_num.append(*md_seq_num_builder));
         ARROW_RETURN_NOT_OK(record.session_trading_day.append(*session_trading_day_builder));
         ARROW_RETURN_NOT_OK(record.event_time.append(*event_time_builder));
@@ -311,6 +316,11 @@ struct ArrowBatch {
         }
 
         std::shared_ptr<arrow::Array> event_type_column;
+        std::shared_ptr<arrow::Array> packet_time_column;
+        std::shared_ptr<arrow::Array> packet_sequence_number_column;
+        std::shared_ptr<arrow::Array> mdg_restart_count_column;
+        std::shared_ptr<arrow::Array> psn_high_weight_column;
+        std::shared_ptr<arrow::Array> channel_id_column;
         std::shared_ptr<arrow::Array> md_seq_num_column;
         std::shared_ptr<arrow::Array> session_trading_day_column;
         std::shared_ptr<arrow::Array> event_time_column;
@@ -582,6 +592,11 @@ struct ArrowBatch {
         std::shared_ptr<arrow::Array> snapshot_time_column;
 
         ARROW_RETURN_NOT_OK(event_type_builder->Finish(&event_type_column));
+        ARROW_RETURN_NOT_OK(packet_time_builder->Finish(&packet_time_column));
+        ARROW_RETURN_NOT_OK(packet_sequence_number_builder->Finish(&packet_sequence_number_column));
+        ARROW_RETURN_NOT_OK(mdg_restart_count_builder->Finish(&mdg_restart_count_column));
+        ARROW_RETURN_NOT_OK(psn_high_weight_builder->Finish(&psn_high_weight_column));
+        ARROW_RETURN_NOT_OK(channel_id_builder->Finish(&channel_id_column));
         ARROW_RETURN_NOT_OK(md_seq_num_builder->Finish(&md_seq_num_column));
         ARROW_RETURN_NOT_OK(session_trading_day_builder->Finish(&session_trading_day_column));
         ARROW_RETURN_NOT_OK(event_time_builder->Finish(&event_time_column));
@@ -854,6 +869,11 @@ struct ArrowBatch {
 
         auto batch = arrow::RecordBatch::Make(schema, row_count, {
             event_type_column,
+            packet_time_column,
+            packet_sequence_number_column,
+            mdg_restart_count_column,
+            psn_high_weight_column,
+            channel_id_column,
             md_seq_num_column,
             session_trading_day_column,
             event_time_column,
@@ -1155,6 +1175,11 @@ struct ArrowBatch {
     // reset arrow builders
     void reset() {
         event_type_builder = std::make_unique<arrow::StringBuilder>();
+        packet_time_builder = std::make_unique<arrow::Time64Builder>(arrow::time64(arrow::TimeUnit::NANO), arrow::default_memory_pool());
+        packet_sequence_number_builder = std::make_unique<arrow::UInt32Builder>();
+        mdg_restart_count_builder = std::make_unique<arrow::UInt32Builder>();
+        psn_high_weight_builder = std::make_unique<arrow::UInt32Builder>();
+        channel_id_builder = std::make_unique<arrow::UInt16Builder>();
         md_seq_num_builder = std::make_unique<arrow::UInt64Builder>();
         session_trading_day_builder = std::make_unique<arrow::UInt16Builder>();
         event_time_builder = std::make_unique<arrow::Time64Builder>(arrow::time64(arrow::TimeUnit::NANO), arrow::default_memory_pool());
@@ -1485,6 +1510,11 @@ struct ArrowBatch {
     std::unique_ptr<parquet::arrow::FileWriter> writer;
   protected:
         std::unique_ptr<arrow::StringBuilder> event_type_builder;
+        std::unique_ptr<arrow::Time64Builder> packet_time_builder;
+        std::unique_ptr<arrow::UInt32Builder> packet_sequence_number_builder;
+        std::unique_ptr<arrow::UInt32Builder> mdg_restart_count_builder;
+        std::unique_ptr<arrow::UInt32Builder> psn_high_weight_builder;
+        std::unique_ptr<arrow::UInt16Builder> channel_id_builder;
         std::unique_ptr<arrow::UInt64Builder> md_seq_num_builder;
         std::unique_ptr<arrow::UInt16Builder> session_trading_day_builder;
         std::unique_ptr<arrow::Time64Builder> event_time_builder;

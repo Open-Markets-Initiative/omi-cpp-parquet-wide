@@ -10,7 +10,8 @@ struct LastMdSeqNum {
 
     static constexpr const char* name = "Last Md Seq Num";
     static constexpr std::size_t size =  8;
-static const std::uint64_t no_value = 18446744073709551615;
+    using type = std::uint64_t;
+static const type no_value = 18446744073709551615;
 
     // default constructor
     constexpr LastMdSeqNum()

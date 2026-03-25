@@ -10,6 +10,7 @@ struct MarketDepth {
 
     static constexpr const char* name = "Market Depth";
     static constexpr std::size_t size = 1;
+    using type = std::int8_t;
 
     // default constructor
     constexpr MarketDepth()

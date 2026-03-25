@@ -10,6 +10,7 @@ struct QuoteUpdateType {
 
     static constexpr const char* name = "Quote Update Type";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr QuoteUpdateType()

@@ -10,6 +10,7 @@ struct UnderlyingProduct {
 
     static constexpr const char* name = "Underlying Product";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr UnderlyingProduct()

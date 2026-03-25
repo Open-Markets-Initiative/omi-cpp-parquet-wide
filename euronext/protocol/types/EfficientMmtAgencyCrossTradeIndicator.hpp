@@ -10,6 +10,7 @@ struct EfficientMmtAgencyCrossTradeIndicator {
     static constexpr const char* name = "Efficient Mmt Agency Cross Trade Indicator";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr EfficientMmtAgencyCrossTradeIndicator()
      : value{ 0 } {}

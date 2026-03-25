@@ -10,6 +10,7 @@ struct MmtOffBookAutomatedIndicator {
     static constexpr const char* name = "Mmt Off Book Automated Indicator";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr MmtOffBookAutomatedIndicator()
      : value{ 0 } {}

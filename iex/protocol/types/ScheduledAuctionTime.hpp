@@ -10,6 +10,7 @@ struct ScheduledAuctionTime {
 
     static constexpr const char* name = "Scheduled Auction Time";
     static constexpr std::size_t size =  4;
+    using type = std::uint32_t;
 
     // default constructor
     constexpr ScheduledAuctionTime()

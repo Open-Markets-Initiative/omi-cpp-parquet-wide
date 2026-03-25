@@ -10,7 +10,8 @@ struct TickRule {
 
     static constexpr const char* name = "Tick Rule";
     static constexpr std::size_t size = 1;
-    static const std::int8_t no_value = 127;
+    using type = std::int8_t;
+    static const type no_value = 127;
 
     // default constructor
     constexpr TickRule()

@@ -10,6 +10,7 @@ struct SecurityTradingEvent {
 
     static constexpr const char* name = "Security Trading Event";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr SecurityTradingEvent()

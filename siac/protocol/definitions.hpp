@@ -19,3 +19,5 @@
 
 #include "messages/UnderlyingValueLastSaleMessage.hpp"
 #include "messages/UnderlyingValueBidAndOfferMessage.hpp"
+
+#include "iterators/MessageIterator.hpp"

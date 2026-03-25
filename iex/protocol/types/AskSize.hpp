@@ -10,6 +10,7 @@ struct AskSize {
 
     static constexpr const char* name = "Ask Size";
     static constexpr std::size_t size =  4;
+    using type = std::uint32_t;
 
     // default constructor
     constexpr AskSize()

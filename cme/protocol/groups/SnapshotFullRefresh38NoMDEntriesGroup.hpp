@@ -22,7 +22,7 @@ struct SnapshotFullRefresh38NoMDEntriesGroup {
     TradingReferenceDate trading_reference_date;
     OpenCloseSettlFlag open_close_settl_flag;
     SettlPriceType settl_price_type;
-    MdEntryType md_entry_type_;
+    MdEntryType md_entry_type;
 
     // parse method
     static SnapshotFullRefresh38NoMDEntriesGroup* parse(std::byte* buffer) {

@@ -10,6 +10,7 @@ struct ApplId {
 
     static constexpr const char* name = "Appl Id";
     static constexpr std::size_t size =  2;
+    using type = std::int16_t;
 
     // default constructor
     constexpr ApplId()

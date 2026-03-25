@@ -10,6 +10,7 @@ struct BlockTradeCode {
     static constexpr const char* name = "Block Trade Code";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr BlockTradeCode()
      : value{ 0 } {}

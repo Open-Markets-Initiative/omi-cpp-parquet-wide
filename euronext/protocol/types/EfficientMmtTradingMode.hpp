@@ -10,6 +10,7 @@ struct EfficientMmtTradingMode {
     static constexpr const char* name = "Efficient Mmt Trading Mode";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr EfficientMmtTradingMode()
      : value{ 0 } {}

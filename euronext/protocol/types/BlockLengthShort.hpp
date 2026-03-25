@@ -10,6 +10,7 @@ struct BlockLengthShort {
 
     static constexpr const char* name = "Block Length Short";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr BlockLengthShort()

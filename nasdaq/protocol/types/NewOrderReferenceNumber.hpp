@@ -11,6 +11,7 @@ struct NewOrderReferenceNumber {
 
     static constexpr const char* name = "New Order Reference Number";
     static constexpr std::size_t size = 8;
+    using type = std::uint64_t;
 
     // default constructor
     constexpr NewOrderReferenceNumber()

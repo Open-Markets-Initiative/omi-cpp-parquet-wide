@@ -10,6 +10,7 @@ struct MmtTradingMode {
     static constexpr const char* name = "Mmt Trading Mode";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr MmtTradingMode()
      : value{ 0 } {}

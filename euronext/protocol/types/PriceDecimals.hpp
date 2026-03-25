@@ -10,6 +10,7 @@ struct PriceDecimals {
 
     static constexpr const char* name = "Price Decimals";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr PriceDecimals()

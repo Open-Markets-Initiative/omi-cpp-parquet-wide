@@ -10,6 +10,7 @@ struct ChannelId {
 
     static constexpr const char* name = "Channel Id";
     static constexpr std::size_t size =  2;
+    using type = std::uint16_t;
 
     // default constructor
     constexpr ChannelId()

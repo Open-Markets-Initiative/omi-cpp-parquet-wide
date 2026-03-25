@@ -10,6 +10,7 @@ struct ContractType {
     static constexpr const char* name = "Contract Type";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr ContractType()
      : value{ 0 } {}

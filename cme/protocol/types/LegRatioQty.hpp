@@ -10,6 +10,7 @@ struct LegRatioQty {
 
     static constexpr const char* name = "Leg Ratio Qty";
     static constexpr std::size_t size = 1;
+    using type = std::int8_t;
 
     // default constructor
     constexpr LegRatioQty()

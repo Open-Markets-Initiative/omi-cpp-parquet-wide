@@ -10,6 +10,7 @@ struct TaxDescriptionAttachingToADividend {
     static constexpr const char* name = "Tax Description Attaching To A Dividend";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr TaxDescriptionAttachingToADividend()
      : value{ 0 } {}

@@ -14,6 +14,7 @@ struct TradingCurrencyOptional {
 
     // underlying type
     using type = std::array<char, size>;
+static const type no_value = 0;
 
     // default constructor
     constexpr TradingCurrencyOptional()

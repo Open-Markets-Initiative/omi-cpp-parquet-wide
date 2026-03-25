@@ -3,6 +3,15 @@
 #include <memory>
 
 #include "fields/EventType.hpp"
+#include "fields/Version.hpp"
+#include "fields/BlockSize.hpp"
+#include "fields/DataFeedIndicator.hpp"
+#include "fields/RetransmissionIndicator.hpp"
+#include "fields/SessionIndicator.hpp"
+#include "fields/BlockSequenceNumber.hpp"
+#include "fields/Seconds.hpp"
+#include "fields/Nanoseconds.hpp"
+#include "fields/BlockChecksum.hpp"
 #include "fields/AdministrativeMessageType.hpp"
 #include "fields/MessageIndicator.hpp"
 #include "fields/TransactionId.hpp"
@@ -63,6 +72,15 @@ namespace siac {
 struct ArrowRecord {
 
     EventType event_type;
+    Version version;
+    BlockSize block_size;
+    DataFeedIndicator data_feed_indicator;
+    RetransmissionIndicator retransmission_indicator;
+    SessionIndicator session_indicator;
+    BlockSequenceNumber block_sequence_number;
+    Seconds seconds;
+    Nanoseconds nanoseconds;
+    BlockChecksum block_checksum;
     AdministrativeMessageType administrative_message_type;
     MessageIndicator message_indicator;
     TransactionId transaction_id;
@@ -124,6 +142,15 @@ struct ArrowRecord {
     // parquet record reset
     void reset() {
         event_type.reset();
+        version.reset();
+        block_size.reset();
+        data_feed_indicator.reset();
+        retransmission_indicator.reset();
+        session_indicator.reset();
+        block_sequence_number.reset();
+        seconds.reset();
+        nanoseconds.reset();
+        block_checksum.reset();
         administrative_message_type.reset();
         message_indicator.reset();
         transaction_id.reset();
@@ -185,6 +212,15 @@ struct ArrowRecord {
     static auto schema() {
         return arrow::schema( {
             EventType::column(),
+            Version::column(),
+            BlockSize::column(),
+            DataFeedIndicator::column(),
+            RetransmissionIndicator::column(),
+            SessionIndicator::column(),
+            BlockSequenceNumber::column(),
+            Seconds::column(),
+            Nanoseconds::column(),
+            BlockChecksum::column(),
             AdministrativeMessageType::column(),
             MessageIndicator::column(),
             TransactionId::column(),

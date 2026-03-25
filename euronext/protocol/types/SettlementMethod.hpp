@@ -10,6 +10,7 @@ struct SettlementMethod {
     static constexpr const char* name = "Settlement Method";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr SettlementMethod()
      : value{ 0 } {}

@@ -11,6 +11,7 @@ struct RoundLotSize {
 
     static constexpr const char* name = "Round Lot Size";
     static constexpr std::size_t size = 4;
+    using type = std::uint32_t;
 
     // default constructor
     constexpr RoundLotSize()

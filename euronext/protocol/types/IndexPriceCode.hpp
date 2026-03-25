@@ -10,6 +10,7 @@ struct IndexPriceCode {
 
     static constexpr const char* name = "Index Price Code";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr IndexPriceCode()

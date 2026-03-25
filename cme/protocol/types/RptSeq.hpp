@@ -10,6 +10,7 @@ struct RptSeq {
 
     static constexpr const char* name = "Rpt Seq";
     static constexpr std::size_t size =  4;
+    using type = std::uint32_t;
 
     // default constructor
     constexpr RptSeq()

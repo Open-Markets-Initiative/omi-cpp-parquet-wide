@@ -10,6 +10,7 @@ struct StatsUpdateType {
 
     static constexpr const char* name = "Stats Update Type";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr StatsUpdateType()

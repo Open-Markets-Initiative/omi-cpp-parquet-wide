@@ -10,6 +10,7 @@ struct EventType {
 
     static constexpr const char* name = "Event Type";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr EventType()

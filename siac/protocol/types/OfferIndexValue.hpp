@@ -11,6 +11,7 @@ struct OfferIndexValue {
 
     static constexpr const char* name = "Offer Index Value";
     static constexpr std::size_t size = 8;
+    using type = std::int64_t;
 
     // default constructor
     constexpr OfferIndexValue()

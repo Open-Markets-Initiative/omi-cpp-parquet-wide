@@ -14,3 +14,5 @@
 #include "messages/OfficialPriceMessage.hpp"
 #include "messages/TradeBreakMessage.hpp"
 #include "messages/AuctionInformationMessage.hpp"
+
+#include "iterators/MessageIterator.hpp"

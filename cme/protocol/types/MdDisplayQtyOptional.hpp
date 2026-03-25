@@ -10,7 +10,8 @@ struct MdDisplayQtyOptional {
 
     static constexpr const char* name = "Md Display Qty Optional";
     static constexpr std::size_t size =  4;
-static const std::int32_t no_value = 2147483647;
+    using type = std::int32_t;
+static const type no_value = 2147483647;
 
     // default constructor
     constexpr MdDisplayQtyOptional()

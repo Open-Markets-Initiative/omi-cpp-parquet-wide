@@ -10,6 +10,7 @@ struct MdSeqNum {
 
     static constexpr const char* name = "Md Seq Num";
     static constexpr std::size_t size =  8;
+    using type = std::uint64_t;
 
     // default constructor
     constexpr MdSeqNum()

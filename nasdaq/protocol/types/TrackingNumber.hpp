@@ -11,6 +11,7 @@ struct TrackingNumber {
 
     static constexpr const char* name = "Tracking Number";
     static constexpr std::size_t size = 2;
+    using type = std::uint16_t;
 
     // default constructor
     constexpr TrackingNumber()

@@ -10,6 +10,7 @@ struct StreamOffset {
 
     static constexpr const char* name = "Stream Offset";
     static constexpr std::size_t size =  8;
+    using type = std::uint64_t;
 
     // default constructor
     constexpr StreamOffset()

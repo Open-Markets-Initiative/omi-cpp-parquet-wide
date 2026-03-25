@@ -10,6 +10,7 @@ struct EfficientMmtBenchmarkIndicator {
     static constexpr const char* name = "Efficient Mmt Benchmark Indicator";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr EfficientMmtBenchmarkIndicator()
      : value{ 0 } {}

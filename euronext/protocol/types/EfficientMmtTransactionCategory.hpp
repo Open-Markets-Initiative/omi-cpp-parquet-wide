@@ -10,6 +10,7 @@ struct EfficientMmtTransactionCategory {
     static constexpr const char* name = "Efficient Mmt Transaction Category";
     static constexpr std::size_t size = 1;
 
+    static const type no_value = 0;
     // default constructor
     constexpr EfficientMmtTransactionCategory()
      : value{ 0 } {}

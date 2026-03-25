@@ -11,7 +11,8 @@ struct Version {
 
     static constexpr const char* name = "Version";
     static constexpr std::size_t size = 1;
-    static const std::uint8_t static_value = 6;
+    using type = std::uint8_t;
+    static const type static_value = 6;
 
     // default constructor
     constexpr Version()

@@ -10,7 +10,8 @@ struct SchemaId {
 
     static constexpr const char* name = "Schema Id";
     static constexpr std::size_t size =  2;
-static const std::uint16_t static_value = 0;
+    using type = std::uint16_t;
+static const type static_value = 0;
 
     // default constructor
     constexpr SchemaId()

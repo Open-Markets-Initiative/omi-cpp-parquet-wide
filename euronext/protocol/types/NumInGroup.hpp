@@ -10,6 +10,7 @@ struct NumInGroup {
 
     static constexpr const char* name = "Num In Group";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr NumInGroup()

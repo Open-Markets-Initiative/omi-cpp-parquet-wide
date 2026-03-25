@@ -10,6 +10,7 @@ struct QuoteType {
 
     static constexpr const char* name = "Quote Type";
     static constexpr std::size_t size = 1;
+    using type = std::int8_t;
 
     // default constructor
     constexpr QuoteType()

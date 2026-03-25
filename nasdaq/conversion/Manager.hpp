@@ -25,7 +25,15 @@ struct Manager {
     // process udp packet
     void udp() {
         const auto& frame = parser.frame();
-        itch.initialize(frame.payload);
+        itch.initialize(frame.payload, frame.payload_len);
+
+        if (itch.message_count == 0) {
+            return;
+        }
+
+        if (itch.message_count == 65535) {
+            return;
+        }
 
         while (itch.next()) {
             process(itch.message, itch.message_type);
@@ -137,6 +145,8 @@ struct Manager {
         const auto message = SystemEventMessage::parse(pointer);
 
         record.event_type.set("System Event Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -150,6 +160,8 @@ struct Manager {
         const auto message = StockDirectoryMessage::parse(pointer);
 
         record.event_type.set("Stock Directory Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -176,6 +188,8 @@ struct Manager {
         const auto message = StockTradingActionMessage::parse(pointer);
 
         record.event_type.set("Stock Trading Action Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -192,6 +206,8 @@ struct Manager {
         const auto message = RegShoShortSalePriceTestRestrictedIndicatorMessage::parse(pointer);
 
         record.event_type.set("Reg Sho Short Sale Price Test Restricted Indicator Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.locate_code.set(message->locate_code.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -206,6 +222,8 @@ struct Manager {
         const auto message = MarketParticipantPositionMessage::parse(pointer);
 
         record.event_type.set("Market Participant Position Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -223,6 +241,8 @@ struct Manager {
         const auto message = MwcbDeclineLevelMessage::parse(pointer);
 
         record.event_type.set("Mwcb Decline Level Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -238,6 +258,8 @@ struct Manager {
         const auto message = MwcbStatusLevelMessage::parse(pointer);
 
         record.event_type.set("Mwcb Status Level Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -251,6 +273,8 @@ struct Manager {
         const auto message = IpoQuotingPeriodUpdate::parse(pointer);
 
         record.event_type.set("Ipo Quoting Period Update");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -267,6 +291,8 @@ struct Manager {
         const auto message = LuldAuctionCollarMessage::parse(pointer);
 
         record.event_type.set("Luld Auction Collar Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -284,6 +310,8 @@ struct Manager {
         const auto message = OperationalHaltMessage::parse(pointer);
 
         record.event_type.set("Operational Halt Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -299,6 +327,8 @@ struct Manager {
         const auto message = AddOrderNoMpidAttributionMessage::parse(pointer);
 
         record.event_type.set("Add Order No Mpid Attribution Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -316,6 +346,8 @@ struct Manager {
         const auto message = AddOrderWithMpidAttributionMessage::parse(pointer);
 
         record.event_type.set("Add Order With Mpid Attribution Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -334,6 +366,8 @@ struct Manager {
         const auto message = OrderExecutedMessage::parse(pointer);
 
         record.event_type.set("Order Executed Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -349,6 +383,8 @@ struct Manager {
         const auto message = OrderExecutedWithPriceMessage::parse(pointer);
 
         record.event_type.set("Order Executed With Price Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -366,6 +402,8 @@ struct Manager {
         const auto message = OrderCancelMessage::parse(pointer);
 
         record.event_type.set("Order Cancel Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -380,6 +418,8 @@ struct Manager {
         const auto message = OrderDeleteMessage::parse(pointer);
 
         record.event_type.set("Order Delete Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -393,6 +433,8 @@ struct Manager {
         const auto message = OrderReplaceMessage::parse(pointer);
 
         record.event_type.set("Order Replace Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -409,6 +451,8 @@ struct Manager {
         const auto message = NonCrossTradeMessage::parse(pointer);
 
         record.event_type.set("Non Cross Trade Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -427,6 +471,8 @@ struct Manager {
         const auto message = CrossTradeMessage::parse(pointer);
 
         record.event_type.set("Cross Trade Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -444,6 +490,8 @@ struct Manager {
         const auto message = BrokenTradeMessage::parse(pointer);
 
         record.event_type.set("Broken Trade Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -457,6 +505,8 @@ struct Manager {
         const auto message = NetOrderImbalanceIndicatorMessage::parse(pointer);
 
         record.event_type.set("Net Order Imbalance Indicator Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -478,6 +528,8 @@ struct Manager {
         const auto message = RetailPriceImprovementIndicatorMessage::parse(pointer);
 
         record.event_type.set("Retail Price Improvement Indicator Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());
@@ -492,6 +544,8 @@ struct Manager {
         const auto message = DirectListingWithCapitalRaisePriceDiscoveryMessage::parse(pointer);
 
         record.event_type.set("Direct Listing With Capital Raise Price Discovery Message");
+        record.session.set(itch.packet_header->session.get());
+        record.sequence_number.set(itch.packet_header->sequence_number.get());
         record.stock_locate.set(message->stock_locate.get());
         record.tracking_number.set(message->tracking_number.get());
         record.timestamp.set(message->timestamp.get());

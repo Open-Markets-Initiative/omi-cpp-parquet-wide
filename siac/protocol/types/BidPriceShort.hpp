@@ -13,6 +13,7 @@ struct BidPriceShort {
     static constexpr std::size_t size = 2;
     static constexpr std::size_t precision = 2;
     static constexpr double denominator = 100;
+    using type = std::int16_t;
 
     // default constructor
     constexpr BidPriceShort()

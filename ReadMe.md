@@ -8,13 +8,13 @@ Each protocol generates a single wide parquet record with all message fields as 
 
 ## Protocols
 
-| Organization | Protocol |
-| --- | --- |
-| Chicago Mercantile Exchange | Simple Binary Encoding 1.8 |
-| National Association of Securities Dealers Automated Quotations | Itch 5.0 |
-| Investors Exchange | Investors Exchange Transport Protocol 1.6.6 |
-| Securities Industry Automation Corporation | Opra Binary Interface 6.2 |
-| European New Exchange Technology | Simple Binary Encoding 5.25 |
+| Organization | Protocol | Version |
+| --- | --- | --- |
+| Chicago Mercantile Exchange | Mdp3 | 1.8 |
+| National Association of Securities Dealers Automated Quotations | TotalView | 5.0 |
+| Investors Exchange | Tops | 1.6.6 |
+| Securities Industry Automation Corporation | Recipient | 6.2 |
+| European New Exchange Technology | MarketDataGateway | 5.25 |
 
 ## Build
 
@@ -42,8 +42,7 @@ This entire repository is source generated. If you wish to suggest updates, the 
 
 The [Open Markets Initiative (Omi)](https://github.com/Open-Markets-Initiative/Directory) is a group of technologists dedicated to enhancing the stability of electronic financial markets using modern development methods.
 
-For a list of Omi projects: [Omi Directory](https://github.com/Open-Markets-Initiative/Directory/tree/main/Projects)
-
+For a list of Omi projects: [Omi Directory](https://github.com/Open-Markets-Initiative/Directory/tree/main/Projects "Open Markets Initiative Projects")
 ## Disclaimer
 
 Any similarities between existing people, places and/or protocols is purely incidental.

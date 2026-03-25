@@ -10,7 +10,8 @@ struct EffectiveDateIndicator {
 
     static constexpr const char* name = "Effective Date Indicator";
     static constexpr std::size_t size = 1;
-    static const std::uint8_t no_value = 255;
+    using type = std::uint8_t;
+    static const type no_value = 255;
 
     // default constructor
     constexpr EffectiveDateIndicator()

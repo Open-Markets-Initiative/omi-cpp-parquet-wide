@@ -10,6 +10,7 @@ struct MdUpdateAction {
 
     static constexpr const char* name = "Md Update Action";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr MdUpdateAction()

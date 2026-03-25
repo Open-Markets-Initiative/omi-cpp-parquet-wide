@@ -10,6 +10,7 @@ struct PrctVarfromPrevClose {
 
     static constexpr const char* name = "Prct Varfrom Prev Close";
     static constexpr std::size_t size =  8;
+    using type = std::int64_t;
 
     // default constructor
     constexpr PrctVarfromPrevClose()

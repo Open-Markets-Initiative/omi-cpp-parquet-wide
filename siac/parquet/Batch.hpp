@@ -25,6 +25,15 @@ struct ArrowBatch {
             OpenOutput();
         }
         ARROW_RETURN_NOT_OK(record.event_type.append(*event_type_builder));
+        ARROW_RETURN_NOT_OK(record.version.append(*version_builder));
+        ARROW_RETURN_NOT_OK(record.block_size.append(*block_size_builder));
+        ARROW_RETURN_NOT_OK(record.data_feed_indicator.append(*data_feed_indicator_builder));
+        ARROW_RETURN_NOT_OK(record.retransmission_indicator.append(*retransmission_indicator_builder));
+        ARROW_RETURN_NOT_OK(record.session_indicator.append(*session_indicator_builder));
+        ARROW_RETURN_NOT_OK(record.block_sequence_number.append(*block_sequence_number_builder));
+        ARROW_RETURN_NOT_OK(record.seconds.append(*seconds_builder));
+        ARROW_RETURN_NOT_OK(record.nanoseconds.append(*nanoseconds_builder));
+        ARROW_RETURN_NOT_OK(record.block_checksum.append(*block_checksum_builder));
         ARROW_RETURN_NOT_OK(record.administrative_message_type.append(*administrative_message_type_builder));
         ARROW_RETURN_NOT_OK(record.message_indicator.append(*message_indicator_builder));
         ARROW_RETURN_NOT_OK(record.transaction_id.append(*transaction_id_builder));
@@ -97,6 +106,15 @@ struct ArrowBatch {
         }
 
         std::shared_ptr<arrow::Array> event_type_column;
+        std::shared_ptr<arrow::Array> version_column;
+        std::shared_ptr<arrow::Array> block_size_column;
+        std::shared_ptr<arrow::Array> data_feed_indicator_column;
+        std::shared_ptr<arrow::Array> retransmission_indicator_column;
+        std::shared_ptr<arrow::Array> session_indicator_column;
+        std::shared_ptr<arrow::Array> block_sequence_number_column;
+        std::shared_ptr<arrow::Array> seconds_column;
+        std::shared_ptr<arrow::Array> nanoseconds_column;
+        std::shared_ptr<arrow::Array> block_checksum_column;
         std::shared_ptr<arrow::Array> administrative_message_type_column;
         std::shared_ptr<arrow::Array> message_indicator_column;
         std::shared_ptr<arrow::Array> transaction_id_column;
@@ -154,6 +172,15 @@ struct ArrowBatch {
         std::shared_ptr<arrow::Array> offer_index_value_column;
 
         ARROW_RETURN_NOT_OK(event_type_builder->Finish(&event_type_column));
+        ARROW_RETURN_NOT_OK(version_builder->Finish(&version_column));
+        ARROW_RETURN_NOT_OK(block_size_builder->Finish(&block_size_column));
+        ARROW_RETURN_NOT_OK(data_feed_indicator_builder->Finish(&data_feed_indicator_column));
+        ARROW_RETURN_NOT_OK(retransmission_indicator_builder->Finish(&retransmission_indicator_column));
+        ARROW_RETURN_NOT_OK(session_indicator_builder->Finish(&session_indicator_column));
+        ARROW_RETURN_NOT_OK(block_sequence_number_builder->Finish(&block_sequence_number_column));
+        ARROW_RETURN_NOT_OK(seconds_builder->Finish(&seconds_column));
+        ARROW_RETURN_NOT_OK(nanoseconds_builder->Finish(&nanoseconds_column));
+        ARROW_RETURN_NOT_OK(block_checksum_builder->Finish(&block_checksum_column));
         ARROW_RETURN_NOT_OK(administrative_message_type_builder->Finish(&administrative_message_type_column));
         ARROW_RETURN_NOT_OK(message_indicator_builder->Finish(&message_indicator_column));
         ARROW_RETURN_NOT_OK(transaction_id_builder->Finish(&transaction_id_column));
@@ -212,6 +239,15 @@ struct ArrowBatch {
 
         auto batch = arrow::RecordBatch::Make(schema, row_count, {
             event_type_column,
+            version_column,
+            block_size_column,
+            data_feed_indicator_column,
+            retransmission_indicator_column,
+            session_indicator_column,
+            block_sequence_number_column,
+            seconds_column,
+            nanoseconds_column,
+            block_checksum_column,
             administrative_message_type_column,
             message_indicator_column,
             transaction_id_column,
@@ -299,6 +335,15 @@ struct ArrowBatch {
     // reset arrow builders
     void reset() {
         event_type_builder = std::make_unique<arrow::StringBuilder>();
+        version_builder = std::make_unique<arrow::UInt8Builder>();
+        block_size_builder = std::make_unique<arrow::UInt16Builder>();
+        data_feed_indicator_builder = std::make_unique<arrow::StringBuilder>();
+        retransmission_indicator_builder = std::make_unique<arrow::StringBuilder>();
+        session_indicator_builder = std::make_unique<arrow::UInt8Builder>();
+        block_sequence_number_builder = std::make_unique<arrow::UInt32Builder>();
+        seconds_builder = std::make_unique<arrow::UInt32Builder>();
+        nanoseconds_builder = std::make_unique<arrow::UInt32Builder>();
+        block_checksum_builder = std::make_unique<arrow::UInt16Builder>();
         administrative_message_type_builder = std::make_unique<arrow::StringBuilder>();
         message_indicator_builder = std::make_unique<arrow::StringBuilder>();
         transaction_id_builder = std::make_unique<arrow::UInt32Builder>();
@@ -415,6 +460,15 @@ struct ArrowBatch {
     std::unique_ptr<parquet::arrow::FileWriter> writer;
   protected:
         std::unique_ptr<arrow::StringBuilder> event_type_builder;
+        std::unique_ptr<arrow::UInt8Builder> version_builder;
+        std::unique_ptr<arrow::UInt16Builder> block_size_builder;
+        std::unique_ptr<arrow::StringBuilder> data_feed_indicator_builder;
+        std::unique_ptr<arrow::StringBuilder> retransmission_indicator_builder;
+        std::unique_ptr<arrow::UInt8Builder> session_indicator_builder;
+        std::unique_ptr<arrow::UInt32Builder> block_sequence_number_builder;
+        std::unique_ptr<arrow::UInt32Builder> seconds_builder;
+        std::unique_ptr<arrow::UInt32Builder> nanoseconds_builder;
+        std::unique_ptr<arrow::UInt16Builder> block_checksum_builder;
         std::unique_ptr<arrow::StringBuilder> administrative_message_type_builder;
         std::unique_ptr<arrow::StringBuilder> message_indicator_builder;
         std::unique_ptr<arrow::UInt32Builder> transaction_id_builder;

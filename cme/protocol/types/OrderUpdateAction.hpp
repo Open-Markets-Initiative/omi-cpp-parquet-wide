@@ -10,6 +10,7 @@ struct OrderUpdateAction {
 
     static constexpr const char* name = "Order Update Action";
     static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
 
     // default constructor
     constexpr OrderUpdateAction()

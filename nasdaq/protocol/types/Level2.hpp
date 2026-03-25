@@ -13,6 +13,7 @@ struct Level2 {
     static constexpr std::size_t size = 8;
     static constexpr std::size_t precision = 8;
     static constexpr double denominator = 100000000;
+    using type = std::uint64_t;
 
     // default constructor
     constexpr Level2()

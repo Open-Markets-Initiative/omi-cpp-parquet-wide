@@ -10,12 +10,11 @@ struct MessageIterator {
 
     const BlockHeader* block_header = nullptr;
 
-    std::uint8_t version = 0;
     std::uint8_t messages_in_block = 0;
     std::uint8_t entry_index = 0;
     const std::byte* entry = nullptr;
 
-    // initialize group iterator
+    // initialize iterator
     void initialize(const std::byte* data) {
 
         current = data;
@@ -23,7 +22,6 @@ struct MessageIterator {
         block_header = BlockHeader::parse(current);
         current += sizeof(BlockHeader);
 
-        version = block_header->version.get();
         messages_in_block = block_header->messages_in_block.get();
         entry_index = 0;
         entry = nullptr;
@@ -38,9 +36,13 @@ struct MessageIterator {
 
         entry = current;
         entry_index++;
-        current += version;
 
         return true;
+    }
+
+    // advance past processed entry
+    void advance(std::size_t bytes) {
+        current += bytes;
     }
 
     // reset iterator
@@ -49,7 +51,6 @@ struct MessageIterator {
 
         block_header = nullptr;
 
-        version = 0;
         messages_in_block = 0;
         entry_index = 0;
         entry = nullptr;
